@@ -318,6 +318,8 @@ if (command.botPermissions) {
       }
       timestamps.set(message.author.id, now);
      */ let prefix = guild.prefix;
+  /// else loadCommandOptions(client, message, command, false);
+
       if (command) command.run(bot, message, args, prefix, data, cmd, prime);
   //setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
     }
