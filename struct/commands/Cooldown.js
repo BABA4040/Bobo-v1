@@ -1,9 +1,11 @@
-module.exports = class{
-  async run(bot, message, command){
+ async function check(bot, message, command){
+    const cooldown = require(`${process.cwd()}/server.js`);
+    
+    
  /* let guild = await Guild.findOne({guildID: message.guild.id})
   if(guild){*/
-  if (!bot.cooldowns.has(command.name)) {
-    bot.cooldowns.set(command.name, new Discord.Collection());
+  if (!message.bot.cooldowns.has(command.name)) {
+    bot.cooldowns.set(command.name,new cooldown() );
   }
 
   const now = Date.now();
@@ -21,4 +23,5 @@ module.exports = class{
   timestamps.set(message.author.id, now);
 
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-}}
+}
+module.exports = { check };
