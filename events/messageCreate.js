@@ -4,11 +4,11 @@ const owners = "768944616724103170";
 
 const profileSchema = require(`${process.cwd()}/data/user.js`);
 
-
+const { join } = require('path');
 
 module.exports = class{
   async run (message, bot){
-    const hama = require("../struct/command/cooldown.js")
+    const loadCommandOptions = require( '../struct/command/loadcommand')
     const lord =message.guild;
     const data = {};
    
