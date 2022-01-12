@@ -6,7 +6,7 @@ module.exports = {
   memberPermissions: [ "SEND_MESSAGES" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
-  cooldown: 3000,
+  cooldown: 10000,
   run: async (bot, message, args, dev) => {
 ////if(message.guild.me.has("838593240328044554"))return
 let embed = new Discord.MessageEmbed()

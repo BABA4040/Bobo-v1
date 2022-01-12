@@ -6,8 +6,8 @@ const profileSchema = require(`${process.cwd()}/data/user.js`);
 
 
 
-module.exports = class {
-  async run(message, bot) {
+module.exports = class{
+  async run (message, bot){
     const lord =message.guild;
     const data = {};
    
@@ -297,7 +297,7 @@ if (command.botPermissions) {
 
 }
 
-
+/*
       if (!bot.cooldowns.has(command.name)) {
         bot.cooldowns.set(command.name, new Discord.Collection());
       }
@@ -316,9 +316,9 @@ if (command.botPermissions) {
         }
       }
       timestamps.set(message.author.id, now);
-      let prefix = guild.prefix;
+     */ let prefix = guild.prefix;
       if (command) command.run(bot, message, args, prefix, data, cmd, prime);
-      setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+  //setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
     }
   }
 };

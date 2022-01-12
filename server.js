@@ -55,6 +55,8 @@ bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
 bot.catagories = fs.readdirSync("./commands/");
+["struct"].forEach(file=>{
+  require(`./struc
 ["command","event"].forEach(handler => {
   require(`./handler/${handler}`)(bot);
 });
