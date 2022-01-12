@@ -33,6 +33,7 @@ bot.reva = new I18n({ defaultLocale: "en" });
 global.logChannel = bot.channels.cache.get("891641446283759646")
 
 global.mongoose = require("mongoose");
+
 mongoose
   .connect(config.mongoURL,
     { useNewUrlParser: true, useUnifiedTopology: true }
@@ -54,11 +55,11 @@ bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
 bot.catagories = fs.readdirSync("./commands/");
-["command"].forEach(handler => {
+["command","event"].forEach(handler => {
   require(`./handler/${handler}`)(bot);
 });
 
-/**/
+/**
 let util = require("util"),
   readdir = util.promisify(fs.readdir);
 
@@ -74,7 +75,7 @@ const init = async () => {
     delete require.cache[require.resolve(`./events/${file}`)];
   });
 };
-init();
+init();*//*
 
 bot.on("ready", () => {
   console.log(`[!]-------------------------------------[!]`);
@@ -95,7 +96,7 @@ bot.on("messageCreate", async message => {
   if (message.content.startsWith(`<@${bot.user.id}>`)) {
     return message.reply({ content: `My prefix is \`${guild.prefix}\`` });
   }
-});
+});*/
 
 /////
 
