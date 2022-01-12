@@ -1,0 +1,50 @@
+{
+  "name": "hama",
+  "version": "4.0.0",
+  "description": "-- AWESOMENESS --",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "discord.js": "^13.2.0",
+    "ascii-table": "0.0.9",
+    "moment-timezone": "^0.5.33",
+    "math-expression-evaluator": "^1.3.8",
+    "discord-anti-spam": "^2.5.8",
+    "express": "^4.17.1",
+    "finalhandler": "^1.1.2",
+    "fs": "^0.0.2",
+    "superagent": "^6.1.0",
+    "moment": "^2.29.1",
+    "ms": "^2.1.3",
+    "node-opus": "^0.3.3",
+    "request": "^2.88.2",
+    "sqlite": "^4.0.23",
+    "node-cmd": "^5.0.0",
+    "util": "^0.12.4",
+    "mongoose": "^6.0.9",
+    "node-fetch": "^2.6.0",
+    "locale-parser": "^1.1.1",
+    "dayjs": "^1.10.7",
+    "pretty-ms": "^7.0.1",
+    "discord-image-generation": "^1.4.9",
+    "percentagebar": "^1.0.3",
+    "discord-xp": "^1.1.16",
+    "canvacord": "^5.2.3",
+    "js-beautify": "^1.14.0",
+    "canvas-constructor": "^4.0.1",
+    "jikanjs": "^0.7.0",
+    "axios": "^0.22.0",
+    "lodash": "^4.17.21",
+    "random-number-csprng": "^1.0.2",
+   "voucher-code-generator": "^1.1.1",
+    "uniqid": "^5.4.0",
+    "date-and-time": "^2.0.1"
+ 
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}
