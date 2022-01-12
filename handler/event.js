@@ -1,7 +1,9 @@
+
 const fs = require("fs")
-module.exports = async (bot)=>{
-  let util = require("util"),
-  readdir = util.promisify(fs.readdir);
+let util = require("util")
+const readdir =util.promisify(fs.readdir)
+
+module.exports= async bot =>{
 
 const init = async () => {
   // Then we load events, which will include our message and ready event.
@@ -10,9 +12,10 @@ const init = async () => {
   evtFiles.forEach(file => {
     const eventName = file.split(".")[0];
     console.log(`Loading Event: ${eventName}`);
-    const event = new (require(`../events/${file}`))(bot);
+    const event = new( require(`../events/${file}`))(bot);
     bot.on(eventName, (...args) => event.run(...args, bot));
     delete require.cache[require.resolve(`../events/${file}`)];
   });
 };
-init();}
+init();
+}
