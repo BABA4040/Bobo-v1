@@ -18,7 +18,7 @@ const bot = new Client({
   partials: ["CHANNEL", "MESSAGE", "REACTION", "USER"]
 });
 ///const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD] });
-const config = require("./config.json")
+global.config = require("./config.json")
 const { Util } = require("discord.js");
 const fs = require("fs");
 const prefix = "Bo";
@@ -31,7 +31,7 @@ const { I18n } = require("locale-parser");
 bot.reva = new I18n({ defaultLocale: "en" });
 
 global.logChannel = bot.channels.cache.get("891641446283759646")
- 
+
 global.mongoose = require("mongoose");
 mongoose
   .connect(config.mongoURL,
