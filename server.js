@@ -18,7 +18,7 @@ const bot = new Client({
   partials: ["CHANNEL", "MESSAGE", "REACTION", "USER"]
 });
 ///const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD] });
-
+const config = require("./config.json")
 const { Util } = require("discord.js");
 const fs = require("fs");
 const prefix = "Bo";
@@ -34,8 +34,7 @@ global.logChannel = bot.channels.cache.get("891641446283759646")
  
 global.mongoose = require("mongoose");
 mongoose
-  .connect(
-    "mongodb+srv://hama1234:hama1234++@cluster0.8zckc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  .connect(config.mongoURL,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
@@ -102,5 +101,5 @@ bot.on("messageCreate", async message => {
 
 
 
-bot.login("OTg")
+bot.login(config.token)
 
