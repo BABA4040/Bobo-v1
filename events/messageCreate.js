@@ -8,6 +8,7 @@ const profileSchema = require(`${process.cwd()}/data/user.js`);
 
 module.exports = class{
   async run (message, bot){
+    const hama = require("../struct/command/cooldown.js")
     const lord =message.guild;
     const data = {};
    

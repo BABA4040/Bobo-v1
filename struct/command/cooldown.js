@@ -1,6 +1,7 @@
-module.exports = async (bot, message, command) => {
-  let guild = await Guild.findOne({guildID: message.guild.id})
-  if(guild){
+module.exports = class{
+  async run(bot, message, command){
+ /* let guild = await Guild.findOne({guildID: message.guild.id})
+  if(guild){*/
   if (!bot.cooldowns.has(command.name)) {
     bot.cooldowns.set(command.name, new Discord.Collection());
   }
@@ -20,4 +21,4 @@ module.exports = async (bot, message, command) => {
   timestamps.set(message.author.id, now);
 
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-}};
+}}
