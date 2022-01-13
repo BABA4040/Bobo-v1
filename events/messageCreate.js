@@ -8,7 +8,7 @@ const { join } = require('path');
 
 module.exports = class{
   async run (message, bot){
-    const loadCommandOptions = require( '../struct/command/loadcommand')
+    
     const lord =message.guild;
     const data = {};
    

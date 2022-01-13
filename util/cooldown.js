@@ -2,7 +2,7 @@ const CooldownManager = require(`${process.cwd()}/struct/commands/Cooldown`);
 
 function check(message, command){
 
-  if (!command.cooldown.time){
+  if (!command.cooldown){
     return { accept: true };
   } else {
     // Do nothing..
@@ -26,9 +26,9 @@ function check(message, command){
     // Do nothing..
   };
 
-  cooldown.users.set(message.author.id,{ timestamp: Date.now() + command.cooldown.time });
+  cooldown.users.set(message.author.id,{ timestamp: Date.now() + command.cooldown });
 
-  setTimeout(() => cooldown.users.delete(message.author.id), command.cooldown.time);
+  setTimeout(() => cooldown.users.delete(message.author.id), command.cooldown);
 
   return { accept: true };
 };
