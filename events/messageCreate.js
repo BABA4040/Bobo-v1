@@ -85,9 +85,9 @@ xp(message);
     }}*/
 
 
-/*
 
-  xp(message);
+
+  //xp(message);
     async function xp(message) {
 
       if (guild) {
@@ -193,7 +193,7 @@ xp(message);
           });
       }}
 
-    ///-----------////*/
+    ///-----------////
 
 
    const userBlacklistSettings = await Black.findOne({ userID: message.author.id,});

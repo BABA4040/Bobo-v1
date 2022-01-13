@@ -61,7 +61,7 @@ bot.catagories = fs.readdirSync("./commands/");
 //bot.catagories = fs.readdirSync("./util/");
 ["xp"].forEach(util => {
 require(`./util/${util}`)(bot);
-});
+});*
 /**
 let util = require("util"),
   readdir = util.promisify(fs.readdir);
