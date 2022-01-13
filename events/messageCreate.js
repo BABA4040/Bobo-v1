@@ -4,12 +4,11 @@ const owners = "768944616724103170";
 
 const profileSchema = require(`${process.cwd()}/data/user.js`);
 
-const { join } = require('path');
 
 module.exports = class{
   async run (message, bot){
     
-    const lord =message.guild;
+    
     const data = {};
    
     if (message.author.bot) return;
@@ -94,16 +93,8 @@ xp(message);
       if (guild) {
         if (guild.xp.onoff === "off") return;
 
-        /* 
-        let xp = message.client.collections.getFrom('xp', message.guild.id);
-
         
-        if (!xp){
-    const collections = message.client.collections.setTo('xp', message.guild.id, new Collection());
-    xp = collections.get(message.guild.id);
-  } else {
-    // Do nothing.
-  };*/
+      
         const max = 8;
         const min = 2;
         const points = Math.floor(Math.random() * (max - min)) + min;
