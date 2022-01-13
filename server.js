@@ -58,10 +58,10 @@ bot.catagories = fs.readdirSync("./commands/");
 ["command","event"].forEach(handler => {
   require(`./handler/${handler}`)(bot);
 });
-bot.catagories = fs.readdirSync("./util/");
+//bot.catagories = fs.readdirSync("./util/");
 ["xp"].forEach(util => {
-  (require(`./util/${util}`))(bot);
-})
+require(`./util/${util}`)(bot);
+});
 /**
 let util = require("util"),
   readdir = util.promisify(fs.readdir);
