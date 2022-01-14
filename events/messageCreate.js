@@ -114,8 +114,11 @@ if (!user || !user.xp){
         res.data.global_xp = res.data.global_xp + 3;
         while (_xp.global.next < 1) {
           res.data.global_level++;
+        if(guild){
+          let channel = bot.channels.cache.find(c => c.id ===guild.channels.
+                                                
           message.channel.send({content:`Congratulations ${message.author.toString()}, you leveled up to ${serverdata.level}!!`})
-        }
+        }}
 
         // PROCESS LOCAL XP
         // Add points which was previously randomized on server[local] based xp

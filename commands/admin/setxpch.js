@@ -9,7 +9,7 @@ module.exports = {
   ownerOnly: false,			
   cooldown: 8000,
   run: async (bot, message, args, dev, channel) => {
-   let doc = await guilds.findById(message.guild.id).catch(err=>{
+   let doc = await guilds.findOneAndUpdate({guildID:message.guild.id}).catch(err=>{
 
  
     if (err){
@@ -20,20 +20,30 @@ module.exports = {
     };
 
     const channelID = message.mentions.channels.first();/// (channel.match(/\d{17,19}/)||[])[0];
-    channel = message.guild.channels.cache.get(channelID);
-
-    if (!channel || channel.type !== 'GUILD_TEXT'){
+  ///  channel = message.guild.channels.cache.get(channelID);
+/*
+    if (channelID.type !== 'GUILD_TEXT'){
       return message.channel.send({content:`\\❌ **${message.member.displayName}**, please provide a valid channel ID or channel mention.`});
-    } else if (!channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')){
+    } else if (!.permissionsFor(message.guild.me).has('SEND_MESSAGES')){
       return message.channel.send({content:`\\❌ **${message.member.displayName}**, I need you to give me permission to send messages on ${channel} and try again.`});
-    } else if (!channel.permissionsFor(message.guild.me).has('EMBED_LINKS')){
+    }else if (!channel.permissionsFor(message.guild.me).has('EMBED_LINKS')){
       return message.channel.send({content:`\\❌ **${message.member.displayName}**, I need you to give me permission to embed links on ${channel} and try again.`});
-    };
-
-    doc.channels.xp = channel.id;
+    };*/
+    if(!channelID){
+      
+      
+      return message.reply({content:`I can't find this channel check my permission or try again`})
+    }
+    /*
+   let h = bot.channels.cache.get(channelID)
+   if(!h){
+     return message.reply({content:` I think Your channel not created yet`})
+   }
+*/
+    doc.channels.xp = channelID.id;
     return doc.save()
     .then(() => {
-      return message.channel.send({content:`✔️ Successfully set the suggest channel to ${channel}!`});
+      return message.channel.send({content:`✔️ Successfully set the suggest channel to ${channelID}!`});
     })
     .catch(() => message.channel.send({content:`\`❌ [DATABASE_ERR]:\` Unable to save the document to the database, please try again later!`}))
   }}
