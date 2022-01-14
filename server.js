@@ -57,37 +57,7 @@ bot.cooldowns = new Collection();
 bot.catagories = fs.readdirSync("./commands/");
 ["command","event"].forEach(handler => {
   require(`./handler/${handler}`)(bot);
-});/*
-//bot.catagories = fs.readdirSync("./util/");
-["xp"].forEach(util => {
-require(`./util/${util}`)(bot);
-});*/
-/**
-let util = require("util"),
-  readdir = util.promisify(fs.readdir);
-
-const init = async () => {
-  // Then we load events, which will include our message and ready event.
-  const evtFiles = await readdir("./events/");
-  console.log(`Loading a total of ${evtFiles.length} events.`, "log");
-  evtFiles.forEach(file => {
-    const eventName = file.split(".")[0];
-    console.log(`Loading Event: ${eventName}`);
-    const event = new (require(`./events/${file}`))(bot);
-    bot.on(eventName, (...args) => event.run(...args, bot));
-    delete require.cache[require.resolve(`./events/${fil});
-};
-init();*//*
-
-bot.on("ready", () => {
-  console.log(`[!]-------------------------------------[!]`);
-  console.log(`Display Name ; ${bot.user.username}`);
-  console.log(`Public Prefix : ${prefix}`);
-  console.log(`Version : 4.0.0`);
-  console.log(`[!]-------------------------------------[!]`);
 });
-
-b
 
 bot.login(config.token)
 

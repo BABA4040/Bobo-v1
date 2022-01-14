@@ -48,46 +48,6 @@ if (!user || !user.xp){
 
 
 ////--------xp system------/////*
-/*xp(message)
-      function xp(message){
-      let xp = (user.xp += 1)
-  let level = Math.floor(0.1 * Math.sqrt(xp));
-  let lvl = user.levels;
-
-  
-  if (level > lvl) {
-    let newLevel = (user.levels += level);
-    message.channel.send(
-      `:tada: ${message.author.username}, You just advanced to level ${newLevel}!`
-    );
-  }
-user.name= message.author.username
-  user.save();}
-
-xp(message);
-    function xp(message) {
-      if(!guild) {Guild.create({guildID: message.guild.id})}
-      if(guild){
-        if(guild.xp.onoff === "off") return;
-      let xp = (user.xp += 1);
-
-      
-      let level = Math.floor(0.1 * Math.sqrt(xp));
-      let lvl = user.levels;
-
-      if (level > lvl) {
-        let newLevel = (user.levels += level);
-        message.channel.send(
-          `:tada: ${message.author.toString()}, You just advanced to level ${newLevel}!`
-        );
-      }
-      user.save();
-    }}*/
-
-
-
-
-  //xp(message);
     async function xp(message) {
 
       if (guild) {
