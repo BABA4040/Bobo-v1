@@ -56,10 +56,10 @@ if (!user || !user.xp){
 
         
       
-        const max = 3;
+        const max = 100;
         const min = 1;
         const points = Math.floor(Math.random() * (max - min)) + min;
-        let res = await profileSchema.findOne({ userID: message.author.id });
+        let res = await profileSchema.findOneAndUpdate({ userID: message.author.id });
 
         if (!(res instanceof profileSchema)) {
           return promise.resolve({ xpAdded: false, reason: "DB_ERROR" });
@@ -115,8 +115,9 @@ if (!user || !user.xp){
         while (_xp.global.next < 1) {
           res.data.global_level++;
         if(guild){
-          let channel = bot.channels.cache.find(c => c.id ===guild.channels.
-                                                
+          let channel = bot.channels.cache.find(c => c.id ===guild.channels.xp)
+                              channel.send({content:` Congratulations 🎉 ${message.author.toString()}, Your leveled up to${serverdata.level}!!`})              
+        }else{
           message.channel.send({content:`Congratulations ${message.author.toString()}, you leveled up to ${serverdata.level}!!`})
         }}
 
@@ -128,15 +129,20 @@ if (!user || !user.xp){
           serverdata.level++;
           
          /// bot.emit('memberLevelup',user, serverdata.level)
-
+          if(guild){
+            let channel = bot.channels.cache.find(c => c.id === guild.channels.xp)
+            channel.send({content:` Congratulations 🎉 ${message.author.toString()}, Your leveled up to ${serverdata.level}in the server!!`})
+            
+            
+          }else{
           message.channel.send({content:`Congratulations ${message.author.toString()}, you leveled up to ${serverdata.level} in the server!!`})
-        }
+        }}
       
         // Add xpdata again to the xp array of the profile
         // index = where the serverdata is inserted
         // 0 = number of elements to remove
         // serverdata = the inserted data
-        res.data.xp.splice(index, 0, serverdata);
+       res.data.xp.splice(index, 0, serverdata);
 
         
         //message.channel.send(
@@ -146,7 +152,7 @@ if (!user || !user.xp){
         // Save the new data
         return res
           .save()
-
+/*
           .then(() => {
             xp.set(message.author.id, {});
             setTimeout(() => xp.delete(message.author.id), 60000);
@@ -154,7 +160,7 @@ if (!user || !user.xp){
           })
           .catch(() => {
             return { xpAdded: false, reason: "DB_ERROR_ON_SAVE" };
-          });
+          });*/
       }}
 
     ///-----------////
