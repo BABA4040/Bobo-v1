@@ -48,7 +48,7 @@ if (!user || !user.xp){
 
 
 ////--------xp system------/////*
-    
+    xp(message)
     async function xp(message) {
 
       if (guild) {
@@ -56,8 +56,8 @@ if (!user || !user.xp){
 
         
       
-        const max = 8;
-        const min = 2;
+        const max = 3;
+        const min = 1;
         const points = Math.floor(Math.random() * (max - min)) + min;
         let res = await profileSchema.findOne({ userID: message.author.id });
 

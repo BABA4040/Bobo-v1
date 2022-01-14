@@ -34,10 +34,11 @@ await message.channel.send({content:`This will **reset** all experience points i
     }).catch((err)=>{
       if (err){
         return message.channel.send({content:`\`❌ [DATABASE_ERR]:\` The database responded with error: ${err.name}`});
-      } else if (res.nModified == 0){
+      }})
+    if (res.nModified == 0){
         return message.channel.send({content:`\\❌ **${message.author.tag}**, this server has no xp data to be cleared of!`});
       } else {
         return message.channel.send({content:`\\✔️ **${message.author.tag}**, this server's xp has been reset. (Cleared **${res.nModified}** xpdocs)`});
       };
-    });
+    
   }}
