@@ -57,11 +57,11 @@ bot.cooldowns = new Collection();
 bot.catagories = fs.readdirSync("./commands/");
 ["command","event"].forEach(handler => {
   require(`./handler/${handler}`)(bot);
-});
+});/*
 //bot.catagories = fs.readdirSync("./util/");
 ["xp"].forEach(util => {
 require(`./util/${util}`)(bot);
-});*
+});*/
 /**
 let util = require("util"),
   readdir = util.promisify(fs.readdir);
@@ -75,8 +75,7 @@ const init = async () => {
     console.log(`Loading Event: ${eventName}`);
     const event = new (require(`./events/${file}`))(bot);
     bot.on(eventName, (...args) => event.run(...args, bot));
-    delete require.cache[require.resolve(`./events/${file}`)];
-  });
+    delete require.cache[require.resolve(`./events/${fil});
 };
 init();*//*
 
@@ -88,22 +87,7 @@ bot.on("ready", () => {
   console.log(`[!]-------------------------------------[!]`);
 });
 
-bot.on("ready", () => {
-  bot.user.setActivity("Bohelp", { type: "WATCHING" });
-});
-///////////
-
-
-bot.on("messageCreate", async message => {
-  let guild = await Guild.findOne({ guildID: message.guild.id })
-  if (message.content.startsWith(`<@${bot.user.id}>`)) {
-    return message.reply({ content: `My prefix is \`${guild.prefix}\`` });
-  }
-});*/
-
-/////
-
-
+b
 
 bot.login(config.token)
 
