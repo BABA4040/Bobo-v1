@@ -48,6 +48,7 @@ if (!user || !user.xp){
 
 
 ////--------xp system------/////*
+    
     async function xp(message) {
 
       if (guild) {

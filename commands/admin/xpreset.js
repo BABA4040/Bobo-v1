@@ -29,9 +29,9 @@ await message.channel.send({content:`This will **reset** all experience points i
     };
 
 
-    return profile.updateMany({'data.xp.id': message.guild.id }, {
+    let res = await  profile.updateMany({'data.xp.id': message.guild.id },{
       $pull: { 'data.xp' : { id: message.guild.id }}
-    }, (err, res) => {
+    }).catch((err)=>{
       if (err){
         return message.channel.send({content:`\`❌ [DATABASE_ERR]:\` The database responded with error: ${err.name}`});
       } else if (res.nModified == 0){
