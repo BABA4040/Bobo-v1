@@ -1,7 +1,7 @@
 
-        xp(message)
+       /// xp(message)
         async function xp(message){
-          let guild = await Guild.findOne({guildID: message.guild.id})
+         /// let guild = await Guild.findOne({guildID: message.guild.id})
                                           
   const max = 205;
   const min = 10;
@@ -97,5 +97,5 @@ if(guild){
     return { xpAdded: false, reason: 'DB_ERROR_ON_SAVE' }
   });}
         
-        
+        module.exports = xp;
         
