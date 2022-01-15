@@ -42,8 +42,9 @@ module.exports = {
    
   
     
-    const cap = 50 * Math.pow(server_data.level, 2) + 250 * server_data.level||"0";
-    const lowerLim = 50 * Math.pow(server_data.level - 1, 2) + 250 * (server_data.level - 1)||"0";
+    const cap = (50 * Math.pow(server_data.level,2)) + (250 * server_data.level);
+      const lowerLim = (50 * Math.pow(server_data.level-1,2)) + (250 * (server_data.level-1));
+
     const range = cap - lowerLim;
     const currxp = server_data.xp - lowerLim;
     const percentDiff = currxp / range;

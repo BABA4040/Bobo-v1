@@ -56,8 +56,11 @@ if (!user || !user.xp){
 
         
       
-        const max = 100;
-        const min = 1;
+      /**  const max = 100;
+        const min = 1;*/
+        const max = 250;
+        const min = 10;
+
         const points = Math.floor(Math.random() * (max - min)) + min;
         let res = await profileSchema.findOneAndUpdate({ userID: message.author.id });
 
