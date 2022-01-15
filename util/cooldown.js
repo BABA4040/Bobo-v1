@@ -1,4 +1,7 @@
-async function express(message,command,bot,Discord){
+
+
+async function express(message,command,bot){
+  const Discord = require("discord.js");
 bot.cooldowns = new Discord.Collection()
   
       if (!bot.cooldowns.has(command.name)) {
@@ -19,7 +22,7 @@ bot.cooldowns = new Discord.Collection()
         }
       }
       timestamps.set(message.author.id, now);
-      
+      if(command) command.run(bot)
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 }
 module.exports = express
