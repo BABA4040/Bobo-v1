@@ -4,7 +4,7 @@ const owners = "768944616724103170";
 
 const profileSchema = require(`${process.cwd()}/data/user.js`);
 const experience = require(`${process.cwd()}/util/xp`);
-
+const cooldown = require(`${process.cwd()}/util/cooldown`);
 module.exports = class {
   async run(message, bot) {
     const data = {};
@@ -153,6 +153,7 @@ module.exports = class {
         if (!message.guild.me.permissions.has(command.botPermissions || []))
           return message.channel.send({ embeds: [perms] });
       }
+      const cool = await cooldown(message,bot,command,Discord)
 
       /*
       if (!bot.cooldowns.has(command.name)) {
