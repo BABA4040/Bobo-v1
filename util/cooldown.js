@@ -1,4 +1,5 @@
 async function express(message,command,bot,Discord){
+bot.cooldowns = new Discord.Collection()
   
       if (!bot.cooldowns.has(command.name)) {
         bot.cooldowns.set(command.name, new Discord.Collection());
