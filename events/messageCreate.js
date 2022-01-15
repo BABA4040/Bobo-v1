@@ -4,7 +4,7 @@ const owners = "768944616724103170";
 
 const profileSchema = require(`${process.cwd()}/data/user.js`);
 const experience = require(`${process.cwd()}/util/xp`);
-const cooldown = require(`${process.cwd()}/util/cooldown`);
+const cooldown = require(`${process.cwd()}/util/permission.js`);
 module.exports = class {
   async run(message, bot) {
     const data = {};
@@ -75,6 +75,7 @@ module.exports = class {
       if (cmd.length === 0) return;
       let command = bot.commands.get(cmd);
       if (!command) command = bot.commands.get(bot.aliases.get(cmd));
+      const cool = await cooldown(message,bot,command,Discord)
       /*
       if (command.prime) {
         let data = await Prime.findOne({ Guild: message.guild.id });
@@ -92,6 +93,7 @@ module.exports = class {
       }*/
       if (!command) return; /// message.channel.send({content: `I don't have command like this`})
       ////////
+      /*
       if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES"))
         return;
       if (!command.enabled)
@@ -152,8 +154,8 @@ module.exports = class {
         );
         if (!message.guild.me.permissions.has(command.botPermissions || []))
           return message.channel.send({ embeds: [perms] });
-      }
-      const cool = await cooldown(message,bot,command,Discord)
+      }*/
+      //const cool = await cooldown(message,bot,command,Discord)
 
       /*
       if (!bot.cooldowns.has(command.name)) {
