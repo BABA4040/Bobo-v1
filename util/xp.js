@@ -1,12 +1,12 @@
 
        /// xp(message)
-        async function xp(message){
+        async function xp(message,bot,guild){
          /// let guild = await Guild.findOne({guildID: message.guild.id})
                                           
   const max = 205;
   const min = 10;
   const points = Math.floor(Math.random() * (max-min)) + min;
-
+//const guild = await Guild.findOne({guildID: message.guild.id})
 
   let res = await User.findOne({ userID: message.author.id }) ||
   await new User({ userID: message.author.id }).save();
