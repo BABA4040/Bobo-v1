@@ -48,14 +48,15 @@ if (!user || !user.xp){
 
 
 ////--------xp system------/////*
-    xp(message)
-    async function xp(message) {
+   hama(message)
+    async function hama(message) {
 
       if (guild) {
         if (guild.xp.onoff === "off") return;
 
         
-      
+//      let xp = await Guild.collections.get('xp', message.guild.id);
+
       /**  const max = 100;
         const min = 1;*/
         const max = 250;
@@ -87,29 +88,17 @@ if (!user || !user.xp){
         }
 
         // define points
-        let _xp = {
-          global: {
-            get cap() {
-              return (
-                50 * Math.pow(res.data.global_level, 2) +
-                150 * res.data.global_level
-              );
-            },
-            get next() {
-              return this.cap - res.data.global_xp;
-            }
-          },
-          local: {
-            get cap() {
-              return (
-                50 * Math.pow(serverdata.level, 2) + 150 * serverdata.level
-              );
-            },
-            get next() {
-              return this.cap - serverdata.xp;
-            }
-          }
-        };
+       let _xp = {
+    global: {
+      get cap(){ return (50 * Math.pow(res.data.global_level,2)) + (250 * res.data.global_level); },
+      get next(){ return this.cap -  res.data.global_xp; },
+    },
+    local: {
+      get cap(){ return (50 * Math.pow(serverdata.level,2)) + (250 * serverdata.level); },
+      get next(){ return this.cap - serverdata.xp }
+    }
+  };
+ 
 
         // PROCESS GLOBAL XP
         // Add 3xp xp add on global based xp
@@ -155,7 +144,7 @@ if (!user || !user.xp){
         // Save the new data
         return res
           .save()
-/*
+
           .then(() => {
             xp.set(message.author.id, {});
             setTimeout(() => xp.delete(message.author.id), 60000);
@@ -163,7 +152,7 @@ if (!user || !user.xp){
           })
           .catch(() => {
             return { xpAdded: false, reason: "DB_ERROR_ON_SAVE" };
-          });*/
+          });
       }}
 
     ///-----------////
