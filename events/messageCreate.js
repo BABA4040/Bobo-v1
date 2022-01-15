@@ -61,7 +61,8 @@ module.exports = class {
       return; //message.channel.send(` This guild is Blacklisted :(`);
     }
 
-    ////////--------/////
+    ////////--------////
+    /*
 
     if (guild) {
       if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase()))
@@ -74,8 +75,8 @@ module.exports = class {
       const cmd = argsr.shift().toLowerCase();
       if (cmd.length === 0) return;
       let command = bot.commands.get(cmd);
-      if (!command) command = bot.commands.get(bot.aliases.get(cmd));
-      const cool = await cooldown(message,bot,command,Discord)
+      if (!command) command = bot.commands.get(bot.aliases.get(cmd));*/
+      const cool = await cooldown(message,bot,Discord,guild,data)
       /*
       if (command.prime) {
         let data = await Prime.findOne({ Guild: message.guild.id });
@@ -91,7 +92,7 @@ module.exports = class {
                                       });
         }
       }*/
-      if (!command) return; /// message.channel.send({content: `I don't have command like this`})
+     // if (!command) return; /// message.channel.send({content: `I don't have command like this`})
       ////////
       /*
       if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES"))
@@ -176,11 +177,10 @@ module.exports = class {
         }
       }
       timestamps.set(message.author.id, now);
-     */ let prefix = guild.prefix;
+     */ //let prefix = guild.prefix;
       /// else loadCommandOptions(client, message, command, false);
 
-      if (command) command.run(bot, message, args, prefix, data, cmd, prime);
+     // if (command) command.run(bot, message, args, prefix, data, cmd, prime);
       //setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
     }
-  }
-};
+  };

@@ -5,7 +5,7 @@ module.exports = {
   enabled: true,            
   memberPermissions: [ "ADMINISTRATOR" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
-  ownerOnly: true,            
+  ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args, dev) => {
 ////if(message.guild.me.has("838593240328044554"))return
