@@ -155,10 +155,10 @@ if (!user || !user.xp){
           });
       }}
 */
-        
+        /*
         xp(message)
         async function xp(message){
-            const max = 205;
+  const max = 205;
   const min = 10;
   const points = Math.floor(Math.random() * (max-min)) + min;
 
@@ -171,7 +171,7 @@ if (!user || !user.xp){
     return promise.resolve({ xpAdded: false, reason: 'DB_ERROR'})
   };
 
-  /*=======================CALCULATE XP============================*/
+  /*=======================CALCULATE XP============================
   // Some weird math goes here...
 
   // Get the server data
@@ -210,15 +210,7 @@ if (!user || !user.xp){
   res.data.global_xp = res.data.global_xp + 3;
   while (_xp.global.next < 1){
     res.data.global_level++
-if(guild){
-  
-  let channel = bot.channels.cache.find(c=>c.id===guild.channels.xp)
-  
-    channel.send({content:`Congratulations ${message.author.toString()}, your leveled up to ${serverdata.level}!!`})
-}else{
-  message.channel.send({content:`Congratulations ${message.author.toString()}, you leveled up to ${serverdata.level}!!`})
-
-  }};
+    }
 
   // PROCESS LOCAL XP
   // Add points which was previously randomized on server[local] based xp
@@ -226,13 +218,13 @@ if(guild){
   serverdata.xp = serverdata.xp + points;
   while (_xp.local.next < 1){
     serverdata.level++
-    /*if(guild){
+    if(guild){
       let channel =bot.channels.cache.find(c=> c.id === guild.channels.xp)
-     channel.send({content:`Congratulations ${message.author.toString()}, you leveled up to ${serverdata.level}!!`})
+     channel.send({content:`Congratulations ${message.author.toString()}, your leveled up to ${serverdata.level}!!`})
     }else{
       message.channel.send({content:`Congratulations ${message.author.toString()}, your leveled up to ${serverdata.level}!!`})
 
-  }*/}
+  }}
 
   // Add xpdata again to the xp array of the profile
   // index = where the serverdata is inserted
@@ -250,7 +242,7 @@ if(guild){
   .catch(() => {
     return { xpAdded: false, reason: 'DB_ERROR_ON_SAVE' }
   });}
-        
+        */
         
         
         
