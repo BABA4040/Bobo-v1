@@ -2,5 +2,6 @@
   "token": "OTI4Nzg2MzI2NDAzMzEzNzY1.Ydd1rA.WQqq6Muu2m7mcMDGmOGyXhzhjpY",
   "clientID": "928786326403313765",
   "prefix": "Bo",
-  "mongoURL": "mongodb+srv://testbobo:haha1234+@cluster0.cizb6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  "mongoURL": "mongodb+srv://testbobo:haha1234+@cluster0.cizb6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "logChannel":"930818872209207368"
 }

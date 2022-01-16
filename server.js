@@ -30,7 +30,7 @@ const cmd = require("node-cmd");
 const { I18n } = require("locale-parser");
 bot.reva = new I18n({ defaultLocale: "en" });
 
-global.logChannel = bot.channels.cache.get("891641446283759646")
+global.log = bot.channels.cache.get(config.logChannel)
 
 global.mongoose = require("mongoose");
 
