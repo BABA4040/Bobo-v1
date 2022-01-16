@@ -6,6 +6,7 @@ const profileSchema = require(`${process.cwd()}/data/user.js`);
 const experience = require(`${process.cwd()}/util/xp`);
 const permission = require(`${process.cwd()}/util/permission.js`);
 const blacklist = require(`${process.cwd()}/util/blacklist.js`)
+const cooldown = require(`${process.cwd()}/util/cooldown.js`)
 module.exports = class {
   async run(message, bot, command) {
     const data = {};
@@ -51,22 +52,13 @@ let member = message.author.id
       Guild: message.guild.id,
     });
 const black = await blacklist(message,bot,userBlack,guildBlack)
-    /*if (userBlacklistSettings && userBlacklistSettings.isBlacklisted) {
-      //   logger.warn(`${message.author.tag} tried to use "${cmd}" command but the user is blacklisted`, { label: 'Commands' })
-      return; // message.channel.send(`You are blacklisted from the bot :(`);
-    }
-
-    // Check if server is Blacklisted
-    if (guildBlacklistSettings && guildBlacklistSettings.isBlacklisted) {
-      //  logger.warn(`${message.author.tag} tried to use "${cmd}" command but the guild is blacklisted`, { label: 'Commands' })
-      return; //message.channel.send(` This guild is Blacklisted :(`);
-    }*/
+    
 
     
     
     const cool = await permission(message,bot,Discord,guild,data, member)
-        
-      if (!bot.cooldowns.has(command.name)) {
+        const coold = await cooldown(bot, message)
+   /*   if (!bot.cooldowns.has(command.name)) {
         bot.cooldowns.set(command.name, new Discord.Collection());
       }
 
@@ -87,5 +79,5 @@ const black = await blacklist(message,bot,userBlack,guildBlack)
 
     
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-    }
+   */ }
   };
