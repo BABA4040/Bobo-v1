@@ -11,7 +11,7 @@ async function hama(message, bot, Discord,guild,data) {
          .slice(guild.prefix.length)
          .trim()
          .split(/ +/g);
-       const cmd = args.shift().toLowerCase();
+       const cmd = argsr.shift().toLowerCase();
        if (cmd.length === 0) return;
      let command = bot.commands.get(cmd);
       if (!command) command = bot.commands.get(bot.aliases.get(cmd));
