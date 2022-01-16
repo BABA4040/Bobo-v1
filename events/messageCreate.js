@@ -54,10 +54,10 @@ let member = message.author.id
 const black = await blacklist(message,bot,userBlack,guildBlack)
     
 
-    
+    if(guild){
     
     const cool = await permission(message,bot,Discord,guild,data, member)
-        const coold = await cooldown(bot, message)
+        const coold = await cooldown(bot, message,guild,Discord)
    /*   if (!bot.cooldowns.has(command.name)) {
         bot.cooldowns.set(command.name, new Discord.Collection());
       }
@@ -79,5 +79,5 @@ const black = await blacklist(message,bot,userBlack,guildBlack)
 
     
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-   */ }
+   */ }}
   };
