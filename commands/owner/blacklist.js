@@ -26,7 +26,7 @@ module.exports = {
     try {
       member = match
         ? message.mentions.members.first() ||
-          message.guild.members.fetch(args[3])
+          message.guild.members.fetch(args[2])
         : null;
     } catch {
       return message.channel.send({ content: `Provide me with a user` });

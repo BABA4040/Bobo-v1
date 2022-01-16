@@ -1,4 +1,4 @@
-async function black(bot, message,userBlack){
+async function black(bot, message,userBlack,guildBlack){
   
 
    ///const userBlacklistSettings = await Black.findOne({ userID: message.author.id,});
