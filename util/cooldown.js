@@ -1,5 +1,9 @@
 async function cool(bot,command, message){
-  
+  const Discord = require("discord.js")
+if (!bot.cooldowns.has(command.name)) {
+        bot.cooldowns.set(command.name, new Discord.Collection());
+      }
+
   const now = Date.now();
       const timestamps = bot.cooldowns.get(command.name);
       const cooldownAmount = command.cooldown || 2 * 1000;
