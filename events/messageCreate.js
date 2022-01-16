@@ -5,6 +5,7 @@ const owners = "768944616724103170";
 const profileSchema = require(`${process.cwd()}/data/user.js`);
 const experience = require(`${process.cwd()}/util/xp`);
 const cooldown = require(`${process.cwd()}/util/permission.js`);
+const blacklist = require(`${process.cwd()}/util/blacklist.js`)
 module.exports = class {
   async run(message, bot) {
     const data = {};
@@ -40,10 +41,10 @@ module.exports = class {
     }
 
     const response = await experience(message, bot, guild);
-
+const black = await blacklist(message,bot)
     ///-----------////
 
-    const userBlacklistSettings = await Black.findOne({
+  /*  const userBlacklistSettings = await Black.findOne({
       userID: message.author.id,
     });
     const guildBlacklistSettings = await Black.findOne({
@@ -59,106 +60,12 @@ module.exports = class {
     if (guildBlacklistSettings && guildBlacklistSettings.isBlacklisted) {
       //  logger.warn(`${message.author.tag} tried to use "${cmd}" command but the guild is blacklisted`, { label: 'Commands' })
       return; //message.channel.send(` This guild is Blacklisted :(`);
-    }
+    }*/
 
-    ////////--------////
-    /*
-
-    if (guild) {
-      if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase()))
-        return;
-      let args = message.content.split(" ");
-      const argsr = message.content
-        .slice(guild.prefix.length)
-        .trim()
-        .split(/ +/g);
-      const cmd = argsr.shift().toLowerCase();
-      if (cmd.length === 0) return;
-      let command = bot.commands.get(cmd);
-      if (!command) command = bot.commands.get(bot.aliases.get(cmd));*/
-      const cool = await cooldown(message,bot,Discord,guild,data)
-      /*
-      if (command.prime) {
-        let data = await Prime.findOne({ Guild: message.guild.id });
-
-        if (!data)
-          return message.channel.send({content:`this server not haven't on data base`});
-
-        if (!data.Permanent && Date.now() > data.time) {
-          data.delete();
-
-          return message.channel.send({content:
-            `prime bot on your server ended for buy mor join support server `
-                                      });
-        }
-      }*/
-     // if (!command) return; /// message.channel.send({content: `I don't have command like this`})
-      ////////
-      /*
-      if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES"))
-        return;
-      if (!command.enabled)
-        return await message.channel.send({
-          content: `This command is **Disable** for now`,
-        });
-      let Ww = await Owner.findOne({ ownerCode: "768944616724103170" });
-      data.ww = Ww;
-      if (
-        command.ownerOnly &&
-        !Ww.worldWhitelist.find((c) => c.type === message.author.id)
-      )
-        return await message.channel.send({
-          content: `This command is only for owner the bot`,
-        });
-      if (command.guilOwnerOnly) {
-        if (
-          message.author.id !== message.guild.ownerId &&
-          !Ww.worldWhitelist.find((c) => c.type === message.author.id)
-        )
-          return message.channel.send({
-            content: `This command is only for guildOwner`,
-          });
-      }
-      let neededPermissions = [];
-      if (!command.botPermissions.includes("EMBED_LINKS")) {
-        command.botPermissions.push("EMBED_LINKS");
-      }
-      command.botPermissions.forEach((perm) => {
-        if (!message.channel.permissionsFor(bot.user).has(perm)) {
-          neededPermissions.push(perm);
-        }
-      });
-      if (neededPermissions.length > 0) {
-        return message.channel.send({
-          content: `I don't have a ${neededPermissions
-            .map((p) => `\`${p}\``)
-            .join(", ")} permissions`,
-        });
-      }
-      neededPermissions = [];
-      command.memberPermissions.forEach((perm) => {
-        if (!message.channel.permissionsFor(message.member).has(perm)) {
-          neededPermissions.push(perm);
-        }
-      });
-      if (neededPermissions.length > 0) {
-        return message.channel.send({
-          content: `You don't have a ${neededPermissions
-            .map((p) => `\`${p}\``)
-            .join(", ")} permissions`,
-        });
-      }
-
-      if (command.botPermissions) {
-        let perms = new Discord.MessageEmbed().setDescription(
-          `i don't Have ${command.botPermissions} To Run Command..`
-        );
-        if (!message.guild.me.permissions.has(command.botPermissions || []))
-          return message.channel.send({ embeds: [perms] });
-      }*/
-      //const cool = await cooldown(message,bot,command,Discord)
-
-      /*
+    
+    
+    const cool = await cooldown(message,bot,Discord,guild,data)
+        /*
       if (!bot.cooldowns.has(command.name)) {
         bot.cooldowns.set(command.name, new Discord.Collection());
       }
