@@ -14,6 +14,7 @@ async function hama(message, bot, Discord,guild,data) {
      let command = bot.commands.get(cmd);
       if (!command) command = bot.commands.get(bot.aliases.get(cmd));
   if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES")) return;
+    if(!command) return;
   if (!command.enabled)
     return await message.channel.send({
       content: `This command is **Disable** for now`,
