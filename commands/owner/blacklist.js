@@ -33,7 +33,7 @@ module.exports = {
     }
 
     let guild = bot.guilds.cache.get(args[2]);
-    let reason = args.slice(2).join(" ") || "Not Specified";
+    let reason = args.slice(3).join(" ") || "Not Specified";
 
     if (args.length < 1)
       return message.channel.send({
@@ -66,7 +66,7 @@ module.exports = {
           length: null
         });
       }
-
+if(args[3] !== reason) return message.channel.send({content:`reason not specific`})
       message.channel.send({
         content: `User added to the blacklist! ${member.user.tag} - \`${reason}\``
       });
