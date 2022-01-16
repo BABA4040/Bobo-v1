@@ -1,9 +1,22 @@
-async function cool(command, message, bot, guild, Discord) {
+ const CooldownManager = require(`${process.cwd()}/struct/command/Cooldown`);
+
+
+function cool(command, message, bot, guild, Discord) {
   //const Discord = require("discord.js")
   if (guild) {
+    let cooldown = cooldownManager.get(command.name);
+/*
     if (!bot.cooldowns.has(command.name)) {
       bot.cooldowns.set(command.name, new Discord.Collection());
-    }
+    }*/
+    const cooldownManager = message.bot.commands.cooldowns;
+ 
+    if (!cooldown){
+    cooldownManager.set(command.name, new CooldownManager(command));
+  } else {
+    // Do nothing..
+  };
+
     //let user = message.author;
     const now = Date.now();
     const timestamps = bot.cooldowns.get(command.name);
@@ -23,4 +36,4 @@ async function cool(command, message, bot, guild, Discord) {
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
   }
 }
-module.exports = cool;
+module.exports = {cool};
