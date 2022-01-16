@@ -4,13 +4,11 @@ const { Color } = require("../../config.js");
 const { WebhookClient } = require("discord.js");
 
 const data = {
-    id: '898151785783508993',
-    token: 'pNBxD74wVmXvUTdgG5KmEEA_lfrXxorLOZzA96KJ9EY6FDqJd0fOPUrlfPNEXjOI0ag3'
-}
-
+  id: "898151785783508993",
+  token: "pNBxD74wVmXvUTdgG5KmEEA_lfrXxorLOZzA96KJ9EY6FDqJd0fOPUrlfPNEXjOI0ag3",
+};
 
 const webhookClient = new WebhookClient(data);
-
 
 module.exports = {
   name: "blacklist",
@@ -34,10 +32,10 @@ module.exports = {
 
     let guild = bot.guilds.cache.get(args[2]);
     let reason = args.slice(3).join(" ") || "Not Specified";
-
+    
     if (args.length < 1)
       return message.channel.send({
-        content: `Please provide me with a user or guild blacklist`
+        content: `Please provide me with a user or guild blacklist`,
       });
     if (args.length < 2)
       return message.channel.send({ content: `Provide me with a user` });
@@ -47,7 +45,7 @@ module.exports = {
 
     if (args[1] === "user") {
       let user = await Black.findOne({
-        userID: member.id
+        userID: member.id,
       });
       if (!user) {
         const blacklist = new Black({
@@ -55,7 +53,7 @@ module.exports = {
           length: null,
           type: "user",
           isBlacklisted: true,
-          reason: reason
+          reason: reason,
         });
         blacklist.save();
       } else {
@@ -63,14 +61,14 @@ module.exports = {
           type: "user",
           isBlacklisted: true,
           reason: reason,
-          length: null
+          length: null,
         });
       }
-if(args[3] !== reason) return message.channel.send({content:`reason not specific`})
+      ////if(args[3] !== reason) return message.channel.send({content:`reason not specific`})
       message.channel.send({
-        content: `User added to the blacklist! ${member.user.tag} - \`${reason}\``
+        content: `User added to the blacklist! ${member.user.tag} - \`${reason}\``,
       });
-      member.send({content:`${reason} by **${message.author.username}**`})
+      member.send({ content: `${reason} by **${message.author.username}**` });
       const embed = new MessageEmbed()
         .setColor("BLURPLE")
         .setTitle(`Blacklist Report`)
@@ -80,14 +78,14 @@ if(args[3] !== reason) return message.channel.send({content:`reason not specific
         .addField("Reason", reason);
 
       return webhookClient.send({
-        embeds: [embed]
+        embeds: [embed],
       });
     }
 
     // guild blacklist
     if (args[1] === "guild") {
       let server = await Black.findOne({
-        Guild: guild
+        Guild: guild,
       });
       if (!server) {
         const blacklist = new Black({
@@ -95,7 +93,7 @@ if(args[3] !== reason) return message.channel.send({content:`reason not specific
           length: null,
           type: "guild",
           isBlacklisted: true,
-          reason
+          reason,
         });
         blacklist.save();
       } else {
@@ -103,28 +101,28 @@ if(args[3] !== reason) return message.channel.send({content:`reason not specific
           type: "guild",
           isBlacklisted: true,
           reason,
-          length: null
+          length: null,
         });
       }
 
       message.channel.send({
-        content: `Server added to the blacklist! - \`${reason}\``
+        content: `Server added to the blacklist! - \`${reason}\``,
       });
-      
-      
-      const owner = await guild.fetchOwner().then(owner=>{
 
-      owner.send({content:` Your server has been Blacklisted by **${message.author.username}** contact teams to reason `})
-      })
+      const owner = await guild.fetchOwner().then((owner) => {
+        owner.send({
+          content: ` Your server has been Blacklisted by **${message.author.username}** contact teams to reason `,
+        });
+      });
       const embed = new MessageEmbed()
         .setColor("BLURPLE")
         .setTitle(`Blacklist Report`)
         .addField("Status", "Added to the blacklist.")
-         .addField("server",`${guild.name} (${guild.id})`)
+        .addField("server", `${guild.name} (${guild.id})`)
         .addField("Responsible", `${message.author} (${message.author.id})`)
         .addField("Reason", reason);
 
       return webhookClient.send({ embeds: [embed] });
     }
-  }
+  },
 };
