@@ -1,14 +1,14 @@
-const messagess = require(`${process.cwd()}/events/messageCreate`)
+
 async function hama(message, bot, Discord, guild, data) {
   if (guild) {
     if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase()))
       return;
-    let args = message.content.split(" ");
-    const argsr = message.content
-      .slice(guild.prefix.length)
-      .trim()
-      .split(/ +/g);
-    const cmd = argsr.shift().toLowerCase();
+  let args = message.content.split(" ");
+       const argsr = message.content
+         .slice(guild.prefix.length)
+         .trim()
+         .split(/ +/g);
+       const cmd = argsr.shift().toLowerCase();
     if (cmd.length === 0) return;
     let command = bot.commands.get(cmd);
     if (!command) command = bot.commands.get(bot.aliases.get(cmd));

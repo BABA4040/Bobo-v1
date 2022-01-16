@@ -3,10 +3,8 @@ const owners = "768944616724103170";
 /**/
 
 const profileSchema = require(`${process.cwd()}/data/user.js`);
-const experience = require(`${process.cwd()}/util/xp`);
-const permission = require(`${process.cwd()}/util/permission.js`);
+const xp = require(`${process.cwd()}/util/xp`);
 
-const command = require(`${process.cwd()}/util/permission`)
 module.exports = class {
   async run(message, bot) {
     const data = {};
@@ -40,8 +38,7 @@ module.exports = class {
     if (!user || !user.xp) {
       return; /////message.channel.send({content:`\\❌ **${message.author.tag}** have not started earning XP in this bot yet!`})
     }
-let member = message.author.id
-    const response = await experience(message, bot, guild);
+
 ///const black = await blacklist(message,bot)
     ///-----------////
 
@@ -62,17 +59,87 @@ let member = message.author.id
           return;//message.channel.send(` This guild is Blacklisted :(`);
         }
 
-    
-    
-    const cool = await permission(message,bot,Discord,guild,data)
-     ///   const coold = await cooldown(bot, message,guild,Discord,command)
-     /* if (!bot.cooldowns.has(command.name)) {
+    const xpp = await xp(bot,guild, message)
+     if (guild) {
+       
+      
+      if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase()))
+         return;
+       let args = message.content.split(" ");
+       const argsr = message.content
+         .slice(guild.prefix.length)
+         .trim()
+         .split(/ +/g);
+       const cmd = argsr.shift().toLowerCase();
+       if (cmd.length === 0) return;
+     let command = bot.commands.get(cmd);
+      if (!command) command = bot.commands.get(bot.aliases.get(cmd));
+/*
+      if (command.prime) {
+        let data = await Prime.findOne({ Guild: message.guild.id });
+        if (!data)
+          return message.channel.send({content:`this server not haven't on data base`});
+        if (!data.Permanent && Date.now() > data.time) {
+          data.delete();
+          return message.channel.send({content:
+            `prime bot on your server ended for buy mor join support server `
+                                      });
+        }
+      }*/
+
+if(!command) return;/// message.channel.send({content: `I don't have command like this`})
+      ////////
+      if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES"))
+        return;
+      if (!command.enabled) return await message.channel.send({content:`This command is **Disable** for now`})
+  let Ww = await Owner.findOne({ ownerCode: "768944616724103170" });
+  data.ww = Ww;
+  if (command.ownerOnly && !Ww.worldWhitelist.find((c) => c.type === message.author.id)) return await message.channel.send({content:`This command is only for owner the bot`});
+  if (command.guilOwnerOnly) {
+      if (message.author.id !== message.guild.ownerId &&
+       !Ww.worldWhitelist.find((c) => c.type === message.author.id)
+      ) return message.channel.send({content:`This command is only for guildOwner`})
+	  }
+     let neededPermissions = [];
+	  if(!command.botPermissions.includes("EMBED_LINKS")){
+		  command.botPermissions.push("EMBED_LINKS");
+	  }
+	  command.botPermissions.forEach((perm) => {
+		  if(!message.channel.permissionsFor(bot.user).has(perm)){
+			  neededPermissions.push(perm);
+		  }
+	  });
+	 if(neededPermissions.length > 0){
+		  return message.channel.send({content:`I don't have a ${neededPermissions.map((p) => `\`${p}\``).join(", ")} permissions`});
+	  }
+	  neededPermissions = [];
+	  command.memberPermissions.forEach((perm) => {
+		  if(!message.channel.permissionsFor(message.member).has(perm)){
+			  neededPermissions.push(perm);
+		  }
+	  });
+	  if(neededPermissions.length > 0){
+		  return message.channel.send({content:`You don't have a ${neededPermissions.map((p) => `\`${p}\``).join(", ")} permissions`});
+	 } 
+
+   
+if (command.botPermissions) {
+    let perms = new Discord.MessageEmbed().setDescription(
+      `i don't Have ${command.botPermissions} To Run Command..`
+    );
+    if (!message.guild.me.permissions.has(command.botPermissions || []))
+      return message.channel.send({ embeds: [perms] });
+
+}
+
+
+      if (!bot.cooldowns.has(command.name)) {
         bot.cooldowns.set(command.name, new Discord.Collection());
       }
 
       const now = Date.now();
       const timestamps = bot.cooldowns.get(command.name);
-      const cooldownAmount = command.cooldown || 2 * 10000;
+      const cooldownAmount = command.cooldown || 2 * 1000;
       if (timestamps.has(message.author.id)) {
         const expirationTime =
           timestamps.get(message.author.id) + cooldownAmount;
@@ -83,10 +150,11 @@ let member = message.author.id
             .then(msg =>setTimeout(() => msg.delete(), 2000));
         }
       }
-    
       timestamps.set(message.author.id, now);
-
-    
+      let prefix = guild.prefix;
+      if (command) command.run(bot, message, args, prefix, data, cmd, prime);
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-  */}
+    }}
+    
+  
   };
