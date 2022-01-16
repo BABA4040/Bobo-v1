@@ -3,7 +3,7 @@ const owners = "768944616724103170";
 /**/
 
 const profileSchema = require(`${process.cwd()}/data/user.js`);
-const xp = require(`${process.cwd()}/util/xp`);
+const experience = require(`${process.cwd()}/util/xp`);
 
 module.exports = class {
   async run(message, bot) {
@@ -11,6 +11,9 @@ module.exports = class {
 
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
+    
+    
+    //----------------------------database mamager------------------------//
     let guild = await Guild.findOne({ guildID: message.guild.id });
     if (!guild) {
       Guild.create({ guildID: message.guild.id });
@@ -36,30 +39,29 @@ module.exports = class {
     ///if(message.guild.members.cache.has("838593240328044554")) return
 
     if (!user || !user.xp) {
-      return; /////message.channel.send({content:`\\❌ **${message.author.tag}** have not started earning XP in this bot yet!`})
-    }
-
-///const black = await blacklist(message,bot)
+      return;}
     ///-----------////
 
-    
+    /// Black list System
    const userBlacklistSettings = await Black.findOne({ userID: message.author.id,});
   const guildBlacklistSettings = await Black.findOne({ Guild: message.guild.id });
 
 
 
       if (userBlacklistSettings && userBlacklistSettings.isBlacklisted) {
-       //   logger.warn(`${message.author.tag} tried to use "${cmd}" command but the user is blacklisted`, { label: 'Commands' })
-          return;// message.channel.send(`You are blacklisted from the bot :(`);
+       //   l
+          return;
         }
 
         // Check if server is Blacklisted
         if (guildBlacklistSettings && guildBlacklistSettings.isBlacklisted) {
-        //  logger.warn(`${message.author.tag} tried to use "${cmd}" command but the guild is blacklisted`, { label: 'Commands' })
-          return;//message.channel.send(` This guild is Blacklisted :(`);
-        }
+      
+          return;
+        }/////////
+      ////////-----------------------------------------------------------------------///
 
-    const xpp = await xp(bot,guild, message)
+    const response = await experience(message, bot,guild);
+
      if (guild) {
        
       
@@ -74,7 +76,7 @@ module.exports = class {
        if (cmd.length === 0) return;
      let command = bot.commands.get(cmd);
       if (!command) command = bot.commands.get(bot.aliases.get(cmd));
-/*
+if(!command) return;
       if (command.prime) {
         let data = await Prime.findOne({ Guild: message.guild.id });
         if (!data)
@@ -85,10 +87,10 @@ module.exports = class {
             `prime bot on your server ended for buy mor join support server `
                                       });
         }
-      }*/
+      }
 
-if(!command) return;/// message.channel.send({content: `I don't have command like this`})
-      ////////
+
+      ///-----------------------------------------permissoins--------------------------------///
       if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES"))
         return;
       if (!command.enabled) return await message.channel.send({content:`This command is **Disable** for now`})
@@ -131,7 +133,7 @@ if (command.botPermissions) {
       return message.channel.send({ embeds: [perms] });
 
 }
-
+///------------------------------cooldown---------------------------/////////////
 
       if (!bot.cooldowns.has(command.name)) {
         bot.cooldowns.set(command.name, new Discord.Collection());
@@ -154,7 +156,7 @@ if (command.botPermissions) {
       let prefix = guild.prefix;
       if (command) command.run(bot, message, args, prefix, data, cmd, prime);
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-    }}
+    }
     
-  
+  }
   };

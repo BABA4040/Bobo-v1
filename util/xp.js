@@ -1,6 +1,6 @@
 
        /// xp(message)
-        async function xp(message,bot,guild){
+        async function xp(message,bot,guild,user){
          /// let guild = await Guild.findOne({guildID: message.guild.id})
                                           
   const max = 205;
