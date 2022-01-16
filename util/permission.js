@@ -1,4 +1,4 @@
-const cooldown = require(`${process.cwd()}/util/cooldown.js`);
+const messageCreate = require(`${process.cwd()}/util/cooldown.js`);
 async function hama(message, bot, Discord, guild, data, member) {
   if (guild) {
     if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase()))
@@ -55,7 +55,7 @@ async function hama(message, bot, Discord, guild, data, member) {
     }
 
     neededPermissions = [];
-    if (Array.isArray(command.memberPermissions)) {
+   /// if (Array.isArray(command.memberPermissions)) {
       command.memberPermissions.forEach((perm) => {
         if (!message.channel.permissionsFor(message.member).has(perm)) {
           neededPermissions.push(perm);
@@ -68,7 +68,7 @@ async function hama(message, bot, Discord, guild, data, member) {
             .join(", ")} permissions`,
         });
       }
-    }
+    
 
     if (command.botPermissions) {
       let perms = new Discord.MessageEmbed().setDescription(
@@ -77,9 +77,10 @@ async function hama(message, bot, Discord, guild, data, member) {
       if (!message.guild.me.permissions.has(command.botPermissions || []))
         return message.channel.send({ embeds: [perms] });
     }
-    let prefix = guild.prefix;
-    if (command) command.run(bot, message, args, prefix, data, cmd);
+    let prefix = guild.prefix
+   if (command) command.run(bot, message, args, prefix, data, cmd);
+ 
  ///nothing 
-  const cool = await cooldown(command);
+  
 }}
 module.exports = hama;
