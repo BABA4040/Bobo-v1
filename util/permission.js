@@ -1,5 +1,5 @@
-const cooldown = require(`${process.cwd()}/util/cooldown.js`);
-async function hama(message, bot, Discord, guild, data) {
+///const cooldown = require(`${process.cwd()}/util/cooldown.js`);
+async function hama(message, bot, Discord, guild, data, member) {
   if (guild) {
     if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase()))
       return;
@@ -79,7 +79,7 @@ async function hama(message, bot, Discord, guild, data) {
     }
     let prefix = guild.prefix;
     if (command) command.run(bot, message, args, prefix, data, cmd);
-  
-  const cool = await cooldown(bot, message, command);
+ ///nothing 
+ /// const cool = await cooldown(bot, message, command,member);
 }}
 module.exports = hama;
