@@ -1,4 +1,4 @@
-async function black(bot, message,userBlack,guildBlack){
+async function Black(bot, message,userBlack,guildBlack,guild){
   
 
    ///const userBlacklistSettings = await Black.findOne({ userID: message.author.id,});
@@ -12,8 +12,8 @@ async function black(bot, message,userBlack,guildBlack){
         }
 
         // Check if server is Blacklisted
-        if (guildBlack && guildBlacklistSetting.isBlacklisted) {
+        if (guildBlack && guildBlack.isBlacklisted) {
         //  logger.warn(`${message.author.tag} tried to use "${cmd}" command but the guild is blacklisted`, { label: 'Commands' })
           return;//message.channel.send(` This guild is Blacklisted :(`);
         }}
-module.exports = rgb(243,186,186
+module.exports = Black;

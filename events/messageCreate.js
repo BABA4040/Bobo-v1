@@ -5,7 +5,7 @@ const owners = "768944616724103170";
 const profileSchema = require(`${process.cwd()}/data/user.js`);
 const experience = require(`${process.cwd()}/util/xp`);
 const permission = require(`${process.cwd()}/util/permission.js`);
-const blacklist = require(`${process.cwd()}/util/blacklist.js`)
+
 const command = require(`${process.cwd()}/util/permission`)
 module.exports = class {
   async run(message, bot) {
@@ -45,26 +45,34 @@ let member = message.author.id
 ///const black = await blacklist(message,bot)
     ///-----------////
 
-    const userBlack= await Black.findOne({
-      userID: message.author.id,
-    });
-    const guildBlack = await Black.findOne({
-      Guild: message.guild.id,
-    });
-const black = await blacklist(message,bot,userBlack,guildBlack)
     
+   const userBlacklistSettings = await Black.findOne({ userID: message.author.id,});
+  const guildBlacklistSettings = await Black.findOne({ Guild: message.guild.id });
 
-    if(guild){
+
+
+      if (userBlacklistSettings && userBlacklistSettings.isBlacklisted) {
+       //   logger.warn(`${message.author.tag} tried to use "${cmd}" command but the user is blacklisted`, { label: 'Commands' })
+          return;// message.channel.send(`You are blacklisted from the bot :(`);
+        }
+
+        // Check if server is Blacklisted
+        if (guildBlacklistSettings && guildBlacklistSettings.isBlacklisted) {
+        //  logger.warn(`${message.author.tag} tried to use "${cmd}" command but the guild is blacklisted`, { label: 'Commands' })
+          return;//message.channel.send(` This guild is Blacklisted :(`);
+        }
+
+    
     
     const cool = await permission(message,bot,Discord,guild,data)
      ///   const coold = await cooldown(bot, message,guild,Discord,command)
-      if (!bot.cooldowns.has(command.name)) {
+     /* if (!bot.cooldowns.has(command.name)) {
         bot.cooldowns.set(command.name, new Discord.Collection());
       }
 
       const now = Date.now();
       const timestamps = bot.cooldowns.get(command.name);
-      const cooldownAmount = command.cooldown || 2 * 1000;
+      const cooldownAmount = command.cooldown || 2 * 10000;
       if (timestamps.has(message.author.id)) {
         const expirationTime =
           timestamps.get(message.author.id) + cooldownAmount;
@@ -75,9 +83,10 @@ const black = await blacklist(message,bot,userBlack,guildBlack)
             .then(msg =>setTimeout(() => msg.delete(), 2000));
         }
       }
+    
       timestamps.set(message.author.id, now);
 
     
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-  }}
+  */}
   };
