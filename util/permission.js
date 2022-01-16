@@ -4,8 +4,9 @@ async function hama(message, bot, Discord,guild,data) {
       
       if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase()))
          return;
-       let args = message.content.split(" ");
-       const argsr = message.content
+       let args = //message.content.split(" ");
+       const argsr = 
+         message.content
          .slice(guild.prefix.length)
          .trim()
          .split(/ +/g);
