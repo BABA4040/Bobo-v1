@@ -1,5 +1,5 @@
-const messageCreate = require(`${process.cwd()}/util/cooldown.js`);
-async function hama(message, bot, Discord, guild, data, member) {
+const messagess = require(`${process.cwd()}/events/messageCreate`)
+async function hama(message, bot, Discord, guild, data) {
   if (guild) {
     if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase()))
       return;
@@ -83,4 +83,5 @@ async function hama(message, bot, Discord, guild, data, member) {
  ///nothing 
   
 }}
+
 module.exports = hama;

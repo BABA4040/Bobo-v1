@@ -6,9 +6,9 @@ const profileSchema = require(`${process.cwd()}/data/user.js`);
 const experience = require(`${process.cwd()}/util/xp`);
 const permission = require(`${process.cwd()}/util/permission.js`);
 const blacklist = require(`${process.cwd()}/util/blacklist.js`)
-const cooldown = require(`${process.cwd()}/util/cooldown.js`)
+const command = require(`${process.cwd()}/util/permission`)
 module.exports = class {
-  async run(message, bot, command) {
+  async run(message, bot) {
     const data = {};
 
     if (message.author.bot) return;
@@ -54,11 +54,11 @@ let member = message.author.id
 const black = await blacklist(message,bot,userBlack,guildBlack)
     
 
+    if(guild){
     
-    
-    const cool = await permission(message,bot,Discord,guild,data, member)
-        const coold = await cooldown(bot, message,guild,Discord,command)
-   /*   if (!bot.cooldowns.has(command.name)) {
+    const cool = await permission(message,bot,Discord,guild,data)
+     ///   const coold = await cooldown(bot, message,guild,Discord,command)
+      if (!bot.cooldowns.has(command.name)) {
         bot.cooldowns.set(command.name, new Discord.Collection());
       }
 
@@ -79,5 +79,5 @@ const black = await blacklist(message,bot,userBlack,guildBlack)
 
     
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-   */ }
+  }}
   };

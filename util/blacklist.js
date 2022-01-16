@@ -16,4 +16,4 @@ async function black(bot, message,userBlack,guildBlack){
         //  logger.warn(`${message.author.tag} tried to use "${cmd}" command but the guild is blacklisted`, { label: 'Commands' })
           return;//message.channel.send(` This guild is Blacklisted :(`);
         }}
-module.exports = black
+module.exports = rgb(243,186,186
