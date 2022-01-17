@@ -31,7 +31,7 @@ message.guild.bans.fetch().then(bans => {
                     message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '✅' || reaction.emoji.name == '⛔'),
                             { max: 1, time: 30000 }).then(collected => {
                                     if (collected.first().emoji.name == '✅') {
-                                           message.guild.fetchBans().then(bans => {
+                                           message.guild.bans.fetch().then(bans => {
       bans.forEach(banInfo => {
         message.guild.members.unban(banInfo.user);
       })
