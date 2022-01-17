@@ -9,19 +9,19 @@
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_ROLES"],
   ownerOnly: false,
   cooldown: 6000,
-  run: async (bot, message, args, dev, data,[member = '']) => {
+  run: async (bot, message, args, dev, data) => {
     
 
+let member = await message.mentions.members.first() || message.guild.members.cache.get(args[1]);
 
-
-if (!member.match(/\d{17,19}/)){
+/*if (!member.match(/\d{17,19}/)){
       return message.channel.send({content:`\\❌ | ${message.author}, Please provide the ID or mention the user to kick. [mention first before adding the reason]`});
-    };
-
+    };*/
+/**
     member = await message.guild.members
     .fetch(member.match(/\d{17,19}/)[0])
     .catch(() => null);
-
+*/
     if (!member){
       return message.channel.send({content:`\\❌ Unable to reset roles of the user: User not found.`});
     } else if (member.id === bot.user.id){
@@ -50,6 +50,6 @@ if (!member.match(/\d{17,19}/)){
 
     const prevRoleCount = member.roles.cache.size - 1;
     return member.roles.set([])
-    .then(member => message.channel.send(`\\✔️ Successfully removed **${prevRoleCount}** roles from **${member.user.tag}**!`))
-    .catch(() => message.channel.send(`\\❌ Unable to remove all of **${member.user.tag}**'s roles!`))
+    .then(member => message.channel.send({content:`\\✔️ Successfully removed **${prevRoleCount}** roles from **${member.user.tag}**!`}))
+    .catch(() => message.channel.send({content:`\\❌ Unable to remove all of **${member.user.tag}**'s roles!`}))
   }}
