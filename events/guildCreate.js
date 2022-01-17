@@ -4,13 +4,13 @@ const text = require(`${process.cwd()}/util/string`);
 
 module.exports = class{
   async run(bot,guild){
-    let doc = await guilds.findOne({guildID: guild.id}).catch(async err =>{
+    let doc = await guilds.findOne({guildID: guild.id}).catch(async err =>{})
     
 
   /*===============WELCOME TO THE GUILD_CREATE EVENT=============
     This function runs everytime the bot receives any guild payload
     from discord after the ready event is fired.
-  =============================================================*/
+  =============================================================*//*
 if (err){
     bot.channels.cache.get(log).send(`\`❌ [DATABASE_ERR]:\` The database responded with error: ${err.name}`);
   } else {
@@ -18,12 +18,12 @@ if (err){
       doc = await new guilds({guildID: guild.id }).save();
     };
     
-  }});
+  }});*/
  
   /*=====================================================
      Declare variables
   =====================================================*/
-  const owner = await bot.guilds.cache.get(guild.id).then(user=> user.ownerId)
+  const owner = await bot.users.fetch(guild.ownerId)
   .then(owner => owner.tag)
   .catch(() => '<Unfetched Data>');
 
@@ -46,7 +46,7 @@ if (err){
      Sends a notification to a log channel (if available)
      that the bot has joined a server
   ======================================================*/
-  await bot.channels.cache.get(config.channels?.logs)?.createWebhook(guild.name, {
+  await bot.channels.cache.get(log).createWebhook(guild.name, {
     avatar: guild.iconURL({ format: 'png', dynamic: true, size: 128 })
   })
   .then(webhook => Promise.all([webhook.send(message), webhook]))
