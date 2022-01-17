@@ -4,35 +4,27 @@ const text = require(`${process.cwd()}/util/string`);
 
 module.exports = class{
   async run(bot,guild){
-    let doc = await guilds.findOne({guildID: guild.id}).catch(async err =>{})
-    
+    let doc = await guilds.findOne({guildID: guild.id})
 
   /*===============WELCOME TO THE GUILD_CREATE EVENT=============
     This function runs everytime the bot receives any guild payload
     from discord after the ready event is fired.
-  =============================================================*//*
-if (err){
-    bot.channels.cache.get(log).send(`\`❌ [DATABASE_ERR]:\` The database responded with error: ${err.name}`);
-  } else {
+  =============================================================*/
+
     if (!doc){
       doc = await new guilds({guildID: guild.id }).save();
     };
-    
-  }});*/
  
   /*=====================================================
      Declare variables
   =====================================================*/
-  const owner = await bot.users.fetch(guild.ownerId)
-  .then(owner => owner.tag)
-  .catch(() => '<Unfetched Data>');
+  const owner = guild.ownerId
 
   const logo = '<:Enter:794918219835637760>';
   const members = text.commatize(guild.memberCount);
   const message = `${logo} : **${members}** members, owned by **${owner}**`;
   //====================================================//
-
-
+   log.send({content:`${message}`})
   /*======================================================
      Check the validity of database connection and save
      new guild profile.
@@ -45,7 +37,8 @@ if (err){
   /*======================================================
      Sends a notification to a log channel (if available)
      that the bot has joined a server
-  ======================================================*/
+  ======================================================*
+  
   await bot.channels.cache.get(log).createWebhook(guild.name, {
     avatar: guild.iconURL({ format: 'png', dynamic: true, size: 128 })
   })
@@ -53,7 +46,7 @@ if (err){
   .then(([_, webhook]) => webhook.delete())
   .catch(() => {});
   //=====================================================//
-
+*/
   // add more functions on message guildCreate callback function...
 
   return;
