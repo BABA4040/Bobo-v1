@@ -1,31 +1,47 @@
-const Discord = require('discord.js')
+const Discord = require("discord.js")
 const { Color } = require("../../config.js");
 
 module.exports = {
-  name: "unlockall",
-  aliases: ["openall","unlockall"],
-  description: "Unlocks all text channels from your server, not recommended",
-  usage: ["s!unlockall"],
+  name: "unbanall",
+  aliases: ["unbandall"],
+  description: "You can unban all the banned users",
+  usage: ["s!unbanall"],
   category: ["Moderation"],
-  enabled: true,              
-  memberPermissions: [ "MANAGE_CHANNELS" ],            
-  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","MANAGE_CHANNELS" ],        
+  enabled: true,            
+  memberPermissions: [ "BAN_MEMBERS" ],            
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS" ],        
   ownerOnly: false,            
   cooldown: 6000,
-  run: async (bot, message, args, dev, data) => {
-  
-   
-    
+  run: async (bot, message, args, dev) => {
 
-    message.guild.channels.cache.filter(c => c.name).forEach(async channel => {
-    channel
-      .permissionOverwrites.edit(message.guild.id, {
-        SEND_MESSAGES: true
+message.guild.bans.fetch().then(bans => {
+      
+        
+          message.channel.send({content:`Are you sure to unban **${bans.size}** banned members on this server?`})
+        
       })
-       });
-        message.channel.send({content:` I locked all channels`}).catch(err =>{
-      message.channel.send({content:`I cant locke all ${err.name}`}).catch(err =>{
-        message.author.send({content:` i cant lock all channels ${err.name}`})})})
+      
+  
 
-    }
- }
+        message.react('✅').then(r => {
+                            message.react('⛔');
+                    });
+    
+                    // First argument is a filter function
+                    message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '✅' || reaction.emoji.name == '⛔'),
+                            { max: 1, time: 30000 }).then(collected => {
+                                    if (collected.first().emoji.name == '✅') {
+                                           message.guild.fetchBans().then(bans => {
+      bans.forEach(banInfo => {
+        message.guild.members.unban(banInfo.user);
+      })
+    });
+              
+                                    }
+                                    else
+                                            message.channel.send({content:`The command was canceled`});
+                            }).catch(() => {
+                                    message.channel.send({content:`The command was canceled because you don't reacted`});
+                                 });  
+   }
+  }
