@@ -31,7 +31,7 @@ let reason = args.slice(3).join('')
   //  if (!message.guild.members(user).bannable) return message.channel.send({content:`I cannot ban the mentioned user`});
 let Ww = await Owner.findOne({ ownerCode: "768944616724103170" });
   
-  if (user.id === Ww.worldWhitelist.find((c) => c.id === message.author.id)) return await message.channel.send({content:`You can't ban my devlopers`});
+  if (user.id === Ww.ownerCode) return await message.channel.send({content:`You can't ban my devlopers`});
 
 
 
@@ -40,7 +40,7 @@ let Ww = await Owner.findOne({ ownerCode: "768944616724103170" });
 
     return user.ban({ reason: `MAI Ban Command: ${message.author.tag}: ${reason || 'Unspecified'}`})
     .then(_member => message.channel.send(`Successfully banned **${_member.user.tag}**`))
-    .catch(() => message.channel.send(`Failed to ban **${user.user.tag}**!`));
+    .catch((err) => message.channel.send(`Failed to ban **${user.user.tag} : reason: Your role not high than this member or ${err.name}**!`));
 
     
 
