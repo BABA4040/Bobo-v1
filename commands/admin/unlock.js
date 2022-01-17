@@ -2,8 +2,8 @@ const Discord = require('discord.js')
 const { Color } = require("../../config.js");
 
 module.exports = {
-  name: "lock",
-  aliases: ["close","lock"],
+  name: "unlock",
+  aliases: ["open","unlock"],
   description: "Locks the current or selected text channels",
   usage: ["[Prefix]lock"],
   category: ["admin"],
@@ -16,7 +16,7 @@ module.exports = {
   
   message.channel
       .permissionOverwrites.edit(message.guild.id, {
-        SEND_MESSAGES: false
+        SEND_MESSAGES: true
       })
       .then(() => {
         message.channel.send({content:`channel locked`});
