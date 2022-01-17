@@ -1,37 +1,34 @@
+const Discord = require('discord.js')
+const { Color } = require("../../config.js");
+
 module.exports = {
-  name: "lockdown",
-  aliases: ["lockdown","lockall"],
-  description: ["lockall channel"],
-  usage: ["Bolock"],
-  category: ["admin"],
-  enabled: true,            
-  memberPermissions: [ "ADMINISTRATOR","MANAGE_CHANNELS" ],            
+  name: "lockall",
+  aliases: ["closeall","lockall","lock all"],
+  description: "Locks all text channels from your server",
+  usage: ["s!lockall"],
+  category: ["Moderation"],
+  enabled: true,              
+  memberPermissions: [ "MANAGE_CHANNELS" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","MANAGE_CHANNELS" ],        
   ownerOnly: false,            
-  cooldown: 10000,
+  cooldown: 6000,
   run: async (bot, message, args, dev, data) => {
+    if(message.guild.channels.cache.filter(c=> c.name).forEach(async channel=>{
+      channel.permissionOverwrites.has(message.guild.id,{
+        SEND_MESSAGES: false})})) return message.channel.send({content:` already channel locked`})
+      
+   
+      const embed = new Discord.MessageEmbed()
+      .setColor(Color)
+      .setDescription(`I locked all channels`);
+      message.channel.send({embeds:[embed]});
 
-message.channel.permissionOverwritesedit([
-    {
-      id: message.guild.roles.everyone.id,
-      deny: [ 'SEND_MESSAGES' ].slice(Number(
-        !message.channel.permissionsFor(message.guild.roles.everyone)
-        .has('SEND_MESSAGES'))),
-      allow: [ 'SEND_MESSAGES' ].slice(Number(
-        message.channel.permissionsFor(message.guild.roles.everyone)
-        .has('SEND_MESSAGES')))
-    },
-    {
-      id: message.guild.me.id,
-      allow: [ 'SEND_MESSAGES' ]
+    message.guild.channels.cache.filter(c => c.name).forEach(async channel => {
+    channel
+      .permissionOverwrites.edit(message.guild.id, {
+        SEND_MESSAGES: false,
+        VIEW_CHANNEL: false
+      })
+       });
     }
-  ], `Mai Lockdown Command: ${message.author.tag}`)
-  .then((ch) => message.channel.send({content:
-    ch.permissionsFor(message.guild.roles.everyone).has('SEND_MESSAGES')
-    ? '\\✔️ Lockdown Ended! Everyone can now send messages on this channel'
-    : '\\✔️ Lockdown has initiated! Users withour special permissions will not be able to send messages here!'
-                                     })).catch(() => message.channel.send({content:
-    message.channel.permissionsFor(message.guild.roles.everyone).has('SEND_MESSAGES')
-    ? '\\❌ Unable to Lockdown this channel!'
-    : '\\❌ Unable to restore this channel!'
-                                                                          }))}}
+ }
