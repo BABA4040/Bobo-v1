@@ -3,8 +3,8 @@ const consoleUtil = require(`${process.cwd()}/util/console`);
 const text = require(`${process.cwd()}/util/string`);
 
 module.exports = class{
-  async run(bot, message,guild){
-    let doc = await guilds.findOne({guildID: guild.id})
+  async run(bot,guild){
+    let doc = await guilds.findOne({guildID: guild.id}).catch(async err =>{
     
 
   /*===============WELCOME TO THE GUILD_CREATE EVENT=============
@@ -18,7 +18,7 @@ if (err){
       doc = await new guilds({guildID: guild.id }).save();
     };
     
-  };
+  }});
  
   /*=====================================================
      Declare variables
@@ -46,7 +46,7 @@ if (err){
      Sends a notification to a log channel (if available)
      that the bot has joined a server
   ======================================================*/
-  await bot.channels.cache.get(client.config.channels?.logs)?.createWebhook(guild.name, {
+  await bot.channels.cache.get(config.channels?.logs)?.createWebhook(guild.name, {
     avatar: guild.iconURL({ format: 'png', dynamic: true, size: 128 })
   })
   .then(webhook => Promise.all([webhook.send(message), webhook]))

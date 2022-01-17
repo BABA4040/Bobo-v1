@@ -3,5 +3,8 @@
   "clientID": "928786326403313765",
   "prefix": "Bo",
   "mongoURL": "mongodb+srv://testbobo:haha1234+@cluster0.cizb6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  "logChannel":"930818872209207368"
+  "channels":{
+  "logChannel":"930818872209207368",
+    "debug":"930818872209207368"
+  }
 }
