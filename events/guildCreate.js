@@ -1,53 +1,39 @@
-const guilds = require(`${process.cwd()}/data/guild`);
-const consoleUtil = require(`${process.cwd()}/util/console`);
-const text = require(`${process.cwd()}/util/string`);
-
-module.exports = class{
-  async run(bot,guild){
-    let doc = await guilds.findOne({guildID: guild.id})
-
-  /*===============WELCOME TO THE GUILD_CREATE EVENT=============
-    This function runs everytime the bot receives any guild payload
-    from discord after the ready event is fired.
-  =============================================================*/
-
-    if (!doc){
-      doc = await new guilds({guildID: guild.id }).save();
-    };
- 
-  /*=====================================================
-     Declare variables
-  =====================================================*/
-  const owner = guild.ownerId
-
-  const logo = '<:Enter:794918219835637760>';
-  const members = text.commatize(guild.memberCount);
-  const message = `${logo} : **${members}** members, owned by **${owner}**`;
-  //====================================================//
-   log.send({content:`${message}`})
-  /*======================================================
-     Check the validity of database connection and save
-     new guild profile.
-  ======================================================*/
-
-  //====================================================//
+const Discord = require("discord.js")
+module.exports = class {
+ async run(guild,bot, message) {
 
 
 
-  /*======================================================
-     Sends a notification to a log channel (if available)
-     that the bot has joined a server
-  ======================================================*
-  
-  await bot.channels.cache.get(log).createWebhook(guild.name, {
-    avatar: guild.iconURL({ format: 'png', dynamic: true, size: 128 })
-  })
-  .then(webhook => Promise.all([webhook.send(message), webhook]))
-  .then(([_, webhook]) => webhook.delete())
-  .catch(() => {});
-  //=====================================================//
+/*
+
+
+ 		const thanksEmbed = new Discord.MessageEmbed()			
+                        .setAuthor("added me to your server!")
+ 			.setDescription(`give me administrator permission to
+Status: ONLINE
+Guilds: ${bot.guilds.cache.size}
+Users: ${bot.users.cache.size}
+Ping: ${Math.round(bot.ws.ping)}ms
+Version: ${Discord.version}
+
+
+.`)
+ 			.setColor("#2c2f33")
+ 			.setTimestamp();
+ 		guild.owner.send({embeds:[thanksEmbed]}).catch(() => {});
 */
-  // add more functions on message guildCreate callback function...
 
-  return;
-}}
+ 		const text = "✅ **__Joined New Guild__** \n **Guild Name** = "+guild.name+" \n **Guild Owner Name** = " + `${guild.owner.user.username}` + " \n **Guild Owner ID** = " + `${guild.owner.id}` + "\n **Guild Member Size** = "+guild.memberCount+" \n **Guild Bots Size** ("+guild.members.cache.filter((m) => m.user.bot).size+" bots)";
+ 		const logsEmbed = new Discord.MessageEmbed()
+ 			.setColor("#2c2f33")
+ 			.setDescription(`
+Status: ONLINE
+Guilds: ${bot.guilds.cache.size}
+Users: ${bot.users.cache.size}
+Ping: ${Math.round(bot.ws.ping)}ms
+Version: ${Discord.version}`
+
+);
+       message.channel.send({embeds:[logsEmbed]})
+ 		log.send(logsEmbed);     
+ }};
