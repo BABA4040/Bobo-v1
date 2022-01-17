@@ -5,7 +5,7 @@ const Discord = require("discord.js")
 const { Color } = require("../../config.js")
 module.exports = {
   name: "unequip",
-  aliases: ["unequip"],
+  aliases: ["unequip","unuse"],
   enabled: true,			
  description:["remove things you used before "],    
   memberPermissions: [ "SEND_MESSAGES" ],			
