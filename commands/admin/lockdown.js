@@ -14,10 +14,7 @@ module.exports = {
   cooldown: 6000,
   run: async (bot, message, args, dev, data) => {
     
-      message.guild.channels.cache.filter((c) => c.name).forEach(async (channel) =>{
-        if(channel.permissions.has("SEND_MESSAGES"))})
-      return message.channel.send({ content: ` already channel locked` });
-
+      message.guild.channels.cache.filter((c) => c.type 
     const embed = new Discord.MessageEmbed()
       .setColor(Color)
       .setDescription(`I locked all channels`);
