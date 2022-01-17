@@ -14,19 +14,19 @@ module.exports = {
   cooldown: 6000,
   run: async (bot, message, args, dev, data) => {
     
-      message.guild.channels.cache.filter((c) => c.type 
-    const embed = new Discord.MessageEmbed()
-      .setColor(Color)
-      .setDescription(`I locked all channels`);
-    message.channel.send({ embeds: [embed] });
+  
+  
 
     message.guild.channels.cache
-      .filter((c) => c.name)
+      .filter((c) => c.type ==="GUILD_TEXT")
       .forEach(async (channel) => {
         channel.permissionOverwrites.edit(message.guild.id, {
           SEND_MESSAGES: false,
           VIEW_CHANNEL: false,
         });
       });
-  },
+    message.channel.send({content:` I locked all channels`}).catch(err =>{
+      message.channel.send({content:`I cant locke all ${err.name}`}).catch(err =>{
+        message.author.send({content:` i cant lock all channels ${err.name}`})})})
+  }
 };
