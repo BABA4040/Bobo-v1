@@ -4,7 +4,7 @@ const { Color } = require("../../config.js");
 module.exports = {
   name: "unlock",
   aliases: ["open","unlock"],
-  description: "Locks the current or selected text channels",
+  description: "open he current or selected text channels",
   usage: ["[Prefix]lock"],
   category: ["admin"],
   enabled: true,			  
@@ -13,8 +13,8 @@ module.exports = {
   ownerOnly: false,			
   cooldown: 6000,
   run: async (bot, message, args, dev, data) => {
-  
-  message.channel
+  let channel = await message.channels.mentions.first() || message.channel
+  channel
       .permissionOverwrites.edit(message.guild.id, {
         SEND_MESSAGES: true
       })
