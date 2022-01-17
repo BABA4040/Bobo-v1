@@ -12,7 +12,7 @@ module.exports = class{
     from discord after the ready event is fired.
   =============================================================*/
 if (err){
-    bot.channels.cache.get(log)?.send(`\`❌ [DATABASE_ERR]:\` The database responded with error: ${err.name}`);
+    bot.channels.cache.get(log).send(`\`❌ [DATABASE_ERR]:\` The database responded with error: ${err.name}`);
   } else {
     if (!doc){
       doc = await new guilds({guildID: guild.id }).save();
@@ -23,7 +23,7 @@ if (err){
   /*=====================================================
      Declare variables
   =====================================================*/
-  const owner = await bot.users.fetch(guild.ownerId)
+  const owner = await bot.guilds.cache.get(guild.id).then(user=> user.ownerId)
   .then(owner => owner.tag)
   .catch(() => '<Unfetched Data>');
 
