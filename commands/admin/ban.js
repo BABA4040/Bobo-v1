@@ -23,16 +23,7 @@ let reason = args.slice(3).join('')
       return message.channel.send({content:`You can't ban yourself`});
     }
 
-    if (user=== client.user.id) return message.channel.send({content:`I can't ban myself`});
-
-    if (message.guild.ownerId !== message.author.id && user.roles.highest.comparePositionTo(message.member.roles.highest) >= 0)
-      return message.channel.send({content:`Based on the role hierarchy, you cannot ban this user`});
-
-  //  if (!message.guild.members(user).bannable) return message.channel.send({content:`I cannot ban the mentioned user`});
-let Ww = await Owner.findOne({ ownerCode: "768944616724103170" });
-  
-  if (user === Ww.ownerCode) return await message.channel.send({content:`You can't ban my devlopers`});
-
+    if (user=== client.user.id) return message.chann
 
 
       await user.send(`**${message.author.tag}** banned you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
