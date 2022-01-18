@@ -15,22 +15,17 @@ module.exports = {
     cooldown: 6000,
     run: async (bot, message, args, dev) => {
   
-     let user =  await message.guild.members.fetch(args[1])
-     
-    message.guild.ban.fetch(user).then(ban =>{
+     let user = args[1]
+    if(!Number(user)) return message.channel.send({content:`Please put id be number`})
+   let ban = message.guild.bans.fetch(user)
       
       
-      ban.unban
-                                       
-                                       
-      
-      
-      
-    })
-      
-      
-      
-      
+      if(!ban) return message.channel.send({content:`<This user not found>`})
+    
+      if(ban){
+        message.guild.members.unban(args[1])
+      }
+      return message.channel.swnd
                                       
 
   
