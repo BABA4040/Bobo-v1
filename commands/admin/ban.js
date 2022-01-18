@@ -15,8 +15,18 @@ module.exports = {
     run: async (client, message, args, dev) => {
   
      let user = await message.mentions.members.first() || message.guild.members.cache.get(args[1]);
-
-      if(user.id = message.author.id
+if(isNaN(user)){
+  let reason = args.join('');
+      if(user.id = message.author.id){
+        return message.channel.send({content:` you can't ban yourself`})
+        
+      }
+      if(user.id = client.user.id) {
+        
+        return message.channel.send({content:`🙂 |You want ban me why....!`})
+        
+      }
+    
       
       await user.send(`**${message.author.tag}** banned you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
     .catch(() => null);
@@ -28,4 +38,19 @@ module.exports = {
     
 
   }
+    if(Number(user)){
+      if(user = message.author.id){
+        return message.channel.send({content:`You cant ban yourself`})
+      }
+      if(user = client.author.id){
+        return message.channel.send({content:`🙂 | You want ban me by myself why...!`})
+      }
+      
+      
+      
+      
+    }
+    
+    
+    }
 }
