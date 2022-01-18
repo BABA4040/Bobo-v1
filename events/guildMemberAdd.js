@@ -37,19 +37,19 @@ module.exports = class {
 			}
 
 			// Check if the autorole is enabled
-			/*if(guildData.plugins.autorole.enabled){
+			if(guildData.plugins.autorole.enabled){
 				member.roles.add(guildData.plugins.autorole.role).catch(() => {});
 			}
-    */
+    
 			// Check if welcome message is enabled
 			if(guildData.plugins.welcome.enabled){
-				const channel = member.guild.channels.cache.get(guildData.plugins.welcome.channel);
+				const channel = member.guild.channels.cache.get(guildData.channels.welcomech);
 				if(channel){
 					const message = guildData.plugins.welcome.message
 						.replace(/{user}/g, member)
 						.replace(/{server}/g, guild.name)
 						.replace(/{membercount}/g, guild.memberCount);
-					if(guildData.plugins.welcome.withImage){
+					if(guildData.welcome.withImage){
 						const canvas = Canvas.createCanvas(1024, 450),
 							ctx = canvas.getContext("2d");
                     
@@ -62,20 +62,14 @@ module.exports = class {
 						ctx.font = applyText(canvas, member.user.username, 48);
 						ctx.fillText(member.user.username, canvas.width - 660, canvas.height - 248);
 						// Draw server name
-						ctx.font = applyText(canvas, member.guild.translate("administration/welcome:IMG_WELCOME", {
-							server: member.guild.name
-						}), 53);
-						ctx.fillText(member.guild.translate("administration/welcome:IMG_WELCOME", {
-							server: member.guild.name
-						}), canvas.width - 690, canvas.height - 65);
+						ctx.font = applyText(canvas,  member.guild.name, 53);
+						ctx.fillText( member.guild.name, canvas.width - 690, canvas.height - 65);
 						// Draw discriminator
 						ctx.font = "40px Bold";
 						ctx.fillText(member.user.discriminator, canvas.width - 623, canvas.height - 178);
 						// Draw number
 						ctx.font = "22px Bold";
-						ctx.fillText(member.guild.translate("administration/welcome:IMG_NB", {
-							memberCount: member.guild.memberCount
-						}), 40, canvas.height - 50);
+						ctx.fillText( member.guild.memberCount, 40, canvas.height - 50);
 						// Draw # for discriminator
 						ctx.fillStyle = "#44d14a";
 						ctx.font = "75px SketchMatch";
@@ -112,9 +106,9 @@ module.exports = class {
 						ctx.drawImage(avatar, 45, 90, 270, 270);
 
 						const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "welcome-image.png");
-						channel.send(message, attachment);
+						channel.send({content:[message],file:[attachment]});
 					} else {
-						channel.send(message);
+						channel.send({content:[message]});
 					}
 				}
 			}
