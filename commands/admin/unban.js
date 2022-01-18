@@ -8,7 +8,7 @@ module.exports = {
   memberPermissions: [ "BAN_MEMBERS" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","BAN_MEMBERS" ],        
   ownerOnly: false,            
-  cooldown: 10000,
+  cooldown: 1000,
   run: async (bot, message, dev, data,args) => {
   /*  if (!user.match(/\d{17,19}/)){
       return message.channel.send({content:`${message.author}, Please provide the ID of the user to unban`});
@@ -20,14 +20,14 @@ module.exports = {
     .then(user => message.channel.send({content:`\\✔️ Successfully unbanned **${user.tag}**!`}))
     .catch(() => message.channel.send({content:`\\❌ Unable to unban user with ID ${user}. The provided argument maybe not a valid user id, or the user is not banned.`}));}}*/
   
-    		let user = null;
+    		let user = null;/*
 
 		if(!args[1]){
 			return message.channel.send({content:`Please Put Id of user`})
-		}
+		}*/
 
 		// Check if the arg is an ID or a username
-		const isId = !isNaN(args[1]);
+		const isId = !isNaN(args[0]);
 
 		if(isId){
 			// Try to find a user with that ID
@@ -36,7 +36,7 @@ module.exports = {
 				user = u;
 			}).catch(() => {});
 		} else if(!isId) {
-			const arr = args[1].split("#");
+			const arr = args[1]
 			if(arr.length < 2){
 				return message.channel.send({content:`I can't found`})
 			}
