@@ -1,10 +1,11 @@
 const Canvas = require("canvas"),
 	Discord = require("discord.js");
 const { resolve } = require("path");
-// Register assets fonts
-Canvas.registerFont(resolve("./assets/fonts/theboldfont.ttf"), { family: "Bold" });
-Canvas.registerFont(resolve("./assets/fonts/SketchMatch.ttf"), { family: "SketchMatch" });
-
+// Register assets fonts/
+/*
+Canvas.registerFont(resolve("./assets/theboldfont.ttf"), { family: "Bold" });
+Canvas.registerFont(resolve("./assets/SketchMatch.ttf"), { family: "SketchMatch" });
+*/
 const applyText = (canvas, text, defaultFontSize) => {
 	const ctx = canvas.getContext("2d");
 	do {
@@ -53,7 +54,7 @@ module.exports = class {
 							ctx = canvas.getContext("2d");
                     
 						// Background language
-						const background = await Canvas.loadImage("./assets/img/greetings_background.png");
+						const background = await Canvas.loadImage("https://imgur.com/Aa0j1pA");
 						// This uses the canvas dimensions to stretch the image onto the entire canvas
 						ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 						// Draw username
