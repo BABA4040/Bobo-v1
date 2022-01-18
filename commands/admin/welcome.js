@@ -79,21 +79,18 @@ message.channel.send({content:`${message.author.toString()}, In which channel wi
   
   // If the channel is filled and the message is not, it means the user sent the message
 				if (welcome.channel && !welcome.message) {
-					if (msg.content.length < 1800) {
+					if (msg.content.length < 400) {
 						welcome.message = msg.content;
-						return message.sendT("administration/welcome:FORM_3");
+						return message.channel.send({content:`"**Do you want a great welcome image too?**\n\n:arrow_right_hook: *Answer by sending **yes** or **no** !*`})
 					}
-					return message.error("administration/goodbye:MAX_CHARACT");
+					return message.channel.send({content:`❌ | Your welcome message less than 400 words`})
 				}
 
 				// If the channel is not filled, it means the user sent it
 				if (!welcome.channel) {
-					const channel = await Resolvers.resolveChannel({
-						message: msg,
-						channelType: "text"
-					});
+					const channel = await bot.channels.cache.filter(c => c.type === "GUILD_TEXT"})
 					if (!channel) {
-						return message.error("misc:INVALID_CHANNEL");
+						return message.channel.send({content:`Please specify a valid channel!`})
 					}
 					welcome.channel = channel.id;
 					message.sendT("administration/welcome:FORM_2", {
