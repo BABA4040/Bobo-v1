@@ -25,7 +25,7 @@ module.exports = {
       if(ban){
         message.guild.members.unban(args[1])
       }
-      return message.channel.swnd
+      return message.channel.send({content:`Unbanned this user`})
                                       
 
   
