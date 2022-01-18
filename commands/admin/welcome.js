@@ -22,7 +22,8 @@ if (
             data.plugins.welcome.enabled
 		) {
 			bot.emit("guildMemberAdd", message.member);
-			return message.channel.send({content:` Test Tes`})
+  const ch = bot.channels.cache.find(c=>c.id === data.plugins.welcome.channel)
+			return ch.send({content:` Test Tes`})
 		}
   
   
@@ -30,7 +31,7 @@ if (
 			data.plugins.welcome = {
 				enabled: false,
 				message: null,
-				
+				channel:null,
 				withImage: null
 			};
 			data.markModified("plugins.welcome");
@@ -49,9 +50,9 @@ message.channel.send({content:`${message.author.toString()}, In which channel wi
 			
 			const collector = message.channel.createMessageCollector(
 				m => m.author.id === message.author.id,
-				{
-					time: 120000 // 2 minutes
-				}
+        {filter:{
+					time: 12000 // 2 minutes
+				}}
 			);
     
     collector.on("collect", async msg => {
@@ -103,7 +104,7 @@ message.channel.send({content:`${message.author.toString()}, In which channel wi
 					return message.channel.send({content:`time out`});
 				}
 			});
-  
+
   }}
 
     
