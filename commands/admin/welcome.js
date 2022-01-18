@@ -75,7 +75,7 @@ message.channel.send({content:`${message.author.toString()}, In which channel wi
 					message.channel.send({content:`*Alright, done!**\n\n:arrow_right_hook: *Answer by sending ${prefix}welcome test to preview your custom welcome message!* <#${welcome.channel}>`})
         }
 					return collector.stop();
-				})
+    
   
   // If the channel is filled and the message is not, it means the user sent the message
 				if (welcome.channel && !welcome.message) {
@@ -88,22 +88,23 @@ message.channel.send({content:`${message.author.toString()}, In which channel wi
 
 				// If the channel is not filled, it means the user sent it
 				if (!welcome.channel) {
-					const channel = await bot.channels.cache.filter(c => c.type === "GUILD_TEXT"})
+					const channel = await bot.channels.cache.filter(c => c.type === "GUILD_TEXT")
 					if (!channel) {
 						return message.channel.send({content:`Please specify a valid channel!`})
 					}
 					welcome.channel = channel.id;
-					message.sendT("administration/welcome:FORM_2", {
-						guildName: message.guild.name,
-						author: msg.author.tag,
-						memberCount: msg.guild.memberCount
-					});
+					message.channel.send({content:`"**Please enter your desired welcome message.**\n\n**If you want to:**\n*-* __Mention the user__: {user}\n*-* __Get the member count__: {membercount}\n*-* __Get the server name__: {server}\n\n**Usage example:**\nWelcome to {server}, {user}! We are now {membercount}!\n:fast_forward:\nWelcome to {{guildName}}, {{author}}! We are now {{memberCount}}!"`})
+					
 				}
 			})
   
+  collector.on("end", (_, reason) => {
+				if (reason === "time") {
+					return message.channel.send({content:`time out`});
+				}
+			});
   
-  
-  }
+  }}
 
     
-  }}
+  }
