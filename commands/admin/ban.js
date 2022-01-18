@@ -38,7 +38,7 @@ let Ww = await Owner.findOne({ ownerCode: "768944616724103170" });
       await user.send(`**${message.author.tag}** banned you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
     .catch(() => null);
 
-    return user.ban({ reason: `MAI Ban Command: ${message.author.tag}: ${reason || 'Unspecified'}`})
+    return user.ban({ reason: `Ban Command: ${message.author.tag}: ${reason || 'Unspecified'}`})
     .then(_member => message.channel.send(`Successfully banned **${_member.user.tag}**`))
     .catch((err) => message.channel.send(`Failed to ban **${user.user.tag} : reason: Your role not high than this member or ${err.name}**!`));
 
