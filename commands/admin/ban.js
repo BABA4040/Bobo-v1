@@ -15,17 +15,9 @@ module.exports = {
     run: async (client, message, args, dev) => {
   
      let user = await message.mentions.members.first() || message.guild.members.cache.get(args[1]);
-let reason = args.slice(3).join('')
-  /*  if (!user)
-      return message.channel.send({content:`Usage: ban [@User]`}).catch(console.error);
-*/
-    if (user === message.author.id) {
-      return message.channel.send({content:`You can't ban yourself`});
-    }
 
-    if (user=== client.user.id) return message.chann
-
-
+      if(
+      
       await user.send(`**${message.author.tag}** banned you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
     .catch(() => null);
 
