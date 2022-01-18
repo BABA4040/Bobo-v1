@@ -23,7 +23,7 @@ const schema = mongoose.Schema({
     plan: { type: String, default: null }
   },
   channels:{
-    
+    welcomech:{ type: String, default:null},
     xp:{type: String, default:null}
   },
   whitelist: { type: Array, default: [] },
