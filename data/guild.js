@@ -30,7 +30,7 @@ const schema = mongoose.Schema({
   welcome: {
 			enabled: false, // Whether the welcome messages are enabled
 			message: null, // The welcome message
-		///	channel: null, // The channel to send the welcome messages
+		channel: null, // The channel to send the welcome messages
 			withImage: null // Whether the welcome images are enabled
 		},
 		// Goodbye messages
