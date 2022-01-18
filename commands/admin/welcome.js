@@ -89,7 +89,7 @@ message.channel.send({content:`${message.author.toString()}, In which channel wi
 
 				// If the channel is not filled, it means the user sent it
 				if (!welcome.channel) {
-					const channel = await bot.channels.cache.filter(c => c.type === "GUILD_TEXT")
+					const channel = await message.mentions.channels.first();
 					if (!channel) {
 						return message.channel.send({content:`Please specify a valid channel!`})
 					}
