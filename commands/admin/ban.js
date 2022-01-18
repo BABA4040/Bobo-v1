@@ -16,7 +16,7 @@ module.exports = {
   
      let user = await message.mentions.members.first() || message.guild.members.cache.get(args[1]);
 
-      if(
+      if(user.id = message.author.id
       
       await user.send(`**${message.author.tag}** banned you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
     .catch(() => null);
