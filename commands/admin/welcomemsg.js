@@ -19,12 +19,20 @@ module.exports = {
       if(!channel) return message.channel.send({content:`Mention channel please`})
       
       message.guild.channels.fetch(channel).then(ch =>{
-        if(!ch) 
-    
-    
-    
+        if(!ch) return message.channel.send({content:`i can't find this channel`});
+         if(ch){
+           
+    data.plugins.welcome ={
+      channel: ch.id
+      
+ 
     }
+         data.markModified("plugins.welcome")
+           data.save();
+         
+         
+         
+         }
     
     
-  }
-}
+  })}}}
