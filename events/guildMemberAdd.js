@@ -101,7 +101,7 @@ module.exports = class {
 					//Define Stroke Line
 					ctx.lineWidth = 10;
 					//Define Stroke Style
-					ctx.strokeStyle = "#03A9F4";
+					ctx.strokeStyle =member.user.status// "#03A9F4";
 					// Start the arc to form a circle
 					ctx.arc(180, 225, 135, 0, Math.PI * 2, true);
 					// Draw Stroke
@@ -117,14 +117,13 @@ module.exports = class {
 					ctx.drawImage(avatar, 45, 90, 270, 270);
 
 					const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "welcome-image.png");
-					channel.send(message,{
-						files: [attachment]
-					});
-				} else {
+					channel.send(message);
+          channel.send({files: [attachment]})
+				} /*else {
 					channel.send({content:[message]}
 		         
 					);
-				}
+				}*/
 			}
 		}
 
