@@ -49,13 +49,13 @@ module.exports = {
                       message.channel.send({
                         content: "There are no banned users.",
                       });
-                      throw "No members to unban.";
+                      
                     }
                     bans.forEach((ban) => {
                       message.guild.members.unban(ban.user.id);
                     });
                   })
-                  .then(() => message.channel.send({content:`
+                  .then(() => console.log("n"))
                   .catch((e) => console.log(e));
               }, 6000);
             }
