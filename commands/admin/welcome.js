@@ -48,7 +48,7 @@ if (
 //message.channel.send({content:`${message.author.toString()}, In which channel will welcome messages be sent?**\n\n:arrow_right_hook: *Answer by mentioning a channel!*`})
     
 			
-			const collector = message.channel.createMessageCollector(
+			const collector = message.channel.awaitMessages(
 				m => m.author.id === message.author.id,
         {
 					time: 120000 // 2 minutes
