@@ -31,7 +31,7 @@ module.exports = {
       };
       data.markModified("plugins.welcome");
       data.save();
-      return message.channel.send({ content: `Welcome system disabled` });
+      return data.plugins.channel.send({ content: `Welcome system disabled` });
     } else {
       
       const welcome = {
@@ -44,9 +44,13 @@ module.exports = {
     
       
      const user = _message => message.author.id === _message.author.id && ['y','n','yes','no'].includes(_message.content.toLowerCase());
-
-      const collector = message.channel.createMessageCollector({filter: user, time: 120000} );
-
+const collector = message.channel.createMessageCollector({filter:
+				m => m.author.id === message.author.id,
+				
+					time: 120000 // 2 minutes
+				
+                                                         });
+      
       collector.on("collect", async (msg) => {
         // If the message is filled, it means the user sent yes or no for the image
         if (welcome.message) {
