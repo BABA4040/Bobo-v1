@@ -41,7 +41,8 @@ module.exports = {
         message: null,
         withImage: null,
       };
-      //message.channel.send({content:`${message.author.toString()}, In which channel will welcome messages be sent?**\n\n:arrow_right_hook: *Answer by mentioning a channel!*`})
+      message.channel.send({content:`${message.author.toString()}, In which channel will welcome messages be sent?**\n\n:arrow_right_hook: *Answer by mentioning a channel!*`})
+      
      const filter = _message => message.author.id === _message.author.id && ['y','n','yes','no'].includes(_message.content.toLowerCase());
 
       const collector = message.channel.createMessageCollector({filter, time: 120000, /*2 minutes*/ } );
@@ -64,9 +65,9 @@ module.exports = {
           message.channel.send({
             content: `*Alright, done!**\n\n:arrow_right_hook: *Answer by sending ${prefix}welcome test to preview your custom welcome message!* <#${welcome.channel}>`,
           });
-        }
+        
         return collector.stop();
-
+        }
         // If the channel is filled and the message is not, it means the user sent the message
         if (welcome.channel && !welcome.message) {
           if (msg.content.length < 400) {
