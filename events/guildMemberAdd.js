@@ -101,7 +101,7 @@ module.exports = class {
 					//Define Stroke Line
 					ctx.lineWidth = 10;
 					//Define Stroke Style
-					ctx.strokeStyle =member.user.presence.status// "#03A9F4";
+					ctx.strokeStyle =member.presence.activities// "#03A9F4";
 					// Start the arc to form a circle
 					ctx.arc(180, 225, 135, 0, Math.PI * 2, true);
 					// Draw Stroke
