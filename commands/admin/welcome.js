@@ -44,7 +44,7 @@ module.exports = {
       
      const filter = _message => message.author.id === _message.author.id && ['y','n','yes','no'].includes(_message.content.toLowerCase());
 
-      const collector = message.channel.createMessageCollector({filter, time: 120000, /*2 minutes*/ } );
+      const collector = message.channel.createMessageCollector({filter: filter, time: 120000, /*2 minutes*/ } );
 
       collector.on("collect", async (msg) => {
         // If the message is filled, it means the user sent yes or no for the image

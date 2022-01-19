@@ -40,11 +40,15 @@ module.exports = {
                 .send({
                   content: `Please Wait! We are beginning the process now...`,
                 })
+          
+            
                 .catch((e) => {});
               setTimeout(() => {
                 message.guild.bans
                   .fetch()
                   .then((bans) => {
+                  if(bans.size > 0){
+                    message.channel.send({content: ` Unbanned all`})}
                     if (bans.size == 0) {
                       message.channel.send({
                         content: "There are no banned users.",
