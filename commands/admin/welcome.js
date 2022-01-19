@@ -18,10 +18,8 @@ module.exports = {
 
     if (args[1] === "test" && data.plugins.welcome.enabled) {
       bot.emit("guildMemberAdd", message.member);
-      const ch = bot.channels.cache.find(
-        (c) => c.id === data.plugins.welcome.channel
-      );
-      return ch.send({ content: ` Test Tes` });
+      
+      return message.channel.send({ content: ` Test Tes` });
     }
 
     if (args[1] === "off") {
@@ -35,6 +33,7 @@ module.exports = {
       data.save();
       return message.channel.send({ content: `Welcome system disabled` });
     } else {
+      
       const welcome = {
         enabled: true,
         channel: null,

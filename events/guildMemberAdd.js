@@ -24,7 +24,7 @@ module.exports = class {
 
 			const guildData = await Guild.findOrCreateGuild({guildID: guild.id });
 			member.guild.data = guildData;
-
+/*
 			const memberData = await Guild.findOrCreateMember({ guildID: guild.id });
 			if(memberData.mute.muted && memberData.mute.endDate > Date.now()){
 				guild.channels.cache.forEach((channel) => {
@@ -34,7 +34,7 @@ module.exports = class {
 						CONNECT: false
 					}).catch(() => {});
 				});
-			}
+			}*/
 
 			// Check if the autorole is enabled
 		/*	if(guildData.plugins.autorole.enabled){
