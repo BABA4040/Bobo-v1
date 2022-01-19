@@ -1,4 +1,4 @@
-const stringCleaner = import("@sindresorhus/slugify");
+const stringCleaner = require("@sindresorhus/slugify");
 const Canvas = require("canvas"),
 	Discord = require("discord.js");
 const { resolve } = require("path");
