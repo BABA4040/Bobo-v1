@@ -27,7 +27,7 @@ const resolveChannel = async ({ message, search, channelType }) => {
 			return channelFound;
 	}
 	return;
-};/*
+}/*
 
 const resolveMember = async ({ message, search, useMessageContent = true }) => {
 	const contentToCheck = search || (useMessageContent ? message.content : null);
@@ -94,6 +94,5 @@ const resolveRole = async ({ message, search }) => {
 	return;
 };
 */
-module.exports = {
-	resolveChannel}
+module.exports = {resolveChannel}
 

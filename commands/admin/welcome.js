@@ -41,10 +41,11 @@ module.exports = {
         withImage: null,
       };
       message.channel.send({content:`${message.author.toString()}, In which channel will welcome messages be sent?**\n\n:arrow_right_hook: *Answer by mentioning a channel!*`})
+    
       
-     const filter = _message => message.author.id === _message.author.id && ['y','n','yes','no'].includes(_message.content.toLowerCase());
+     const user = _message => message.author.id === _message.author.id && ['y','n','yes','no'].includes(_message.content.toLowerCase());
 
-      const collector = message.channel.createMessageCollector({filter: filter, time: 120000, /*2 minutes*/ } );
+      const collector = message.channel.createMessageCollector({filter: user, time: 120000} );
 
       collector.on("collect", async (msg) => {
         // If the message is filled, it means the user sent yes or no for the image
@@ -97,6 +98,9 @@ module.exports = {
           });
         }
       });
+      const johncena = (reaction, user) => {
+                        return ['✅', '❌'].includes(reaction.emoji.name) && user.bot == false && user.id === message.author.id;
+                    };
 
       collector.on("end", (_, reason) => {
         if (reason === "time") {
