@@ -25,10 +25,10 @@ module.exports = class {
     
 		await member.guild.members.fetch();
 
-		const guildData = await this.client.findOrCreateGuild({ id: member.guild.id });
+		const guildData = await Guild.findOne({ guildID: member.guild.id });
 		member.guild.data = guildData;
 
-		const memberData = await this.client.findOrCreateMember({ id: member.id, guildID: member.guild.id });
+		/*const memberData = await Guild.findOrCreateMember({ id: member.id, guildID: member.guild.id });
 		if(memberData.mute.muted && memberData.mute.endDate > Date.now()){
 			member.guild.channels.cache.forEach((channel) => {
 				channel.updateOverwrite(member.id, {
@@ -42,7 +42,7 @@ module.exports = class {
 		// Check if the autorole is enabled
 		if(guildData.plugins.autorole.enabled){
 			member.roles.add(guildData.plugins.autorole.role).catch(() => {});
-		}
+		}*/
     
 		// Check if welcome message is enabled
 		if(guildData.plugins.welcome.enabled){
