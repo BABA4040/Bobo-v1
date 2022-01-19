@@ -45,14 +45,14 @@ if (
 				message: null,
 				withImage: null,
 			};
-message.channel.send({content:`${message.author.toString()}, In which channel will welcome messages be sent?**\n\n:arrow_right_hook: *Answer by mentioning a channel!*`})
+//message.channel.send({content:`${message.author.toString()}, In which channel will welcome messages be sent?**\n\n:arrow_right_hook: *Answer by mentioning a channel!*`})
     
 			
 			const collector = message.channel.createMessageCollector(
 				m => m.author.id === message.author.id,
-        {filter:{
-					time: 12000 // 2 minutes
-				}}
+        {
+					time: 120000 // 2 minutes
+				}
 			);
     
     collector.on("collect", async msg => {
