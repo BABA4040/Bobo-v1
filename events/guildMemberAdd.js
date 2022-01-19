@@ -16,13 +16,11 @@ const applyText = (canvas, text, defaultFontSize) => {
 
 module.exports = class {
 
-	
-
 	async run (member) {
     
 		member.guild.fetch().then(async (guild) => {
 
-			const guildData = await Guild.findOrCreateGuild({guildID: guild.id });
+			const guildData = await Guild.findOne({guildID: guild.id });
 			member.guild.data = guildData;
 /*
 			const memberData = await Guild.findOrCreateMember({ guildID: guild.id });
