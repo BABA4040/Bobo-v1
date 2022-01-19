@@ -32,7 +32,7 @@ module.exports = {
           );
         };
         balls
-          .awaitReactions({ johncena, max: 1, time: 120000 })
+          .awaitReactions({filter: johncena, max: 1, time: 120000 })
           .then((collected) => {
             const react23847 = collected.first();
             if (react23847.emoji.name === "✅") {
@@ -55,7 +55,7 @@ module.exports = {
                       message.guild.members.unban(ban.user.id);
                     });
                   })
-                  .then(() => console.log("Users are being unbanned."))
+                  .then(() => message.channel.send({content:`
                   .catch((e) => console.log(e));
               }, 6000);
             }

@@ -6,13 +6,13 @@ const bot = new Client({
   intents: [
     "GUILDS",
 
-
+"GUILD_MESSAGE_REACTIONS",
     "GUILD_MESSAGES",
     
 
   ],
   allowedMentions: {
-    parse: ["everyone", "roles", "users"],
+    parse: ["everyone", "roles", "users","reaction"],
     repliedUser: true
   },
   partials: ["CHANNEL", "MESSAGE", "REACTION", "USER"]
