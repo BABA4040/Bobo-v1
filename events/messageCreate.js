@@ -6,7 +6,7 @@ const profileSchema = require(`${process.cwd()}/data/user.js`);
 const experience = require(`${process.cwd()}/util/xp`);
 
 module.exports = class {
-  async run(message, bot) {
+  async run(message, bot,member) {
     const data = {};
 
     if (message.author.bot) return;
@@ -58,6 +58,10 @@ module.exports = class {
       
           return;
         }/////////
+
+    
+    
+    
       ////////-----------------------------------------------------------------------///
 
     const response = await experience(message, bot,guild);
@@ -89,7 +93,11 @@ if(!command) return;
         }
       }
 
-
+//-----------------------------fetchinvite---------------------////
+       
+       member.guild.invites.fetch()
+       
+       
       ///-----------------------------------------permissoins--------------------------------///
       if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES"))
         return;

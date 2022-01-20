@@ -119,11 +119,11 @@ module.exports = class {
 					const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "welcome-image.png");
 					
           channel.send({content:message,files: [attachment]})
-				} /*else {
-					channel.send({content:[message]}
+				} else {
+					channel.send({content:message}
 		         
 					);
-				}*/
+				}
 			}
 		}
 
