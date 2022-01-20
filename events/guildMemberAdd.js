@@ -117,8 +117,8 @@ module.exports = class {
 					ctx.drawImage(avatar, 45, 90, 270, 270);
 
 					const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "welcome-image.png");
-					channel.send(message);
-          channel.send({files: [attachment]})
+					
+          channel.send(message, {files: [attachment]})
 				} /*else {
 					channel.send({content:[message]}
 		         
