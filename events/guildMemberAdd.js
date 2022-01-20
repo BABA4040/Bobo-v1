@@ -48,6 +48,14 @@ module.exports = class {
     
 		// Check if welcome message is enabled
 		if(guildData.plugins.welcome.enabled){
+      
+      
+      
+      
+      
+      
+      
+      
 			const channel = member.guild.channels.cache.get(guildData.plugins.welcome.channel);
 			if(channel){
 				const message = guildData.plugins.welcome.message
@@ -56,7 +64,6 @@ module.exports = class {
 					.replace(/{membercount}/g, member.guild.memberCount);
         
         
-        if(guildData.plugins.welcom
           
 				if(guildData.plugins.welcome.withImage){
 					const canvas = Canvas.createCanvas(1024, 450),
