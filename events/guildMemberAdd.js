@@ -23,9 +23,11 @@ module.exports = class {
     
     
     const cachedInvites = bot.guildInvite.get(member.guild.id)
-    const newInvites = await member.guild.invites.fetch()  
+    const newInvites = await member.guild.invites.fetch();
     
-    
+    const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses)
+    if (usedInvite.inviter.id == member.id) return;
+
     
 		await member.guild.members.fetch();
 
@@ -55,7 +57,8 @@ module.exports = class {
 				const message = guildData.plugins.welcome.message
 					.replace(/{user}/g, member)
 					.replace(/{server}/g, member.guild.name)
-					.replace(/{membercount}/g, member.guild.memberCount);
+					.replace(/{membercount}/g, member.guild.memberCount)
+          .replace(/{inviter}/g, usedInvite.inviter.tag);
 				if(guildData.plugins.welcome.withImage){
 					const canvas = Canvas.createCanvas(1024, 450),
 						ctx = canvas.getContext("2d");
