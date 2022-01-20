@@ -23,15 +23,7 @@ module.exports = class {
     
     
    // const cachedInvites = bot.guildInvites.get(member.guild.id)
-    const Invites = await member.guild.invites.fetch().then(newInvites=>{
-  const cachedInvites = invite.invites.get(member.guild.id)
-    const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses)
-    const inviter = bot.users.cache.get(member.inviter.id);
-    // 
-    
-    if (usedInvite.inviter.id == member.id) return;
-
-    })
+  
     
 		await member.guild.members.fetch();
 
@@ -61,8 +53,11 @@ module.exports = class {
 				const message = guildData.plugins.welcome.message
 					.replace(/{user}/g, member)
 					.replace(/{server}/g, member.guild.name)
-					.replace(/{membercount}/g, member.guild.memberCount)
-          .replace(/{inviter}/g, usedInvite.inviter.tag);
+					.replace(/{membercount}/g, member.guild.memberCount);
+        
+        
+        if(guildData.plugins.welcom
+          
 				if(guildData.plugins.welcome.withImage){
 					const canvas = Canvas.createCanvas(1024, 450),
 						ctx = canvas.getContext("2d");
