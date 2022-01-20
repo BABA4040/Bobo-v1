@@ -17,11 +17,15 @@ const applyText = (canvas, text, defaultFontSize) => {
 
 module.exports = class {
 
-	constructor (client) {
-		this.client = client;
-	}
 
-	async run (member) {
+
+	async run (member,bot) {
+    
+    
+    const cachedInvites = bot.guildInvite.get(member.guild.id)
+    const newInvites = await member.guild.invites.fetch()  
+    
+    
     
 		await member.guild.members.fetch();
 
