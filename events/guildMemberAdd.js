@@ -19,7 +19,7 @@ module.exports = class {
 
 
 
-	async run (member,bot) {
+	async run (member,bot, message) {
     
     
     const cachedInvites = bot.guildInvites.get(member.guild.id)
