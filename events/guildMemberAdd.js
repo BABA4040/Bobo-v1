@@ -22,7 +22,7 @@ module.exports = class {
 	async run (member,bot, message) {
     
     
-    const cachedInvites = message.member.guildInvite.get(member.guild.id)
+    const cachedInvites = bot.guild.invites.get(member.guild.id)
     const newInvites = await member.guild.invites.fetch();
     
     const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses)
