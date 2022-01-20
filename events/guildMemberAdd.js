@@ -19,16 +19,20 @@ module.exports = class {
 
 
 
-	async run (member,bot, message) {
+	async run (member,bot, message, invite) {
     
     
    // const cachedInvites = bot.guildInvites.get(member.guild.id)
-    const newInvites = await member.guild.invites.fetch().then(newInvites=>{
-    //const cachedInvites = member.guildInvites.get(member.guild.id)
+    const Invites = await member.guild.invites.fetch().then(newInvites=>{
+  const cachedInvites = invite.invites.get(member.guild.id)
     const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses)
+    const inviter = bot.users.cache.get(member.inviter.id);
+    // 
+    
     if (usedInvite.inviter.id == member.id) return;
 
     })
+    
 		await member.guild.members.fetch();
 
 		const guildData = await Guild.findOne({ guildID: member.guild.id });
