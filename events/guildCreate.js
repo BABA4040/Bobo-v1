@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+const config = require(`${process.cwd()}/config.json`)
 module.exports = class {
 
 	
@@ -52,6 +52,6 @@ module.exports = class {
 			.setAuthor(guild.name, guild.iconURL())
 			.setColor("#32CD32")
 			.setDescription(text);
-		bot.channels.cache.get(config.logChannel).send({embeds:[logsEmbed]});
+	bot.channels.cache.get(config.channels.logChannel).send({embeds:[logsEmbed]});
         
 	}}
