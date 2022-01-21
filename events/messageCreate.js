@@ -64,19 +64,17 @@ module.exports = class {
 
     const response = await experience(message, bot, guild);
     ////const badge = await badges(message, bot,user);
-if(user){
+
     if (message.content.toLowerCase().startsWith(guild.prefix.toLowerCase())) {
       user.data.command.uses += 1;
+      user.save();
     
     };
-    if ((user.data.command.uses = 1012)) {
-      user.badge = config.badge.lover;
-
-      message.channel.send({
-        content: ` you got new badge by the bot because you used bot 1000 times new badge${config.badge.lover}`,
-      });
-    };user.save();
-};
+    if(
+    
+    
+    
+    
     if (guild) {
       if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase()))
         return;
