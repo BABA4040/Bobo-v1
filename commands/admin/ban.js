@@ -14,7 +14,7 @@ module.exports = {
     ownerOnly: false,
     cooldown: 6000,
     run: async (bot, message, args, dev) => {
-  
+  let data = await Guild.findOne
      let user = await message.mentions.members.first() || await message.guild.members.fetch(args[1])
      let admin = message.author;
      // if(!user) return message.channel.send({content:` Mention someone or put id`})
@@ -41,7 +41,20 @@ if(user){
     
 
   }
-      
+      if(data.plugins.modlogs){
+				const channel = message.guild.channels.cache.get(data.guild.plugins.modlogs);
+				if(!channel) return;
+				const embed = new Discord.MessageEmbed()
+					.setAuthor(message.translate("moderation/ban:CASE", {
+						count: data.guild.casesCount
+					}))
+					.addField(message.translate("common:USER"), `\`${user.tag}\` (${user.toString()})`, true)
+					.addField(message.translate("common:MODERATOR"), `\`${message.author.tag}\` (${message.author.toString()})`, true)
+					.addField(message.translate("common:REASON"), reason, true)
+					.setColor("#e02316");
+				channel.send({ embeds: [embed] });
+			}
+
     
     
     }

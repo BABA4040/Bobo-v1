@@ -44,7 +44,10 @@ const schema = mongoose.Schema({
 			enabled: false, // Whether the autorole is enabled
 			role: null // The role to add when a member join the server
 		},
-		// Auto moderation
+		// modlgs
+modlogs: false, // the channel in which the moderation logs (mute, kick, ban, etc...) will be sent
+		reports: false, // the channel in which the reports will be sent
+	
 	
   
   }

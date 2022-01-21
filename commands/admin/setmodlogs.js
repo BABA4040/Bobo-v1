@@ -35,6 +35,6 @@ const areModLogsEnabled = Boolean(data.plugins.modlogs);
 			data.plugins.modlogs = channel.id;
 			data.markModified("plugins.modlogs");
 			await data.save();
-			return message.channel.send({content:`Channel has been setup in **${channel.toString()}`})
+			return message.channel.send({content:`Channel has been setup in **${channel.toString()}**`})
 		
 		}}}
