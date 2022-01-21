@@ -27,7 +27,6 @@ const status = args[1];
 
 			const role = await Resolvers.resolveRole({
 				message:message,
-				search: args.slice(1).join(" ")
 			});
 			if(!role){
 				return message.channel.send({content:`Please specify a valid role!`})

@@ -27,7 +27,7 @@ const resolveChannel = async ({ message, search, channelType }) => {
 			return channelFound;
 	}
 	return;
-}/*
+}
 
 const resolveMember = async ({ message, search, useMessageContent = true }) => {
 	const contentToCheck = search || (useMessageContent ? message.content : null);
@@ -62,7 +62,7 @@ const resolveMember = async ({ message, search, useMessageContent = true }) => {
 	}
 	return;
 };
-*/
+
 const resolveRole = async ({ message, search }) => {
 	const contentToCheck = search || message.content;
 	if (!contentToCheck || typeof contentToCheck !== "string") return;
@@ -79,6 +79,9 @@ const resolveRole = async ({ message, search }) => {
 		if (roleFound)
 			return roleFound;
 	}
+  ///// Try by mention 
+  
+    
 	// Try with name with @
 	if (
 		message.guild.roles.cache.some(
@@ -93,8 +96,8 @@ const resolveRole = async ({ message, search }) => {
 	}
 	return;
 };
-
-module.exports = 
-  {resolveChannel,
-   resolveRole}
-
+module.exports = {
+	resolveChannel,
+	resolveMember,
+	resolveRole
+};
