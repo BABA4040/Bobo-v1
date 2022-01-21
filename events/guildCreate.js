@@ -11,7 +11,7 @@ module.exports = class {
 
 		const messageOptions = {};
 
-		const userData = await Users.findOneOrCreate({ userID: message.author.id});
+		const userData = await User.findOneOrCreate({ userID: message.author.id});
 	
     if(userData.invite.times === 0){
       
@@ -34,7 +34,7 @@ module.exports = class {
 
 		const thanksEmbed = new Discord.MessageEmbed()
 			.setAuthor("Thank you for adding me to your guild !")
-			.setDescription("To configure me, type `"config.prefix+"help`")
+			.setDescription(`To configure me ${config.prefix}help`)
 			.setColor(config.embed.Color)
 			.setFooter(config.embed.footer)
 			.setTimestamp();
