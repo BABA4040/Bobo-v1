@@ -39,7 +39,16 @@ const schema = mongoose.Schema({
 			message: null, // The goodbye message
 		///	channel: null, // The channel to send the goodbye messages
 			withImage: null // Whether the goodbye images are enabled
-    }}},
+    },
+    autorole: {
+			enabled: false, // Whether the autorole is enabled
+			role: null // The role to add when a member join the server
+		},
+		// Auto moderation
+	
+  
+  }
+           },
   
   
   whitelist: { type: Array, default: [] },

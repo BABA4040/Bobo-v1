@@ -1,5 +1,5 @@
 
-		
+		const Resolvers = require("../../helpers/resolvers.js")
 module.exports = {
   name: "autorole",
   aliases: ["autorole"],
@@ -20,7 +20,7 @@ module.exports = {
 
 const status = args[0];
 		if(status !== "on" && status !== "off"){
-			return message.error("administration/autorole:MISSING_STATUS");
+			return message.channel.send({content:`"Please specify a valid value between **on** and **off**`})
 		}
         
 		if(status === "on"){
@@ -30,19 +30,17 @@ const status = args[0];
 				search: args.slice(1).join(" ")
 			});
 			if(!role){
-				return message.error("administration/autorole:MISSING_ROLE");
+				return message.channel.send({content:`Please specify a valid role!`})
 			}
 
-			data.guild.plugins.autorole = {
+			data.plugins.autorole = {
 				enabled: true,
 				role: role.id
 			};
-			data.guild.markModified("plugins.autorole");
-			await data.guild.save();
+			data.markModified("plugins.autorole");
+			await data.save();
 
-			message.success("administration/autorole:SUCCESS_ENABLED", {
-				roleName: role.name
-			});
+			message.channel.send({content:`Autorole enabled! New members will automatically receive the **${role.namw}** role.,`})
 		}
 
 		if(status === "off"){
@@ -66,4 +64,4 @@ const status = args[0];
 
 		}
         
-	}
+  }	}

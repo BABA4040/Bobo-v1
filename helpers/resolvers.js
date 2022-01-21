@@ -62,7 +62,7 @@ const resolveMember = async ({ message, search, useMessageContent = true }) => {
 	}
 	return;
 };
-
+*/
 const resolveRole = async ({ message, search }) => {
 	const contentToCheck = search || message.content;
 	if (!contentToCheck || typeof contentToCheck !== "string") return;
@@ -93,6 +93,6 @@ const resolveRole = async ({ message, search }) => {
 	}
 	return;
 };
-*/
-module.exports = {resolveChannel}
+
+module.exports = {resolveChannel,resolveRole}
 
