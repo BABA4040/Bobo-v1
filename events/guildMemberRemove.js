@@ -16,12 +16,13 @@ const applyText = (canvas, text, defaultFontSize) => {
 };
 
 module.exports = class {
+
   
 	async run (member) {
 
 		await member.guild.members.fetch();
 
-		const guildData = await Guild.findOneAndUpdate({guildID: member.guild.id });
+		const guildData = await Guild.findOneAndUpdate({ guildID: member.guild.id });
 		member.guild.data = guildData;
 
 		// Check if goodbye message is enabled
@@ -29,7 +30,7 @@ module.exports = class {
 			const channel = member.guild.channels.cache.get(guildData.plugins.goodbye.channel);
 			if(channel){
 				const message = guildData.plugins.goodbye.message
-					.replace(/{user}/g, member.user.usernamw)
+					.replace(/{user}/g, member.user.tag)
 					.replace(/{server}/g, member.guild.name)
 					.replace(/{membercount}/g, member.guild.memberCount);
 				if(guildData.plugins.goodbye.withImage){
@@ -37,7 +38,7 @@ module.exports = class {
 						ctx = canvas.getContext("2d");
                     
 					// Background language"
-					const background = await Canvas.loadImage("https://imgur.com/Aa0j1pA.png");
+					const background = await Canvas.loadImage("https://imgur.com/Aa0j1pA");
 					// This uses the canvas dimensions to stretch the image onto the entire canvas
 					ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 					// Draw username
@@ -54,25 +55,34 @@ module.exports = class {
 					ctx.font = applyText(canvas, member.guild.translate("administration/goodbye:IMG_GOODBYE", {
 						server: member.guild.name
 					}), 53);
-					ctx.fillText(member.guild.name	ctx.fillText(member.user.discriminator, canvas.width - 623, canvas.height - 178);
+					ctx.fillText(member.guild.translate("administration/goodbye:IMG_GOODBYE", {
+						server: member.guild.name
+					}), canvas.width - 690, canvas.height - 65);
+					// Draw discriminator
+					ctx.font = "40px Bold";
+					ctx.fillText(member.user.discriminator, canvas.width - 623, canvas.height - 178);
 					// Draw number
 					ctx.font = "22px Bold";
 					ctx.fillText(member.guild.translate("administration/goodbye:IMG_NB", {
 						memberCount: member.guild.memberCount
-	illStyle = "#44d14a";
-					ctx.,t = "75px SketchMatch";
+					}), 40, canvas.height - 50);
+					// Draw # for discriminator
+					ctx.fillStyle = "#44d14a";
+					ctx.font = "75px SketchMatch";
 					ctx.fillText("#", canvas.width - 690, canvas.height - 165);
 					// Draw Title with gradient
 					ctx.font = "90px Bold";
 					ctx.strokeStyle = "#1d2124";
 					ctx.lineWidth = 15;
 					ctx.strokeText(member.guild.translate("administration/goodbye:TITLE"), canvas.width - 620, canvas.height - 330);
-					"Goodbye 🫂" 780, 0, canvas.width - 30, 0);
+					var gradient = ctx.createLinearGradient(canvas.width - 780, 0, canvas.width - 30, 0);
 					gradient.addColorStop(0, "#e15500");
 					gradient.addColorStop(1, "#e7b121");
 					ctx.fillStyle = gradient;
 					ctx.fillText(member.guild.translate("administration/goodbye:TITLE"), canvas.width - 620, canvas.height - 330);
-     "Goodbye 🫂"();
+                
+					// Pick up the pen
+					ctx.beginPath();
 					//Define Stroke Line
 					ctx.lineWidth = 10;
 					//Define Stroke Style
@@ -95,12 +105,15 @@ module.exports = class {
 					channel.send(message, {
 						files: [attachment],
 						allowedMentions: {
-							parse: ["users", "everyone", "rol{content: message,	}
+							parse: ["users", "everyone", "roles"]
+						}
 					});
 				} else {
-	}) "roles"]
+					channel.send(message, {
+						allowedMentions: {
+							parse: ["users", "everyone", "roles"]
 						}
 					});
 				}
 			}
-	)
+		}}}
