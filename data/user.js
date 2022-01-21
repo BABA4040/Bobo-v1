@@ -53,7 +53,8 @@ const schema = mongoose.Schema({
     },
     command:{
       
-   uses:{ type:Number, default:null}},
+uses: { type: Number, default: 0 }},
+
     tips: {
       given: { type: Number, default: 0 },
       received: { type: Number, default: 0 },

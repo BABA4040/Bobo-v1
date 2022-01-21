@@ -64,7 +64,7 @@ module.exports = class {
 
     const response = await experience(message, bot, guild);
     ////const badge = await badges(message, bot,user);
-
+/*
     if (message.content.toLowerCase().startsWith(guild.prefix.toLowerCase())) {
   await User.updateOne({
     
@@ -73,7 +73,9 @@ module.exports = class {
     {
   data:{
     command:{
-      uses
+      $inc:{
+        uses: 1
+      }}},
       
     
     
@@ -96,7 +98,7 @@ join support server`})
       user.data.needbadeg ="give badge"
       
       
-    }
+    }*/
     
     
     
