@@ -24,10 +24,12 @@ const status = args[1];
 		}
         
 		if(status === "on"){
-
+/*
 			const role = await Resolvers.resolveRole({
-				message:message,
-			});
+			message,
+				search: args.slice(1).join(" ")
+			});*/
+      let role = await message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 			if(!role){
 				return message.channel.send({content:`Please specify a valid role!`})
 			}
