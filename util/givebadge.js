@@ -1,6 +1,6 @@
-async function hama(bot, message,user){
+ async function hama({bot, message, user }){
   
-  if(user.data.command.uses = 1000){
+  if(user.data.command.uses = 1002){
   
     
     user.badge = config.badge.lover;
@@ -14,5 +14,5 @@ async function hama(bot, message,user){
     user.save()
   
   
-}
-module.exports = hama;
+}}
+module.exports = hama

@@ -4,7 +4,7 @@ const owners = "768944616724103170";
 
 const profileSchema = require(`${process.cwd()}/data/user.js`);
 const experience = require(`${process.cwd()}/util/xp`);
-const badges = require(`${process.cwd()}/util/givebadge.js`)
+const badges = require(`${process.cwd()}/util/givebadge`)
 module.exports = class {
   async run(message, bot,member) {
     const data = {};
@@ -65,7 +65,7 @@ module.exports = class {
       ////////-----------------------------------------------------------------------///
 
     const response = await experience(message, bot,guild);
-     const badge = await badges(message, bot,user);
+     ////const badge = await badges(message, bot,user);
     
     
     
@@ -77,6 +77,8 @@ module.exports = class {
          
          
        }
+    const badge = require(`${process.cwd()}/util/givebadge`),
+          b
                           
     
     
