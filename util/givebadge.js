@@ -1,18 +1,22 @@
- async function hama(bot, message,guild,hama){
-  let user = await User.findOneAndUpdate({userID: message.author.id})
-  if(user.data.command.uses = 1002){
+
+
+    async function  badge(bot, message){
+      const b ={};
+  let  res2 = await User.findOneAndUpdate({userID: message.author.id})
+  if(res2.data.command.uses = 1002){
   
     
-    user.badge = config.badge.lover;
-    user.save();
+    res2.badge = config.badge.lover;
+    res2.save();
     
     
   }
   message.channel.send({content:` you got new badge by the bot because you used bot 1000 times new badge${config.badge.lover}`})
-  if(user.data.game.uses = 1000){
-    user.badge = config.badge.game;
-    user.save()
+  if(res2.data.game.uses = 1000){
+    res2.badge = config.badge.game;
+    res2.save()
   
   
 }}
-module.exports = hama
+
+module.exports = badge
