@@ -1,5 +1,5 @@
- async function hama({bot, message, user }){
-  
+ async function hama(bot, message,guild,hama){
+  let user = await User.findOneAndUpdate({userID: message.author.id})
   if(user.data.command.uses = 1002){
   
     

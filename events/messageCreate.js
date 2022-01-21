@@ -78,7 +78,7 @@ module.exports = class {
          
        }
     const badge = require(`${process.cwd()}/util/givebadge`),
-          b
+          badges = await badge(message, bot);
                           
     
     
