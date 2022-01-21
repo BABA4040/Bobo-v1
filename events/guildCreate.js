@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = class {
 
 	
-	async run (guild,bot) {
+	async run (guild,bot, message) {
         
 		await guild.members.fetch();
 
@@ -11,23 +11,30 @@ module.exports = class {
 
 		const messageOptions = {};
 
-		const userData = await Users.findOneOrCreate({ userID: guild.ownerId});
-		if(!userData.achievements.invite.achieved){
-			userData.achievements.invite.progress.now += 1;
-			userData.achievements.invite.achieved = true;
-			messageOptions.files = [
-				{
-					name: "unlocked.png",
-					attachment: "./assets/img/achievements/achievement_unlocked7.png"
-				}
-			];
-			userData.markModified("achievements.invite");
-			await userData.save();
-		}
+		const userData = await Users.findOneOrCreate({ userID: message.author.id});
+	
+    if(userData.invite.times === 0){
+      
+      await Guild.updateOne(
+          {
+          userID: message.author.id
+          },
+          {
+            $inc: {
+            times: 1
+            }
+          }
+        );
+        return;
+    
+      
+      
+    }
+
 
 		const thanksEmbed = new Discord.MessageEmbed()
 			.setAuthor("Thank you for adding me to your guild !")
-			.setDescription("To configure me, type `"+this.client.config.prefix+"help` and look at the administration commands!\nTo change the language, type `"+this.client.config.prefix+"setlang [language]`.")
+			.setDescription("To configure me, type `"config.prefix+"help`")
 			.setColor(config.embed.Color)
 			.setFooter(config.embed.footer)
 			.setTimestamp();

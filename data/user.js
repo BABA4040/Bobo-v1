@@ -3,7 +3,11 @@ const schema = mongoose.Schema({
   name: { type: String},
   info: { type: String, default:null},
 
-    
+    invite:{
+      
+      
+      times:{ type: Number, default:null}
+    },
   isPremium: {
     type:String,
   
