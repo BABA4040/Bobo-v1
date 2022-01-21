@@ -50,6 +50,11 @@ const schema = mongoose.Schema({
   },
 
   data: {
+    game:{
+      uses:{type: Number, default:null}
+      
+      
+    },
     tips: {
       given: { type: Number, default: 0 },
       received: { type: Number, default: 0 },
@@ -63,6 +68,7 @@ const schema = mongoose.Schema({
   },
 
   attch: {
+    
     pattern: { type: String, default: null },
     emblem: { type: String, default: null },
     color: { type: String, default: "#FF0F00" },

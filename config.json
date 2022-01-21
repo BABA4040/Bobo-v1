@@ -6,9 +6,13 @@
   "channels":{
   "logChannel":"927472619123523594",
     "debug":"930818872209207368"
+  
     
+  },
+  "badge":{
     
-    
+    "invite":"https://media.discordapp.net/attachments/934034173780455454/934036587673698354/images.jpeg",
+    "game":""
   },
   "embed":{
   "Color":"#00B7BE",

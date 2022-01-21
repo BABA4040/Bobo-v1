@@ -13,13 +13,7 @@ module.exports = class {
 
 		const userData = await User.findOneAndUpdate({ userID: guild.ownerId});
     
-	//if(userData.invite.times > 1) return
-    if(userData.invite.times = 0){
 
-    userData.invite.times +=1
-      userData.save()
-      
-    }
 
 
 		const thanksEmbed = new Discord.MessageEmbed()
