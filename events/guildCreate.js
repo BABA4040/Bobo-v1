@@ -7,14 +7,14 @@ module.exports = class {
         
 		await guild.members.fetch();
 
-		const guildOwner = await bot.users.fetch(guild.ownerId).catch(() => {});
+		const guildOwner = await bot.users.fetch(guild.ownerId).catch((err) => {console.log(err.name)});
 
 		const messageOptions = {};
 
 		const userData = await User.findOne({ userID: guild.ownerId});
     if(!userData){
        new User({userID: guild.ownerId})}
-	if(userData.invite.times >1) return
+	//if(userData.invite.times > 1) return
     if(userData.invite.times === 0){
 
       
@@ -24,8 +24,9 @@ module.exports = class {
           },
           {
             $inc: {
+              invite:{
             times: 1
-            }
+            }}
           }
         );
         return;
@@ -37,13 +38,13 @@ module.exports = class {
 
 		const thanksEmbed = new Discord.MessageEmbed()
 			.setAuthor("Thank you for adding me to your guild !")
-			.setDescription(`To configure me ${config.prefix}help`)
+			.setDescription(`To configure me use ${config.prefix}help`)
 			.setColor(config.embed.Color)
 			.setFooter(config.embed.footer)
 			.setTimestamp();
 		messageOptions.embed = thanksEmbed;
 
-		guildOwner.send({embeds:[messageOptions]}).catch(() => {});
+		guildOwner.send({embeds:[thanksEmbed]}).catch((err) => {console.log(err)});
 
 		const text = "J'ai rejoint **"+guild.name+"**, avec **"+guild.members.cache.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.cache.filter((m) => m.user.bot).size+" bots)";
 

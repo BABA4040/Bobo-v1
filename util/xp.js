@@ -74,11 +74,11 @@ if(guild){
     serverdata.level++
     if(guild){
       let channel =bot.channels.cache.find(c=> c.id === guild.channels.xp)
-     channel.send({content:`Congratulations ${message.author.toString()}, your leveled up to ${serverdata.level}!!`})
-    }else{
-      message.channel.send({content:`Congratulations ${message.author.toString()}, your leveled up to ${serverdata.level}!!`})
+      
+     if(channel){channel.send({content:`Congratulations ${message.author.toString()}, your leveled up to ${serverdata.level}!!`})}
+    if(!channel){ return message.channel.send({content:`Congratulations ${message.author.toString()}, your leveled up to ${serverdata.level}!!`})
 
-  }}
+  }}}
 
   // Add xpdata again to the xp array of the profile
   // index = where the serverdata is inserted
