@@ -69,7 +69,7 @@ module.exports = class {
       user.data.command.uses += 1;
       user.save();
     
-    };
+    };/*
     if(user.data.command.uses = 1000){
       const embed = new Discord.MessageEmbed()
       .setAuthor(message.author.username, message.guild.name)
@@ -81,7 +81,7 @@ join support server`})
       user.data.needbadeg ="give badge"
       
       
-    }
+    }*/
     
     
     
