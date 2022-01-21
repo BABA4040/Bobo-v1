@@ -41,12 +41,12 @@ if(member){
     .then(_member => message.channel.send(`Successfully banned **${_member.user.tag}**`))
     .catch((err) => message.channel.send(`Failed to ban **${user.user.tag} : reason: Your role not high than this member or ${err.name}**!`));
 
-    
+}
 
   
       if(data.plugins.modlogs){
 				const channel = message.guild.channels.cache.get(data.plugins.modlogs);
-				if(!channel) return message.channel.send({content:`error`})
+				if(!channel) return;
 				const embed = new Discord.MessageEmbed()
 					.setAuthor(`BAN CASE`)
 					.addField("User Banned", `\`${user.tag}\` (${user.toString()})`, true)
@@ -57,7 +57,7 @@ if(member){
 			console.log(err);
 			return message.channel.send({content:`an error according in modlog channel`})
 		});
-			}}
+			}
 
     
     
