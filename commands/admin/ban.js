@@ -14,22 +14,14 @@ module.exports = {
     ownerOnly: false,
     cooldown: 6000,
     run: async (bot, message, args, dev) => {
-  let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
+  let data = await Guild.findOne({guildID: message.guild.id})
      let user = await message.mentions.members.first() || await message.guild.members.fetch(args[1])
      let admin = message.author;
-     // if(!user) return message.channel.send({content:` Mention someone or put id`})
+    
       let reason = args.slice(1).join(" ");
       const member = await message.guild.members.fetch(user.id).catch(() => {});
-if(user){
-      /*if(member.id === admin.id){
-        return message.channel.send({content:` you can't ban yourself`})
-        
-      }
-      if(user.id === bot.user.id) {
-        
-        return message.channel.send({content:`🙂 |You want ban me why....!`})
-        
-      }*/
+if(member){
+    
   
     const memberPosition = member.roles.highest.position;
 			const moderationPosition = message.member.roles.highest.position;
@@ -40,7 +32,7 @@ if(user){
 			if(!member.bannable) {
 				return message.channel.send({content:`An error has occurred... Please check that I have the permission to ban this specific member and try again!`})
 			}
-		}
+		
       
       await user.send(`**${message.author.tag}** banned you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
     .catch(() => null);
@@ -54,18 +46,18 @@ if(user){
   
       if(data.plugins.modlogs){
 				const channel = message.guild.channels.cache.get(data.plugins.modlogs);
-				if(!channel) return;
+				if(!channel) return message.channel.send({content:`error`})
 				const embed = new Discord.MessageEmbed()
 					.setAuthor(`BAN CASE`)
 					.addField("User Banned", `\`${user.tag}\` (${user.toString()})`, true)
 					.addField("moderator", `\`${message.author.tag}\` (${message.author.toString()})`, true)
 					.addField("reason", reason, true)
 					.setColor("#e02316");
-				channel.send({ embeds: [embed] }).catch((err) => {
+				return channel.send({ embeds: [embed] }).catch((err) => {
 			console.log(err);
-			return message.channel.send({content`an error according in 
+			return message.channel.send({content:`an error according in modlog channel`})
 		});
-			}
+			}}
 
     
     
