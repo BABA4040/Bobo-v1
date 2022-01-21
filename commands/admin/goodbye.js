@@ -95,13 +95,13 @@ module.exports = {
 				if (!goodbye.channel) {
 					const channel = await Resolvers.resolveChannel({
 						message: msg,
-						channelType: ""
+						channelType: "GUILD_TEXT"
 					});
 					if (!channel) {
 						return message.channel.send({content:`Please specify a valid channel!`});
 					}
 					goodbye.channel = channel.id;
-					message.channel.send({content:`Please enter your desired goodbye message.**\n\n**If you want to:**\n*-* __Mention the user__: {user}\n*-* __Get the member count__: {membercount}\n*-* __Get the server name__: {server}\n\n**Usage example:**\nGoodbye {user}, we will miss you! We are now {membercount}.\n:fast_forward:\nGoodbye ${message.authot.toString()}, we will miss you! We are now ${message.guild.memberCount}.,
+					message.channel.send({content:`Please enter your desired goodbye message.**\n\n**If you want to:**\n*-* __Mention the user__: {user}\n*-* __Get the member count__: {membercount}\n*-* __Get the server name__: {server}\n\n**Usage example:**\nGoodbye {user}, we will miss you! We are now {membercount}.\n:fast_forward:\nGoodbye ${message.author.tag}, we will miss you! We are now ${message.guild.memberCount}.,
 `})
 				}
 			});
