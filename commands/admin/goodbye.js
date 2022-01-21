@@ -15,21 +15,21 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_CHANNELS"],
   ownerOnly: false,
   cooldown: 6000,
-  run: async (bot, message, args, dev, data,prefix) => {
-    
-    	if (
+  run: async (bot, message, args, dev,prefix) => {
+    let data = await Guild.findOneAndUpdate({guildID: message.guild.id});
+    	/*if (
 			args[0] === "test" &&
-            data.guild.plugins.goodbye.enabled
+            data.plugins.goodbye.enabled
 		) {
-			this.client.emit("guildMemberRemove", message.member);
+		bot.emit("guildMemberRemove", message.member);
 			return message.success("administration/goodbye:TEST_SUCCESS");
 		}
-
+*/
 		if (
-			(!args[0] || !["edit", "off"].includes(args[0])) &&
-            data.guild.plugins.goodbye.enabled
+			(!args[0] || !["edit", "off"].includes(args[1])) &&
+            data.plugins.goodbye.enabled
 		)
-			return message.error("administration/goodbye:MISSING_STATUS");
+			return message.channel.send({content:` missing args`})
 
 		if (args[0] === "off") {
 			data.guild.plugins.goodbye = {
@@ -40,9 +40,7 @@ module.exports = {
 			};
 			data.guild.markModified("plugins.goodbye");
 			data.guild.save();
-			return message.error("administration/goodbye:DISABLED", {
-				prefix: data.guild.prefix
-			});
+			return message.channel.send({content:`Goodbye system is disabled`})
 		} else {
 			const goodbye = {
 				enabled: true,
@@ -76,9 +74,9 @@ module.exports = {
 					} else {
 						return message.channel.send({content:` Invalid **Yes** **No**`})
 					}
-					data.guild.plugins.goodbye = goodbye;
-					data.guild.markModified("plugins.goodbye");
-					await data.guild.save();
+					data.plugins.goodbye = goodbye;
+					data.markModified("plugins.goodbye");
+					await data.save();
 					message.channel.send({content:`**Alright, done!**\n\n:arrow_right_hook: *Answer by sending **${prefix}goodbye test to preview your custom goodbye message!*
   `})
 					return collector.stop();
@@ -97,20 +95,20 @@ module.exports = {
 				if (!goodbye.channel) {
 					const channel = await Resolvers.resolveChannel({
 						message: msg,
-						channelType: "text"
+						channelType: ""
 					});
 					if (!channel) {
 						return message.channel.send({content:`Please specify a valid channel!`});
 					}
 					goodbye.channel = channel.id;
-					message.channel.send({content:`Please enter your desired goodbye message.**\n\n**If you want to:**\n*-* __Mention the user__: {user}\n*-* __Get the member count__: {membercount}\n*-* __Get the server name__: {server}\n\n**Usage example:**\nGoodbye {user}, we will miss you! We are now {membercount}.\n:fast_forward:\nGoodbye {{author}}, we will miss you! We are now {{memberCount}}.",
+					message.channel.send({content:`Please enter your desired goodbye message.**\n\n**If you want to:**\n*-* __Mention the user__: {user}\n*-* __Get the member count__: {membercount}\n*-* __Get the server name__: {server}\n\n**Usage example:**\nGoodbye {user}, we will miss you! We are now {membercount}.\n:fast_forward:\nGoodbye ${message.authot.toString()}, we will miss you! We are now ${message.guild.memberCount}.,
 `})
 				}
 			});
 
 			collector.on("end", (_, reason) => {
 				if (reason === "time") {
-					return message.error("misc:TIMEOUT");
+					return message.channel.send({content:`collector timeout`})
 				}
 			});
 		}
