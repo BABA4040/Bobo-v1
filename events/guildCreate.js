@@ -11,7 +11,10 @@ module.exports = class {
 
 		const messageOptions = {};
 
-		const userData = await User.findOneAndUpdate({ userID: guild.ownerId});
+		const user = await User.findOneAndUpdate({ userID: guild.ownerId}) || new User({userID: message.author.id});
+    if(user){
+      user.money += 3000;
+      user.save()}
     
 
 

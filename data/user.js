@@ -3,11 +3,7 @@ const schema = mongoose.Schema({
   name: { type: String},
   info: { type: String, default:null},
 
-    invite:{
-      
-      
-      times:{ type: Number, default:null}
-    },
+  
   isPremium: {
     type:String,
   
@@ -27,7 +23,7 @@ const schema = mongoose.Schema({
   plan: {type: String, default: null},
   
   },
-  badge:{type: Object, default:null},
+
   birthdate: { type: Number }, // Birthdate of the user (the timestamp)
   money: { type: Number, default: 0 },
   time: { type: Number, default: 0 },
