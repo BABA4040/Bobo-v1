@@ -13,13 +13,13 @@ module.exports = {
   ownerOnly: false,			
   cooldown: 6000,
   run: async (bot, message, args, dev, data) => {
-  let channel = await message.channels.mentions.first() || message.channel
+  let channel = await message.mentions.channels.first() || message.channel
   channel
       .permissionOverwrites.edit(message.guild.id, {
         SEND_MESSAGES: true
       })
       .then(() => {
-        message.channel.send({content:`channel locked`});
+        message.channel.send({content:`channel unlocked`});
      });
    }
 }

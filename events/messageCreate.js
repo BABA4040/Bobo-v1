@@ -66,10 +66,24 @@ module.exports = class {
     ////const badge = await badges(message, bot,user);
 
     if (message.content.toLowerCase().startsWith(guild.prefix.toLowerCase())) {
-      user.data.command.uses += 1;
-      user.save();
+  await User.findOneAndUpdate({
     
-    };/*
+    userID: message.author.id},
+    {
+    $inc:{
+  
+         uses: 1
+       },
+      
+    
+    
+  })
+    
+    
+    
+    
+    
+    };
     if(user.data.command.uses = 1000){
       const embed = new Discord.MessageEmbed()
       .setAuthor(message.author.username, message.guild.name)
@@ -81,7 +95,7 @@ join support server`})
       user.data.needbadeg ="give badge"
       
       
-    }*/
+    }
     
     
     
