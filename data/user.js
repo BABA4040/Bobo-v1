@@ -27,6 +27,7 @@ const schema = mongoose.Schema({
   plan: {type: String, default: null},
   
   },
+  badge:{type: Array, default:[]},
   birthdate: { type: Number }, // Birthdate of the user (the timestamp)
   money: { type: Number, default: 0 },
   time: { type: Number, default: 0 },

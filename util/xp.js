@@ -75,9 +75,12 @@ if(guild){
     if(guild){
       let channel =bot.channels.cache.find(c=> c.id === guild.channels.xp)
       
-     if(channel){channel.send({content:`Congratulations ${message.author.tag}, your leveled up to ${serverdata.level}!!`})}}else{
+     if(channel){channel.send({content:`Congratulations ${message.author.tag}, your leveled up to ${serverdata.level}!!`}).catch(()=>{})
        
-    return message.channel.send({content:`Congratulations ${message.author.tag}, your leveled up to ${serverdata.level}!!`})
+       
+     }}else{
+       
+    return message.channel.send({content:`Congratulations ${message.author.tag}, your leveled up to ${serverdata.level}!!`}).catch(()=>{})
 
   }}
 
