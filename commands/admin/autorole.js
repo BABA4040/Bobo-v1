@@ -11,22 +11,22 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_ROLES"],
   ownerOnly: false,
   cooldown: 6000,
-  run: async (bot, message, args, dev, data) => {
+  run: async (bot, message, args, dev,prefix) => {
     
   
+let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
 
 
 
-
-const status = args[0];
+const status = args[1];
 		if(status !== "on" && status !== "off"){
-			return message.channel.send({content:`"Please specify a valid value between **on** and **off**`})
+			return message.channel.send({content:`Please specify a valid value between **on** and **off**`})
 		}
         
 		if(status === "on"){
 
 			const role = await Resolvers.resolveRole({
-				message,
+				message:message,
 				search: args.slice(1).join(" ")
 			});
 			if(!role){
@@ -40,27 +40,29 @@ const status = args[0];
 			data.markModified("plugins.autorole");
 			await data.save();
 
-			message.channel.send({content:`Autorole enabled! New members will automatically receive the **${role.namw}** role.,`})
+			message.channel.send({content:`Autorole enabled! New members will automatically receive the **${role.name}** role.`})
 		}
 
 		if(status === "off"){
 
-			if(!data.guild.plugins.autorole.enabled){
-				return message.success("administration/autorole:ALREADY_DISABLED", {
-					prefix: data.guild.prefix
-				});
+			if(!data.plugins.autorole.enabled){
+				return message.channel.send({content:`**The autorole is already disabled.**\n\n:arrow_right_hook: *Send ${prefix}autorole on @YourRole to enable it again!*`})
 			}
 
-			data.guild.plugins.autorole = {
+			data.plugins.autorole = {
 				enabled: false,
 				role: null
 			};
-			data.guild.markModified("plugins.autorole");
-			await data.guild.save();
+			data.markModified("plugins.autorole");
+			await data.save();
             
-			message.success("administration/autorole:SUCCESS_DISABLED", {
-				prefix: data.guild.prefix
-			});
+			message.channel.send({content:`
+      
+      The autorole is already disabled.**\n\n:arrow_right_hook: *Send ${prefix}autorole on @YourRol to enable it again!*
+
+      
+      
+`})
 
 		}
         

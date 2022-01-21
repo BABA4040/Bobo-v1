@@ -94,5 +94,7 @@ const resolveRole = async ({ message, search }) => {
 	return;
 };
 
-module.exports = {resolveChannel,resolveRole}
+module.exports = 
+  {resolveChannel,
+   resolveRole}
 
