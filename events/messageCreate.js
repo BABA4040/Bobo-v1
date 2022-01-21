@@ -70,7 +70,10 @@ module.exports = class {
       user.save();
     
     };
-    if(
+    if(user.data.command.uses = 1000){
+      Log.send({content:`hi`})
+      
+    }
     
     
     

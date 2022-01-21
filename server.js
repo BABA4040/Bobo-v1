@@ -31,8 +31,7 @@ const cmd = require("node-cmd");
 const { I18n } = require("locale-parser");
 bot.reva = new I18n({ defaultLocale: "en" });
 
-global.log = bot.channels.cache.get(config.channels.logChannel)
-global.debug = bot.channels.cache.get(config.channels.debug)
+
 global.mongoose = require("mongoose");
 
 mongoose
@@ -45,7 +44,8 @@ mongoose
   .catch(err => {
     console.log("Unable to connect to the Mongodb database. Error:" + err);
   });
-
+global.Log = bot.channels.cache.get(config.channels.logChannel);
+global.Debug = bot.channels.cache.get(config.channels.debug);
 global.Guild = require("./data/guild.js");
 global.User = require("./data/user.js");
 global.Owner = require("./data/owner.js");
