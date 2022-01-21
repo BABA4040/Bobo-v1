@@ -52,9 +52,10 @@ const schema = mongoose.Schema({
   data: {
     game:{
       uses:{type: Number, default:null}
-      
-      
     },
+    command:{
+      
+   uses:{ type:Number, default:null}},
     tips: {
       given: { type: Number, default: 0 },
       received: { type: Number, default: 0 },

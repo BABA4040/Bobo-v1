@@ -14,12 +14,12 @@ module.exports = class {
     
     
     //----------------------------database mamager------------------------//
-    let guild = await Guild.findOne({ guildID: message.guild.id });
+    let guild = await Guild.findOneAndUpdate({ guildID: message.guild.id });
     if (!guild) {
       Guild.create({ guildID: message.guild.id });
     }
     data.guild = guild;
-    let user = await User.findOne({
+    let user = await User.findOneAndUpdate({
       userID: message.author.id,
     });
     if (!user) {
@@ -66,6 +66,20 @@ module.exports = class {
 
     const response = await experience(message, bot,guild);
 
+    
+    
+    
+       if(message.content.toLowerCase().startsWith(guild.prefix.toLowerCase())){
+         
+         user.data.command.uses +=1
+         user.save()
+         
+         
+         
+       }
+                          
+    
+    
      if (guild) {
        
       
