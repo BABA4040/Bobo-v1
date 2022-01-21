@@ -4,7 +4,7 @@
   "prefix": "Bo",
   "mongoURL": "mongodb+srv://testbobo:haha1234+@cluster0.cizb6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   "channels":{
-  "logChannel":"930818872209207368",
+  "logChannel":"927472619123523594",
     "debug":"930818872209207368"
     
     

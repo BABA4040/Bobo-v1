@@ -11,13 +11,16 @@ module.exports = class {
 
 		const messageOptions = {};
 
-		const userData = await User.findOneOrCreate({ userID: message.author.id});
-	
+		const userData = await User.findOne({ userID: guild.ownerId});
+    if(!userData){
+       new User({userID: guild.ownerId})}
+	if(userData.invite.times >1) return
     if(userData.invite.times === 0){
+
       
       await Guild.updateOne(
           {
-          userID: message.author.id
+          userID: guild.ownerId
           },
           {
             $inc: {
