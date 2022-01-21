@@ -20,7 +20,7 @@ module.exports = {
      // if(!user) return message.channel.send({content:` Mention someone or put id`})
       let reason = args.slice(1).join(" ");
       const member = await message.guild.members.fetch(user.id).catch(() => {});
-if(member){
+if(user){
       /*if(member.id === admin.id){
         return message.channel.send({content:` you can't ban yourself`})
         
@@ -42,10 +42,10 @@ if(member){
 			}
 		}
       
-      await member.send(`**${message.author.tag}** banned you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
+      await user.send(`**${message.author.tag}** banned you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
     .catch(() => null);
 
-    return member.ban({ reason: `Ban Command: ${message.author.tag}: ${reason || 'Unspecified'}`})
+    return user.ban({ reason: `Ban Command: ${message.author.tag}: ${reason || 'Unspecified'}`})
     .then(_member => message.channel.send(`Successfully banned **${_member.user.tag}**`))
     .catch((err) => message.channel.send(`Failed to ban **${user.user.tag} : reason: Your role not high than this member or ${err.name}**!`));
 
@@ -56,14 +56,15 @@ if(member){
 				const channel = message.guild.channels.cache.get(data.plugins.modlogs);
 				if(!channel) return;
 				const embed = new Discord.MessageEmbed()
-					.setAuthor(message.translate("moderation/ban:CASE", {
-						count: data.guild.casesCount
-					}))
+					.setAuthor(`BAN CASE`)
 					.addField("User Banned", `\`${user.tag}\` (${user.toString()})`, true)
 					.addField("moderator", `\`${message.author.tag}\` (${message.author.toString()})`, true)
 					.addField("reason", reason, true)
 					.setColor("#e02316");
-				channel.send({ embeds: [embed] });
+				channel.send({ embeds: [embed] }).catch((err) => {
+			console.log(err);
+			return message.channel.send({content`an error according in 
+		});
 			}
 
     
