@@ -51,6 +51,7 @@ const schema = mongoose.Schema({
   },
 
   data: {
+    needbadge:{type: String, default:null},
     game:{
       uses:{type: Number, default:null}
     },

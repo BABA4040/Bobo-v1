@@ -71,7 +71,15 @@ module.exports = class {
     
     };
     if(user.data.command.uses = 1000){
-      Log.send({content:`hi`})
+      const embed = new Discord.MessageEmbed()
+      .setAuthor(message.author.username, message.guild.name)
+      .setDescription (`this User reached 1000times of uses command of bobo `)
+  
+    bot.channels.cache.get(config.channels.logChannel).send({content:`hi`})
+      message.author.send({content:`You reached 1000 times of uses BoBo bot contact owners to give you a badge
+join support server`})
+      user.data.needbadeg ="give badge"
+      
       
     }
     
