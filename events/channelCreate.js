@@ -41,23 +41,29 @@ let color = config.embed.Color
 
 
 
-if(channel.type === "GUILD_TEXT","GUILD_VOICE"){
+if(message.type === "GUILD_TEXT","GUILD_VOICE"){
 
     const embed = new discord.MessageEmbed()
-    .setDescription(`:pencil: ***Channel Created***`)
+    .setDescription(`:pencil: ***Channel Created***
+    **channel name**: ${message.name}
     
-    .addField(`Channel Name`)
-    .addField(`Channel Type ${channel.type}`)
-    .setFooter(`Channel ID: ${channel.id}`)
+    **channel type**: ${message.type}
+    
+    
+    
+    
+    `)
+    
+  
     .setTimestamp()
     .setColor(color)
   
-   if(channel.parent && channel.type !== 'category')embed.addField(`Parent Name`, channel.parent.name)
+   if(message.parent && message.type !== 'category')embed.addField(`Parent Name`, message.parent.name)
   
         if(channelEmbed &&
       channelEmbed.viewable &&
       channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
-            channel.send({embeds:[embed]}).catch(()=>{})
+            channelEmbed.send({embeds:[embed]}).catch((err)=>{console.log(err.name)})
             cooldown.add(message.guild.id);
             setTimeout(()=>{
 cooldown.delete(message.guild.id)
@@ -67,17 +73,18 @@ cooldown.delete(message.guild.id)
 } else {
 
     const embed = new discord.MessageEmbed()
-    .setDescription(`🆕 ***Channel Created***`)
-    .addField(`Channel Name `)
-    .addField(`Channel Type ${channel.type}`)
-    .setFooter(`Channel ID: ${channel.id}`)
+    .setDescription(`🆕 ***Channel Create**
+    **channel name**: ${message.name}
+    
+    **channel type**: ${message.type}
+    `)
     .setTimestamp()
     .setColor(color)
      
     if(channelEmbed &&
       channelEmbed.viewable &&
       channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
-            channel.send({embeds:[embed]}).catch(()=>{})
+            channelEmbed.send({embeds:[embed]}).catch((err)=>{console.log(err.name)})
                    cooldown.add(message.guild.id);
             setTimeout(()=>{
 cooldown.delete(message.guild.id)
