@@ -32,31 +32,31 @@ if(guild.plugins.modlogs){
 
 
 
-const channel = await message.guild.channels.cache.get(guild.plugins.modlogs)
+const channelEmbed = await message.guild.channels.cache.get(guild.plugins.modlogs)
 
-if(channel){
+if(channelEmbed){
 
 let color = config.embed.Color
 
 
 
 
-if(message.type === "GUILD_TEXT"){
+if(channel.type === "GUILD_TEXT","GUILD_VOICE"){
 
     const embed = new discord.MessageEmbed()
     .setDescription(`:pencil: ***Channel Created***`)
-    .addField('Channel', message, true)
-    .addField('Channel Name', message.name, true)
+    
+    .addField('Channel Name', channel.name, true)
     .addField('Channel Type', 'Text Channel', true)
-    .setFooter(`Channel ID: ${message.id}`)
+    .setFooter(`Channel ID: ${channel.id}`)
     .setTimestamp()
     .setColor(color)
   
-   if(message.parent && message.type !== 'category')embed.addField(`Parent Name`, message.parent.name)
-   
-        if(channel &&
-      channel.viewable &&
-      channel.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
+   if(channel.parent && channel.type !== 'category')embed.addField(`Parent Name`, channel.parent.name)
+  
+        if(channelEmbed &&
+      channelEmbed.viewable &&
+      channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
             channel.send({embeds:[embed]}).catch(()=>{})
             cooldown.add(message.guild.id);
             setTimeout(()=>{
@@ -68,15 +68,15 @@ cooldown.delete(message.guild.id)
 
     const embed = new discord.MessageEmbed()
     .setDescription(`🆕 ***Channel Created***`)
-    .addField('Channel Name', message.name, true)
-    .addField('Channel Type', message.type, true)
-    .setFooter(`Channel ID: ${message.id}`)
+    .addField(`Channel Name ${channel.name}`)
+    .addField(`Channel Type ${channel.type}`)
+    .setFooter(`Channel ID: ${channel.id}`)
     .setTimestamp()
     .setColor(color)
      
-    if(channel &&
-      channel.viewable &&
-      channel.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
+    if(channelEmbed &&
+      channelEmbed.viewable &&
+      channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
             channel.send({embeds:[embed]}).catch(()=>{})
                    cooldown.add(message.guild.id);
             setTimeout(()=>{
