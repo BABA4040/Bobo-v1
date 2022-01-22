@@ -63,18 +63,11 @@ cooldown.delete(message.guild.id)
       }
 
 } 
-  if(message.type ==="GUILD_VOICE"){
-
   
-  const embed = new discord.MessageEmbed()
-         .setThumbnail(message.guild.
-
-  }
 
 
   }
- }
 }
 
 
-}
+}}
