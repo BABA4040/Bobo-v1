@@ -41,14 +41,15 @@ let color = config.embed.Color
 
 
 
-if(message.type === "GUILD_TEXT","GUILD_VOICE"){
+if(message.type === "GUILD_TEXT"){
 
     const embed = new discord.MessageEmbed()
     .setThumbnail(message.guild.iconURL())
     .setAuthor(message.guild.name)
     .setDescription(`:pencil: ***Channel Created***`)
     .addField("**Channel Name**", message.name)
-    .addField("**Channel Type**", message.parent.name)
+    .addField("**Category**", message.parent.name)
+    .addField("**Channel Type**", message.type)
     .setTimestamp()
     .setFooter({text:message.guild.name})
     .setColor(color)
@@ -65,18 +66,21 @@ cooldown.delete(message.guild.id)
             }, 3000)
       }
 
-} else {
+} 
+  if(message.type ==="GUILD_VOICE"){
 
-    const embed = new discord.MessageEmbed()
-    .setDescription(`🆕 ***Channel Create**
-**channel name**: ${message.name}
-    
-**channel type**: ${message.parent.name}
-    `)
-    .addField("**channel Type**", message.parent.name)
-    .setTimestamp()
-    .setColor(color)
-     
+  
+  const embed = new discord.MessageEmbed()
+         .setThumbnail(message.guild.iconURL())
+                  .setAuthor(message.guild.name)
+                  .setDescription(`:pencil: ***Channel Created***`)
+                  .addField("**Channel Name**", message.name)
+                   .addField("**Category**", message.parent.name)
+                  .addField("**Channel Type**", message.type)
+                  .setTimestamp()
+                  .setFooter({ text: message.guild.name })
+                  .setColor(color)
+
     if(channelEmbed &&
       channelEmbed.viewable &&
       channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
