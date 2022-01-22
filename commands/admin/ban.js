@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const { Color } = require("../../config.js");
-const userReg = RegExp(/<@!?(\d+)>/)
+
 
 module.exports = {
     name: "ban",
