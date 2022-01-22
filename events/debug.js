@@ -1,4 +1,18 @@
-const Maintenance = require('../database/schemas/maintenance')
+const { WebhookClient } = require("discord.js");
+const logger = require(`${process.cwd()}/util/logger`)
+const Discord = require("discord.js")
+const data = {
+  id: config.webhook.id,
+  token: config.webhook.token
+};
+
+const webhookClient = new WebhookClient(data);
+
+
+
+
+
+
 let number = 1
 module.exports = class extends Event {
     async run(info) {
@@ -30,6 +44,6 @@ const lmao = new Discord.MessageEmbed()
 .setColor('RED')
 
 
-webhookClient.send(lmao)
-  }}
+webhookClient.send({embeds:[lmao]})
+  }}}
   
