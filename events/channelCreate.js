@@ -44,7 +44,8 @@ let color = config.embed.Color
 if(message.type === "GUILD_TEXT","GUILD_VOICE"){
 
     const embed = new discord.MessageEmbed()
-    .setAuthor(message.guild.iconURL() ,message.guild.name)
+    .setThumbnail(message.guild.iconURL())
+    .setAuthor(message.guild.name)
     .setDescription(`:pencil: ***Channel Created***`)
     .addField("**Channel Name**", message.name)
     .addField("**Channel Type**", message.parent.name)
