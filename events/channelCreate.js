@@ -5,16 +5,16 @@ const discord = require("discord.js");
 const moment = require('moment');
 const cooldown =  new Set();
 
-const Maintenance = require('../../database/schemas/maintenance')
 
-module.exports = class extends Event {
+
+module.exports = class{
 
 async run(message, channel) {
 
 if(!message || !channel) return;
 
 
-const logging = await Guild.findOne({ guildID: message.guild.id })
+const guild = await Guild.findOne({ guildID: message.guild.id })
 
 
 const maintenance = await Maintenance.findOne({
@@ -27,23 +27,21 @@ if(cooldown.has(message.guild.id)) return;
 
 if (message.name.indexOf('Room') >= 0) return;
 
-if(logging){
-  if(logging.server_events.toggle == "true"){
+if(guild){
+if(guild.plugins.modlogs){
 
 
 
-const channelEmbed = await message.guild.channels.cache.get(logging.server_events.channel)
+const channel = await message.guild.channels.cache.get(guild.plugins.modlogs)
 
-if(channelEmbed){
+if(channel){
 
-let color = logging.server_events.color;
-if(color == "#000000") color = message.client.color.green;
-
-
-  if(logging.server_events.channel_created == "true"){
+let color = config.embed.Color
 
 
-if(message.type === "text"){
+
+
+if(message.type === "GUILD_TEXT"){
 
     const embed = new discord.MessageEmbed()
     .setDescription(`:pencil: ***Channel Created***`)
@@ -56,10 +54,10 @@ if(message.type === "text"){
   
    if(message.parent && message.type !== 'category')embed.addField(`Parent Name`, message.parent.name)
    
-        if(channelEmbed &&
-      channelEmbed.viewable &&
-      channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
-            channelEmbed.send(embed).catch(()=>{})
+        if(channel &&
+      channel.viewable &&
+      channel.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
+            channel.send({embeds:[embed]}).catch(()=>{})
             cooldown.add(message.guild.id);
             setTimeout(()=>{
 cooldown.delete(message.guild.id)
@@ -76,10 +74,10 @@ cooldown.delete(message.guild.id)
     .setTimestamp()
     .setColor(color)
      
-    if(channelEmbed &&
-      channelEmbed.viewable &&
-      channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
-            channelEmbed.send(embed).catch(()=>{})
+    if(channel &&
+      channel.viewable &&
+      channel.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
+            channel.send({embeds:[embed]}).catch(()=>{})
                    cooldown.add(message.guild.id);
             setTimeout(()=>{
 cooldown.delete(message.guild.id)
@@ -97,4 +95,3 @@ cooldown.delete(message.guild.id)
 
 
   }
-}

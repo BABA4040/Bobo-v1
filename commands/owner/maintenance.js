@@ -15,11 +15,11 @@
   
 
      
-     if(!args[0]) return message.channel.send('Would you like to enable or disable maintenance mode?')
+     if(!args[1]) return message.channel.send({content:'Would you like to enable or disable maintenance mode?'})
       
       const maintenance = await Maintenance.findOne({maintenance: 'maintenance'})
 
-      if(args[0].toLowerCase() == "enable"){
+      if(args[1].toLowerCase() == "enable"){
       if(maintenance){
 
       maintenance.toggle = "true"
@@ -31,7 +31,7 @@
         })
         newMain.save().catch(()=>{})
       }
-      await message.channel.send('Enabling maintenance Mode')
+      await message.channel.send({content:'Enabling maintenance Mode'})
       process.exit(1)
 
       } else if(args[1].toLowerCase() == "disable"){
