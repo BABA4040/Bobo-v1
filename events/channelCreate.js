@@ -53,7 +53,7 @@ if(message.type === "GUILD_TEXT","GUILD_VOICE"){
     .setFooter({text:message.guild.name})
     .setColor(color)
   
-   if(message.parent && message.type !== 'category')embed.addField(`Parent Name`, message.parent.name)
+   if(message.parent && message.type !== 'category')//embed.addField(`Parent Name`, message.parent.name)
   
         if(channelEmbed &&
       channelEmbed.viewable &&
@@ -97,4 +97,4 @@ cooldown.delete(message.guild.id)
 }
 
 
-  }
+}
