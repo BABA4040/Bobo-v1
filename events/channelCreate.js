@@ -44,18 +44,13 @@ let color = config.embed.Color
 if(message.type === "GUILD_TEXT","GUILD_VOICE"){
 
     const embed = new discord.MessageEmbed()
-    .setDescription(`:pencil: ***Channel Created***
-    **channel name**: ${message.name}
+    .setDescription(`:pencil: ***Channel Created***`)
+    .addField("Channel Name", message.name)
     
-    **channel type**: ${message.type}
-    
-    
-    
-    
-    `)
-    
+    .addField("Channel Type**", message.parent.name)
   
     .setTimestamp()
+    .setFooter
     .setColor(color)
   
    if(message.parent && message.type !== 'category')embed.addField(`Parent Name`, message.parent.name)
@@ -74,10 +69,11 @@ cooldown.delete(message.guild.id)
 
     const embed = new discord.MessageEmbed()
     .setDescription(`🆕 ***Channel Create**
-    **channel name**: ${message.name}
+**channel name**: ${message.name}
     
-    **channel type**: ${message.type}
+**channel type**: ${message.parent.name}
     `)
+    .addField("**channel Type**", message.parent.name)
     .setTimestamp()
     .setColor(color)
      
