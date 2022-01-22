@@ -43,7 +43,7 @@ let color = config.embed.Color
     const embed = new discord.MessageEmbed()
     .setThumbnail(role.guild.iconURL())
     .setAuthor(role.guild.name)
-    .setDescription(`:pencil: **role Created**`)
+    .setDescription(`:pencil: **role Deleted**`)
     .addField("**role Name**", role.name)
   
     .addField("**role Id**",role.id)
