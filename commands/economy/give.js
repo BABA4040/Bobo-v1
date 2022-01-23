@@ -35,14 +35,15 @@ module.exports = {
       return message.channel.send({ content: `❎ Please type credit!` });
     if (money < 1)
       return message.channel.send({ content: `❎ You can't send 0 credit!` });
-
+/*
     if (!loc) {
       User.create({
         userID: member.id,
         money: 1000,
         name: member.name,
       });
-    }
+    }*/
+    let sender = author.money - args[1];
 
     if (author.money < Number(args[1]))
       return message.channel.send({
@@ -61,8 +62,8 @@ module.exports = {
         userID: message.author.id
       },
       {
-        $in: {
-          money: money,
+        $set: {
+          money: sender,
         },
       }
     );

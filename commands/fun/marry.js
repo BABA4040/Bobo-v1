@@ -25,7 +25,7 @@ module.exports = {
       return message.reply({ content: `❎ Invalid User` });
     }
 
-    const userData = await User.findOne({ id: member.id });
+    const userData = await User.findOne({userID: member.id });
     // if the member is already wedded
     if (userData.lover) {
       return message.channel.send({
@@ -49,23 +49,21 @@ module.exports = {
         const user =
           bot.users.cache.get(receiver) || (await bot.users.fetch(receiver));
         return message.reply({
-          content: `❎ You Requested Befor to
-					username: ${user.tag}`
+          content: `❎ You Requested Befor to ${user.tag}`
         });
       } else if (receiver === message.author.id) {
         // If there is a pending request for this member
         const user =
           bot.users.cache.get(requester) || (await bot.users.fetch(requester));
         return message.reply({
-          content: `🌀 You must waiting to accept Your Request 
-					username: ${user.tag}`
+          content: `🌀 You must waiting to accept Your Request  ${user.tag}`
         });
       } else if (requester === member.id) {
         // If the asked member has sent pending request
         const user =
           bot.users.cache.get(receiver) || (await bot.users.fetch(receiver));
         return message.reply({
-          content: `Your request has been sent to user firstUsername: ${member.user.tag} to secondUsername: ${user.tag}`
+          content: `Your request has been sent to user firstUsername: ${member.user.tag} to seND ${user.tag}`
         });
       } else if (receiver === member.id) {
         // If there is a pending request for the asked member
