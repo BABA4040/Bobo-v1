@@ -41,23 +41,34 @@ if(member){
     .then(_member => message.channel.send(`Successfully banned **${_member.user.tag}**`))
     .catch((err) => message.channel.send(`Failed to ban **${user.user.tag} : reason: Your role not high than this member or ${err.name}**!`));
 
-}
 
+const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs)
+
+      if(!channelEmbed) return;
+    const embed = new Discord.MessageEmbed()
+    .setDescription(`:pencil: **Auto role enabled**`)
+    .addField('Moderator Name', message.author.toString(), true)
+    .addField('User banned ',user.tag, true)
+    .setFooter({text:message.guild.name})
+    .setThumbnail(message.guild.iconURL())
+    .setTimestamp()
+    .setColor(config.embed.Color)
   
-      if(data.plugins.modlogs){
-				const channel = message.guild.channels.cache.get(data.plugins.modlogs);
-				if(!channel) return;
-				const embed = new Discord.MessageEmbed()
-					.setAuthor(`BAN CASE`)
-					.addField("User Banned", `\`${user.tag}\` (${user.toString()})`, true)
-					.addField("moderator", `\`${message.author.tag}\` (${message.author.toString()})`, true)
-					.addField("reason", reason, true)
-					.setColor("#e02316");
-				return channel.send({ embeds: [embed] }).catch((err) => {
-			console.log(err);
-			return message.channel.send({content:`an error according in modlog channel`})
-		});
-			}
+   
+   
+        if(channelEmbed &&
+      channelEmbed.viewable &&
+      channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
+            channelEmbed.send({embeds:[embed]}).catch((err)=>{console.log(err)})
+          
+            setTimeout(()=>{
+            }, 3000)
+ 
+      
+      
+		}}
+  
+
 
     
     
