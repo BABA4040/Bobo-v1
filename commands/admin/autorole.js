@@ -46,10 +46,10 @@ const status = args[1];
       
      const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs)
 
-      
+      if(!channelEmbed) return;
     const embed = new Discord.MessageEmbed()
     .setDescription(`:pencil: **Auto role enabled**`)
-    .addField('Moderator Name', message.author.tag, true)
+    .addField('Moderator Name', message.author.toString(), true)
     .addField('Role Name',role.name, true)
     .setFooter({text:message.guild.name})
     .setThumbnail(message.guild.iconURL())
@@ -90,12 +90,13 @@ const status = args[1];
       
       
 `})
+      
     const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs)
 
-      
+      if(!channelEmbed) return;
     const embed = new Discord.MessageEmbed()
     .setDescription(`:pencil: **Auto role disabled**`)
-    .addField('Moderator Name', message.author.user.tag, true)
+    .addField('Moderator Name', message.author.toString(), true)
     //.addField('Role Name',role.name, true)
     .setFooter({text:message.guild.name})
     .setThumbnail(message.guild.iconURL())
