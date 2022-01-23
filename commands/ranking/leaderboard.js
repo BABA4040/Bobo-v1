@@ -48,7 +48,7 @@ module.exports = {
 
       return message.channel.send({embeds:[
         new Discord.MessageEmbed()
-        .setColor('RANDOM')
+        .setColor(config.embed.Color)
         .setFooter(`XP Leaderboard | \©️${new Date().getFullYear()} Bobo`)
         .setAuthor(`🏆 ${message.guild.name} Leaderboard`, message.guild.iconURL({format: 'png', dynamic: true }) || null)
         .addField(`**${members.get(docs[0].id)?.displayName || '<Unknown User>'}** ranked the highest with **${text.commatize(docs[0].data.xp)}**XP!`,

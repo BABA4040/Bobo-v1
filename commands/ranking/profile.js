@@ -176,7 +176,7 @@ module.exports = {
       ctx.beginPath();
       ctx.drawImage(emblem, 580, 400, 160, 160);
     }
-
+  
     // add the tip shape
     ctx.beginPath();
     ctx.moveTo(800, 10);
@@ -204,6 +204,7 @@ module.exports = {
 
     // reset shadow
     ctx.shadowOffsetY = 0;
+    
 
     // add card on left side
     // add pattern inside card
