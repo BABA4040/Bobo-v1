@@ -70,7 +70,7 @@ module.exports = {
         const user =
           bot.users.cache.get(requester) || (await bot.users.fetch(requester));
         return message.channel.send({
-          content: ` wtf firstUsername: ${member.user.tag} secondUsername: ${user.tag}`
+          content: `  ${member.user.tag} requested marry to   ${user.tag}`
         });
       }
     }
@@ -84,8 +84,8 @@ module.exports = {
 
     const collector = new Discord.MessageCollector(
       message.channel,
-      m => m.author.id === member.id,
-      {
+                                                    {filter:m => m.author.id === member.id,
+      
         time: 120000
       }
     );
@@ -112,7 +112,7 @@ module.exports = {
       if (reason === "time") {
         return message.reply({
           content: `❎ Marry request time has been ended  
-					username: ${member.user.toString()}`
+					 ${member.user.toString()}`
         });
       }
       if (reason) {
@@ -148,8 +148,8 @@ module.exports = {
         }
         return message.channel.send({
           content: ` Congratulations🎉💏
-					creator: ${message.author.toString()}
-					partner: ${member.user.toString()}`
+					marry ${message.author.toString()}
+					with ${member.user.toString()}`
         });
       } else {
         return message.channel.send({
