@@ -16,7 +16,8 @@ module.exports = {
   cooldown: 5000,
   run: async (bot, message, args, dev, data,client) => {
 try{
-   const user1 = message.mentions.users.first() || message.guild.members.cChe
+   const user1 =await  message.mentions.users.first() || await message.guild.members.cache.get(args[1]) || message.author
+                                                                                                                                                                                    
    if (!user1) {
     return message.reply({content: `❎ Please mention a first user to ship!\n\n**Usage:** \`Boship <user> <user>\``
     });

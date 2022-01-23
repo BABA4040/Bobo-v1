@@ -58,6 +58,7 @@ module.exports = {
           '┃  Rank ┃ Level ┃     XP ┃ User                               ┃',
           '╞═══════╪═══════╪════════╪════════════════════════════╡',
           docs.slice(0,10).map((u,i) => {
+            
             const rank = String(i+1);
             return [
               '┃' + ' '.repeat(6-rank.length) + rank,
@@ -78,12 +79,13 @@ module.exports = {
               ' '.repeat(5-String(u.data.level).length) + u.data.level,
           
               ' '.repeat(6-text.compactNum(u.data.xp).length) + text.compactNum(u.data.xp),
-              text.truncate('You (' + message.author.tag + ')', 26) + ' '.repeat(27-text.truncate('You (' + message.author.tag + ')', 26).length) + '┃'
+              text.truncate('You (' + message.author.username+ ')', 26) + ' '.repeat(27-text.truncate('You (' + message.author.tag + ')', 26).length) + '┃'
             ].join(' ┃ ')
           }).join(''),
           '╰═══════╧═══════╧════════╧════════════════════════════╯',
           '```'
         ].join('\n'))
+        
       ]});
     });  
 
