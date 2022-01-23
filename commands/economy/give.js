@@ -19,9 +19,9 @@ module.exports = {
     if (!member)
       return message.channel.send({ content: `❎ Please mention someone!` });
 
-    var money = .args[1];
+    var money = args[1];
 
-    if (!isNaN(money))
+    if (!Number(money))
       return message.reply({
         content: `❎ You must be a number your credit to give `,
       });
@@ -29,7 +29,7 @@ module.exports = {
       return;
     }
     let author = await User.findOne({ userID: message.author.id });
-    let loc = await User.findOne({ userID: member.id });
+    let loc = await User.findOne({ userID: member.id }) || new User({userID: member.id})
 
     if (!money)
       return message.channel.send({ content: `❎ Please type credit!` });
@@ -58,17 +58,17 @@ module.exports = {
       });
     await User.updateOne(
       {
-        userID: author,
+        userID: message.author.id
       },
       {
-        $unset: {
+        $in: {
           money: money,
         },
       }
     );
     await User.updateOne(
       {
-        userID: loc,
+        userID:member.id
       },
       {
         $inc: {
