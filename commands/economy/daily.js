@@ -13,16 +13,31 @@ module.exports = {
   ownerOnly: false,			
   cooldown: 10000,
   run: async (client, message, args, dev,dev2) => {
-  
+  let cooldown = 0//43200000;
       let data = await User.findOne({ userID: message.author.id });
-      if(data.time !== null && 43200000 - (Date.now() - data.time) > 0) return message.reply({content:` You need wait ${ms(43200000 - (Date.now() - data.time))} to daily again`})
+      if(data.time !== null && cooldown - (Date.now() - data.time) > 0) return message.reply({content:` You need wait ${ms(cooldown - (Date.now() - data.time))} to daily again`})
 
       let DR = Math.floor(Math.random() * 2000) + 1000
       
       message.channel.send({content:`**${message.author.username}** you get 💰$\`${DR}\` credits`})
-      
+      /*
       data.time = Date.now();
       data.name = message.author.username
-    data.money += parseInt(DR);
-    data.save()
+    data.money += parseInt(DR);*/
+    
+    await User.updateOne({
+      userID: message.author.id},
+                         
+                         {
+      $set:{
+      time: Date.now()
+      }},)
+    await User.updateOne({
+      userID: message.author.id},
+                         {
+      $inc:{
+        money: DR
+      }})
+    
+    
   }};
