@@ -177,7 +177,8 @@ module.exports = {
       ctx.drawImage(emblem, 580, 400, 160, 160);
     }
   
-    // add the tip shape
+    // add the tip shape/*
+    /*
     ctx.beginPath();
     ctx.moveTo(800, 10);
     ctx.lineTo(575, 10);
@@ -187,8 +188,12 @@ module.exports = {
     ctx.shadowBlur = 30;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 30;
-    ctx.fill();
-
+    ctx.fill();*/
+    ctx.beginPath();
+    ctx.font = "blo 30px sans-setif";
+    ctx.fillStyle ="rgba(255,255,255,0.8)";
+    ctx.textAlign = "left";
+    ctx.fillText("BADGE",410,50,50)
     // write tip on tip shape
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
