@@ -14,10 +14,11 @@ module.exports = {
     ownerOnly: false,
     cooldown: 6000,
     run: async (bot, message, args, dev) => {
+      
   let data = await Guild.findOne({guildID: message.guild.id})
+  
      let user = await message.mentions.members.first() || await message.guild.members.fetch(args[1])
-     let admin = message.author;
-    
+     
       let reason = args.slice(1).join(" ");
       const member = await message.guild.members.fetch(user.id).catch(() => {});
 if(member){

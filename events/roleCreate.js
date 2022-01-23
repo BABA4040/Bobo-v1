@@ -9,7 +9,7 @@ const cooldown =  new Set();
 
 module.exports = class{
 
-async run(role) {
+async run(role, message) {
 
 if(!role) return
 
@@ -42,11 +42,11 @@ let color = config.embed.Color
 
     const embed = new discord.MessageEmbed()
     .setThumbnail(role.guild.iconURL())
-    .setAuthor(role.guild.name)
     .setDescription(`:pencil: **role Created**`)
-    .addField("**role Name**", role.name)
+    .addField("**role Name**", role.name,true)
+///    .addField("**Moderator**",message.author.toString(),true)
   
-    .addField("**role Id**",role.id)
+    .addField("**role Id**",role.id,true)
     .setTimestamp()
     .setFooter({text:role.guild.name})
     .setColor(color)
