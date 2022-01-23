@@ -204,25 +204,8 @@ module.exports = {
 
     // reset shadow
     ctx.shadowOffsetY = 0;
-    
-// add the tip shape
-    ctx.beginPath();
-    ctx.moveTo(300, 100);
-    ctx.lineTo(575, 10);
-    ctx.lineTo(600, 80);
-    ctx.lineTo(800, 80);
-    ctx.fillStyle = color;
-    ctx.shadowBlur = 30;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 30;
-    ctx.fill();
-// write tip on tip shape
-    ctx.beginPath();
-    ctx.font = "bold 30px sans-serif";
-    ctx.fillStyle = "rgba(255,255,255,0.8)";
-    ctx.textAlign = "left";
-    ctx.fillText("REP", 610, 50, 50);
 
+    
     // add card on left side
     // add pattern inside card
     if(defpattern){
