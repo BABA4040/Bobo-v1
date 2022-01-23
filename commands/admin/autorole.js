@@ -11,12 +11,12 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_ROLES"],
   ownerOnly: false,
   cooldown: 6000,
-  run: async (bot, message, args, dev,prefix) => {
+  run: async (bot, message, args, dev,prefix,cooldown) => {
     
   
 let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
 
-
+let role = await message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 
 const status = args[1];
 		if(status !== "on" && status !== "off"){
@@ -29,7 +29,7 @@ const status = args[1];
 			message,
 				search: args.slice(1).join(" ")
 			});*/
-      let role = await message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
+   ///   let role = await message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 			if(!role){
 				return message.channel.send({content:`Please specify a valid role!`})
 			}
@@ -64,6 +64,32 @@ const status = args[1];
       
       
 `})
+    const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs)
+
+      
+    const embed = new discord.MessageEmbed()
+    .setDescription(`:pencil: **Auto role enabled**`)
+    .addField('Moderator Name', message.author.name, true)
+    .addField('Role Name',role.name, true)
+    .setFooter({text:message.guild.name})
+    .setThumbnail(message.guild.iconURL())
+    .setTimestamp()
+    .setColor(config.embed.Color)
+  
+   
+   
+        if(channelEmbed &&
+      channelEmbed.viewable &&
+      channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
+            channelEmbed.send({content:[embed]}).catch(()=>{})
+            cooldown.add(message.guild.id);
+            setTimeout(()=>{
+cooldown.delete(message.guild.id)
+            }, 3000)
+      }
+  
+      
+      
 
 		}
         
