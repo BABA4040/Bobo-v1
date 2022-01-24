@@ -203,7 +203,7 @@ module.exports = {
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
     ctx.textAlign="right";
-    ctx.drawImage(badge, 0,0,200,200);
+    ctx.drawImage(badge, 0,300,300,400);
     ctx.restore();}
     
     // write tip on tip shape
