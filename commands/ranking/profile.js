@@ -191,6 +191,7 @@ module.exports = {
     ctx.shadowOffsetY = 30;
     ctx.fill();*/
 /////write badge
+    if(badge){
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
     ctx.fillStyle ="rgba(255,255,255,0.8)";
@@ -198,11 +199,12 @@ module.exports = {
     ctx.fillText("BADGE",410,50,50)
 ////////
     
+    
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
     ctx.textAlign="right";
     ctx.drawImage(badge, 0,0,200,200);
-    ctx.restore();
+    ctx.restore();}
     
     // write tip on tip shape
     ctx.beginPath();

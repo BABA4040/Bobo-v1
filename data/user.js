@@ -28,7 +28,7 @@ const schema = mongoose.Schema({
   money: { type: Number, default: 0 },
   time: { type: Number, default: 0 },
   lover: { type: String }, // The person with whom the user is in a relationship
-  time1: { type: Number, default: 0 },
+  
   levels: { type: Number, default: 1 },
   xp: { type: Number, default: 1 },
   inventory: { type: Array, default: [] },
