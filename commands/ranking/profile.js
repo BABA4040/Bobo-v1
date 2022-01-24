@@ -197,10 +197,12 @@ module.exports = {
     ctx.textAlign = "left";
     ctx.fillText("BADGE",410,50,50)
 ////////
+    
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
     ctx.textAlign="right";
-    ctx.drawInage(badge, 0,0,200,200);
+    ctx.drawImage(badge, 0,0,200,200);
+    ctx.restore();
     
     // write tip on tip shape
     ctx.beginPath();
