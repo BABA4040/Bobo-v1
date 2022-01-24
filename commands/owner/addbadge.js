@@ -24,9 +24,9 @@ if(user){
   if(!Number(id)) return message.channel.send({content:`Id required only number`})
   let badge = badges.find(x => x.id == id)
   
-  const old = data.data.badge.find(x=> x.id=== config.badge.id)
+  const old = data.data.badgeinv.find(x=> x.id=== config.badge.id)
   if(old){ return message.channel.send({content:`this user have badge`})
-         }else{
+  if(!old){
   data.data.badgeinv.push({
     id: badge.id,
     type: badge.type,
@@ -38,4 +38,4 @@ if(user){
            
   
   
-}}}}
+}}}}}
