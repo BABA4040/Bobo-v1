@@ -199,7 +199,7 @@ module.exports = {
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
     ctx.textAlign="right";
-    ctx.fillText(doc.data.badge, canvas.width - 30,50,120);
+    ctx.fillText(doc.data.badge, canvas.width - 30,50,600);
     
     // write tip on tip shape
     ctx.beginPath();

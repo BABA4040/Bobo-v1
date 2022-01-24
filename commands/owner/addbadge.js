@@ -29,7 +29,10 @@ if(user){
          }else{
   data.data.badge.push({
     id: badge.id,
-    type: badge.type})
+    type: badge.type,
+    link: badge.link
+  
+  })
            return data.save()
           return message.channel.send({content:` pushed to user`})
            
