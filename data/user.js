@@ -48,8 +48,8 @@ const schema = mongoose.Schema({
 
   data: {
     
-    badge:{type: Array, default:null},
-    badgeinv:{type:
+    badgeinv:{type: Array, default:null},
+    badge:{type:String, default:null},
     game:{
       uses:{type: Number, default:null}
     },

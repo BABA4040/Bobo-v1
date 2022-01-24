@@ -27,7 +27,7 @@ if(user){
   const old = data.data.badge.find(x=> x.id=== config.badge.id)
   if(old){ return message.channel.send({content:`this user have badge`})
          }else{
-  data.data.badge.push({
+  data.data.badgeinv.push({
     id: badge.id,
     type: badge.type,
     link: badge.link

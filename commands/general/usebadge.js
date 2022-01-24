@@ -1,5 +1,5 @@
 const profile = require(`${process.cwd()}/data/user`);
-const market = require(`${process.cwd()}/struct/badge`);
+const badges = require(`${process.cwd()}/struct/badge`);
 const text = require(`${process.cwd()}/util/string`);
 const Discord = require("discord.js");
 const { Color } = require("../../config.js");
@@ -17,7 +17,7 @@ module.exports = {
       doc = new User({ userID: message.author.id });
     }
 
-    const item = doc.inventory.find(x => x.id == args[1]);
+    const item = doc.data.badgeinv.find(x => x.id == args[1]);
 
     if (!item) {
       return message.channel.send({
@@ -25,7 +25,7 @@ module.exports = {
       });
     }
 
-    const metadata = market.find(x => x.id === item.id);
+    const metadata = badges.find(x => x.id === item.id);
 
     if (!metadata) {
       return message.channel.send({
@@ -33,7 +33,7 @@ module.exports = {
       });
     }
 
-    doc.attch[metadata.type] = metadata.assets.link;
+    doc.badge[metadata.type] = metadata.link;
 
     return doc
       .save()
