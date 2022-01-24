@@ -189,11 +189,18 @@ module.exports = {
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 30;
     ctx.fill();*/
+/////write badge
     ctx.beginPath();
-    ctx.font = "blo 30px sans-setif";
+    ctx.font = "bold 30px sans-serif";
     ctx.fillStyle ="rgba(255,255,255,0.8)";
     ctx.textAlign = "left";
     ctx.fillText("BADGE",410,50,50)
+////////
+    ctx.beginPath();
+    ctx.font = "bold 30px sans-serif";
+    ctx.textAlign="right";
+    ctx.fillText(doc.data.badge, canvas.width - 30,50,120);
+    
     // write tip on tip shape
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
