@@ -49,12 +49,13 @@ const schema = mongoose.Schema({
   data: {
     
     badge:{type: Array, default:null},
+    badgeinv:{type:
     game:{
       uses:{type: Number, default:null}
     },
     command:{
       
-uses: { type: Number, default: 0 }},
+   uses: { type: Number, default: 0 }},
 
     tips: {
       given: { type: Number, default: 0 },
