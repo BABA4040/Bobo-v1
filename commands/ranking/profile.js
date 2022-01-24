@@ -57,6 +57,7 @@ module.exports = {
     const hat = doc.attch.hat ? await loadImage(doc.attch.hat) : null;
     const emblem = doc.attch.emblem ? await loadImage(doc.attch.emblem) : null;
     const wreath = doc.attch.wreath ? await loadImage(doc.attch.wreath) : null;
+    const badge = doc.data.badge ? await loadImage(doc.data.badge):null;
     const def = await loadImage(
       doc.attch.background || "https://i.imgur.com/57eRI6H.jpg"
     );
@@ -199,7 +200,7 @@ module.exports = {
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
     ctx.textAlign="right";
-    ctx.fillText(doc.data.badge, canvas.width - 30,50,600);
+    ctx.drawInage(badge, 0,0,200,200);
     
     // write tip on tip shape
     ctx.beginPath();

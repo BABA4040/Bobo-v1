@@ -33,7 +33,7 @@ module.exports = {
       });
     }
 
-    doc.badge[metadata.type] = metadata.link;
+    doc.badge = metadata.link;
 
     return doc
       .save()
