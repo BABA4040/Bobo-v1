@@ -1,4 +1,4 @@
-let badges = require(`${process.cwd()}/config.json`)
+let badges = require(`${process.cwd()}/struct/badge.json`)
 
 module.exports = {
   name: "addbadge",
@@ -22,7 +22,7 @@ if(user){
 
   let id = args[2];
   if(!Number(id)) return message.channel.send({content:`Id required only number`})
-  let badge = badges.find(x => x.id=== id)
+  let badge = badges.find(x => x.id == id)
   
   const old = data.data.badge.find(x=> x.id=== config.badge.id)
   if(old){ return message.channel.send({content:`this user have badge`})
@@ -30,6 +30,7 @@ if(user){
   data.data.badge.push({
     id: badge.id,
     type: badge.type})
+           return data.save()
           return message.channel.send({content:` pushed to user`})
            
   

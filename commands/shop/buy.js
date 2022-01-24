@@ -18,7 +18,7 @@ module.exports = {
       doc = new profile({userID: message.author.id });
     };
 
-    const item = market.find(x => x.id == args[1]);
+    const item = market.find(x => x.id == Number(args[1]));
 
     if (!item){
       return message.channel.send({content:`❎ **${message.author.tag}**, Could not find the item with id ${args[1]}!`});
