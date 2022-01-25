@@ -28,9 +28,9 @@ module.exports = {
 
       if(!channelEmbed) return;
     const embed = new Discord.MessageEmbed()
-    .setDescription(`:pencil: **Auto role disabled**`)
+    .setDescription(`:pencil: **Channel Action**`)
     .addField('Moderator Name', message.author.toString(), true)
-    .addField('channel',channel.name, true)
+    .addField('Channel',channel.name, true)
     .setFooter({text:message.guild.name})
     .setThumbnail(message.guild.iconURL())
     .setTimestamp()

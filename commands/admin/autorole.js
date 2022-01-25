@@ -12,7 +12,7 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_ROLES"],
   ownerOnly: false,
   cooldown: 6000,
-  run: async (bot, message, args, dev,prefix,cooldown) => {
+  run: async (bot, message, args, dev,prefix) => {
     
   
 let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
