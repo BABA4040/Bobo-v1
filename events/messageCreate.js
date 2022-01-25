@@ -13,12 +13,12 @@ module.exports = class {
     if (message.channel.type === "dm") return;
 
     //----------------------------database mamager------------------------//
-    let guild = await Guild.findOneAndUpdate({ guildID: message.guild.id });
+    let guild = await Guild.findOne({ guildID: message.guild.id });
     if (!guild) {
       Guild.create({ guildID: message.guild.id });
     }
     data.guild = guild;
-    let user = await User.findOneAndUpdate({
+    let user = await User.findOne({
       userID: message.author.id,
     });
     if (!user) {
@@ -63,42 +63,6 @@ module.exports = class {
     ////////-----------------------------------------------------------------------///
 
     const response = await experience(message, bot, guild);
-    ////const badge = await badges(message, bot,user);
-/*
-    if (message.content.toLowerCase().startsWith(guild.prefix.toLowerCase())) {
-  await User.updateOne({
-    
-    userID: message.author.id},
-                  
-    {
-  data:{
-    command:{
-      $inc:{
-        uses: 1
-      }}},
-      
-    
-    
-  })
-    
-    
-    
-    
-    
-    };
-let amount = 1000
-    if(user.data.command.uses === amount){
-      const embed = new Discord.MessageEmbed()
-      .setAuthor(message.author.username, message.guild.name)
-      .setDescription (`this User reached 1000times of uses command of bobo `)
-  
-    bot.channels.cache.get(config.channels.logChannel).send({content:`hi`})
-      message.author.send({content:`You reached 1000 times of uses BoBo bot contact owners to give you a badge
-join support server`})
-      user.data.needbadeg ="give badge"
-      
-      
-    }*/
     
     
     

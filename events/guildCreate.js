@@ -10,11 +10,11 @@ module.exports = class {
 		const guildOwner = await bot.users.fetch(guild.ownerId).catch((err) => {console.log(err.name)});
 
 		const messageOptions = {};
-
+/*
 		const user = await User.findOneAndUpdate({ userID: guild.ownerId}) || new User({userID: message.author.id});
     if(user){
       user.money += 3000;
-      user.save()}
+      user.save()}*/
     
 
 

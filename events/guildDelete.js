@@ -4,7 +4,7 @@ module.exports = class {
 
 	
 	async run (guild,bot, message) {
-        
+        /*
 		await guild.members.fetch();
 
 		const guildOwner = await bot.users.fetch(guild.ownerId).catch((err) => {console.log(err.name)});
@@ -22,9 +22,9 @@ module.exports = class {
     
     
       const guildData = await Guild.findOne({guildID:guild.id})
-      guildData.delete();
+      guildData.delete();*/
     
-		const text = "Join **"+guild.name+"**, member count **"+guild.members.cache.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.cache.filter((m) => m.user.bot).size+" bots)";
+		const text = "**left**"+guild.name+"**, member count **"+guild.members.cache.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.cache.filter((m) => m.user.bot).size+" bots)";
 
 		// Sends log embed in the logs channel
 		const logsEmbed = new Discord.MessageEmbed()
