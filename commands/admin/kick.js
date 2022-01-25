@@ -33,23 +33,14 @@ if(member){
 			if(!member.kickable) {
 				return message.channel.send({content:`An error has occurred... Please check that I have the permission to ban this specific member and try again!`})
 			}
-		
-      
-      await user.send(`**${message.author.tag}**kicked you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
-    .catch(() => null);
-
-    return user.kick({ reason: `Kick Command: ${message.author.tag}: ${reason || 'Unspecified'}`})
-    .then(_member => message.channel.send(`Successfully Kicked **${_member.user.tag}**`))
-    .catch((err) => message.channel.send(`Failed to ban **${user.user.tag} : reason: Your role not high than this member or ${err.name}**!`));
-
-
-const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs)
+		////// send to log channel
+      const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs)
 
       if(!channelEmbed) return;
     const embed = new Discord.MessageEmbed()
-    .setDescription(`:pencil: **Auto role enabled**`)
+    .setDescription(`:pencil: **Kick Action**`)
     .addField('Moderator Name', message.author.toString(), true)
-    .addField('User kicked ',user.tag, true)
+    .addField('User kicked',member.user.username, true)
     .setFooter({text:message.guild.name})
     .setThumbnail(message.guild.iconURL())
     .setTimestamp()
@@ -64,10 +55,17 @@ const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs
           
             setTimeout(()=>{
             }, 3000)
- 
-      
-      
-		}}
+      }}
+        
+      await user.send(`**${message.author.tag}**kicked you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
+    .catch(() => null);
+
+    return user.kick({ reason: `Kick Command: ${message.author.tag}: ${reason || 'Unspecified'}`})
+    .then(_member => message.channel.send(`Successfully Kicked **${_member.user.tag}**`))
+    .catch((err) => message.channel.send(`Failed to ban **${user.user.tag} : reason: Your role not high than this member or ${err.name}**!`));
+
+
+
   
 
 

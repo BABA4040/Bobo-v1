@@ -34,22 +34,13 @@ if(member){
 				return message.channel.send({content:`An error has occurred... Please check that I have the permission to ban this specific member and try again!`})
 			}
 		
-      
-      await user.send(`**${message.author.tag}** banned you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
-    .catch(() => null);
-
-    return user.ban({ reason: `Ban Command: ${message.author.tag}: ${reason || 'Unspecified'}`})
-    .then(_member => message.channel.send(`Successfully banned **${_member.user.tag}**`))
-    .catch((err) => message.channel.send(`Failed to ban **${user.user.tag} : reason: Your role not high than this member or ${err.name}**!`));
-
-
-const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs)
+      const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs)
 
       if(!channelEmbed) return;
     const embed = new Discord.MessageEmbed()
-    .setDescription(`:pencil: **Auto role enabled**`)
+    .setDescription(`:pencil: **Ban Action**`)
     .addField('Moderator Name', message.author.toString(), true)
-    .addField('User banned ',user.tag, true)
+    .addField('User banned',member.user.username, true)
     .setFooter({text:message.guild.name})
     .setThumbnail(message.guild.iconURL())
     .setTimestamp()
@@ -64,10 +55,14 @@ const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs
           
             setTimeout(()=>{
             }, 3000)
- 
-      
-      
-		}}
+      }}
+        
+      await user.send(`**${message.author.tag}** banned you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
+    .catch(() => null);
+
+   return  user.ban({ reason: `Ban Command: ${reason || 'Unspecified'}`})
+    .then(_member => message.channel.send({content:`Successfully banned **${_member.user.tag}**`}))
+    .catch((err) => message.channel.send({content:`Failed to ban **${user.user.tag}`}))
   
 
 
