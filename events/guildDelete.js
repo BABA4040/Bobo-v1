@@ -11,29 +11,23 @@ module.exports = class {
 
 		const messageOptions = {};
 
-		const user = await User.findOneAndUpdate({ userID: guild.ownerId}) || new User({userID: message.author.id});
-    if(user){
-      user.money += 3000;
-      user.save()}
+		const user = await User.findOneAndUpdate({ userID: guild.ownerId}) || new User({userID: guild.ownerId});
+    let amount = user.money - 3000
+    await User.updateOne({
+      userID: guild.onwerId},
+                         {
+      $set:{
+        money: amount}})
     
-
-
-
-		const thanksEmbed = new Discord.MessageEmbed()
-			.setAuthor("Thank you for adding me to your guild !")
-			.setDescription(`To configure me use ${config.prefix}help`)
-			.setColor(config.embed.Color)
-			.setFooter(config.embed.footer)
-			.setTimestamp();
-		messageOptions.embed = thanksEmbed;
-
-		guildOwner.send({embeds:[thanksEmbed]}).catch((err) => {console.log(err)});
-
+    
+    
+      const guildData = await Guild.findOne({guildID:guild.id})
+      guildData.delete();
+    
 		const text = "Join **"+guild.name+"**, member count **"+guild.members.cache.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.cache.filter((m) => m.user.bot).size+" bots)";
 
 		// Sends log embed in the logs channel
 		const logsEmbed = new Discord.MessageEmbed()
-			.setAuthor(guild.name, guild.iconURL())
 			.setColor("#32CD32")
 			.setDescription(text);
 	bot.channels.cache.get(config.channels.logChannel).send({embeds:[logsEmbed]});
