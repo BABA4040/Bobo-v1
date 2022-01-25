@@ -49,6 +49,31 @@ module.exports = {
                   .then((bans) => {
                   if(bans.size > 0){
                     message.channel.send({content: ` Unbanned all`})}
+                  
+                      /// send to log channel
+    const channelEmbed = await message.guild.channels.cache.get(data.guild.plugins.modlogs)
+
+      if(!channelEmbed) return;
+    const embed = new Discord.MessageEmbed()
+    .setDescription(`:pencil: **Unban all Action**`)
+    .addField('Moderator Name', message.author.toString(), true)
+    //.addField('Role Name',role.name, true)
+    .setFooter({text:message.guild.name})
+    .setThumbnail(message.guild.iconURL())
+    .setTimestamp()
+    .setColor(config.embed.Color)
+  
+   
+   
+        if(channelEmbed &&
+      channelEmbed.viewable &&
+      channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
+            channelEmbed.send({embeds:[embed]}).catch((err)=>{console.log(err)})
+          
+            setTimeout(()=>{
+            }, 3000)
+      }
+                  
                     if (bans.size == 0) {
                       message.channel.send({
                         content: "There are no banned users.",

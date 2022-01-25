@@ -8,18 +8,14 @@ module.exports = {
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   ownerOnly: false,			
   cooldown: 8000,
-  run: async (bot, message, args, dev, channel) => {
-   let doc = await guilds.findOneAndUpdate({guildID:message.guild.id}).catch(err=>{
-
- 
-    if (err){
-      return message.channel.send({content:`\`❌ [DATABASE_ERR]:\` The database responded with error: ${err.name}`});
-    }})
-   if (!doc){
-      doc = new guilds({guildID: message.guild.id });
+  run: async (bot, message, args, dev, channel,data) => {
+  
+  
+   if (!data.guild){
+      data.guild = new Guild({guildID: message.guild.id });
     };
 
-    const channelID = message.mentions.channels.first();/// (channel.match(/\d{17,19}/)||[])[0];
+    const channelID = message.mentions.channels.first() || message.guild.channels.cache.get(args[1])/// (channel.match(/\d{17,19}/)||[])[0];
   ///  channel = message.guild.channels.cache.get(channelID);
 /*
     if (channelID.type !== 'GUILD_TEXT'){
@@ -40,8 +36,8 @@ module.exports = {
      return message.reply({content:` I think Your channel not created yet`})
    }
 */
-    doc.channels.xp = channelID.id;
-    return doc.save()
+    data.guild.channels.xp = channelID.id;
+    return data.guild.save()
     .then(() => {
       return message.channel.send({content:`✔️ Successfully set the suggest channel to ${channelID}!`});
     })

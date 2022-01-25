@@ -10,15 +10,8 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_CHANNELS"],
   ownerOnly: false,
   cooldown: 6000,
-  run: async (bot, message, args, dev) => {
-    
-  
-  let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
-
-
-
-
-const areModLogsEnabled = Boolean(data.plugins.modlogs);
+  run: async (bot, message, args, dev,data) => {
+const areModLogsEnabled = Boolean(data.guild.plugins.modlogs);
 		const sentChannel = await Resolvers.resolveChannel({
 			message,
 			search: args.join(" "),
@@ -26,15 +19,15 @@ const areModLogsEnabled = Boolean(data.plugins.modlogs);
 		});
 
 		if (!sentChannel && areModLogsEnabled) {
-			data.plugins.modlogs = null;
-			data.markModified("plugins.modlogs");
-			await data.save();
-			return message.channel.send({content:`Mo logs has been disabled`})
+			data.guild.plugins.modlogs = null;
+			data.guild.markModified("plugins.modlogs");
+			await data.guild.save();
+			return message.channel.send({content:`Mod logs has been disabled`})
 		} else {
 			const channel = sentChannel || message.channel;
-			data.plugins.modlogs = channel.id;
-			data.markModified("plugins.modlogs");
-			await data.save();
+			data.guild.plugins.modlogs = channel.id;
+			data.guild.markModified("plugins.modlogs");
+			await data.guild.save();
 			return message.channel.send({content:`Channel has been setup in **${channel.toString()}**`})
 		
 		}}}
