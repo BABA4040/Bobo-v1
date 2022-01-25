@@ -54,9 +54,10 @@ global.Maintenance = require("./data/maintenance.js");
 global.Black = require("./data/blacklist");
 bot.commands = new Collection();
 bot.aliases = new Collection();
+bot.slash = new Collection ();
 bot.cooldowns = new Collection();
 bot.catagories = fs.readdirSync("./commands/");
-["command","event"].forEach(handler => {
+["command","event","slash"].forEach(handler => {
   require(`./handler/${handler}`)(bot);
 });
 
