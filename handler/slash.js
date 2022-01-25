@@ -6,7 +6,7 @@ const table = new ascii().setHeading("Command", "Load Status");
 
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
-const config = require("../config.js");
+
 const rest = new REST({ version: "9" }).setToken(config.token);
 const guild = "850129663896190996";
 module.exports = async bot => {
