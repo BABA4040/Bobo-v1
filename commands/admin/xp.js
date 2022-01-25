@@ -14,22 +14,19 @@ module.exports = {
   ownerOnly: false,
   guilOwnerOnly: true,
   cooldown: 3000,
-  run: async (bot, message, args) => {
-
-   let guild = await Guild.findOne({guildID: message.guild.id});
-     let num = args[1];
-    if (args[1] === "on") {
-      guild.xp.onoff = "on";
-      guild.save();
-      return message.channel.send({content:`antispam status has been update to **on**`})
+  run: async (bot, message, args,data) => {
+if(isNaN(args[1])==="on"){
+  data.guild.xp.onoff = "on";
+      data.guild.save();
+     return message.channel.send({content:`antispam status has been update to **on**`})
     
      } else if (args[1] === "off") {
-        guild.xp.onoff = "off";
-        guild.save();
-      return message.channel.send({content:` Xp system from guild is disabled`})
+       data.guild.xp.onoff = "off";
+        data.guild.save();
+     return message.channel.send({content:` Xp system from guild is disabled`})
     }
   
-      return message.channel.send({content:`error syntax ${guild.prefix} [on,off] `})
+      return message.channel.send({content:`error syntax ${data.guild.prefix} `})
         
   }
 };

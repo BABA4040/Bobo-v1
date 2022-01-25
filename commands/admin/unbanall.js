@@ -24,7 +24,7 @@ module.exports = {
         .setTimestamp();
       message.channel.send({ embeds: [embed] }).then((balls) => {
         balls.react("✅").then(() => balls.react("❌"));
-        const johncena = (reaction, user) => {
+        const moderate= (reaction, user) => {
           return (
             ["✅", "❌"].includes(reaction.emoji.name) &&
             user.bot == false &&
@@ -32,7 +32,7 @@ module.exports = {
           );
         };
         balls
-          .awaitReactions({filter: johncena, max: 1, time: 120000 })
+          .awaitReactions({filter: moderate, max: 1, time: 120000 })
           .then((collected) => {
             const react23847 = collected.first();
             if (react23847.emoji.name === "✅") {
@@ -46,9 +46,9 @@ module.exports = {
               setTimeout(() => {
                 message.guild.bans
                   .fetch()
-                  .then((bans) => {
+                  .then(async(bans) => {
                   if(bans.size > 0){
-                    message.channel.send({content: ` Unbanned all`})}
+                    message.channel.send({content: ` Unbanned all`})
                   
                       /// send to log channel
     const channelEmbed = await message.guild.channels.cache.get(data.guild.plugins.modlogs)
@@ -72,7 +72,7 @@ module.exports = {
           
             setTimeout(()=>{
             }, 3000)
-      }
+      }}
                   
                     if (bans.size == 0) {
                       message.channel.send({
