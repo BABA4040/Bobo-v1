@@ -4,13 +4,14 @@ const { Color } = config.embed.Color;
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("xp")
-    .setDescription("xptoggle"),
-  //.addStringOption(option => option.setName("toggle"). setDescription("xpon")),
+    .setDescription("xptoggle")
+  .addStringOption(option => option.setName("toggle"). setDescription("xpon")),
+  category: ["admin"],
   memberPermissions: ["SEND_MESSAGES", "MANAGE_GUILD"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   enabled: true,
-  cooldown: 10000,
+  cooldown: 1000,
   prime: false,
   run: async (bot, interaction ,data) => {
     
