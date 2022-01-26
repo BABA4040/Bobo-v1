@@ -43,18 +43,17 @@ module.exports = class {
       });
 
       if (userBlacklistSettings && userBlacklistSettings.isBlacklisted) {
-        //   logger.warn(`${message.author.tag} tried to use "${cmd}" command but the user is blacklisted`, { label: 'Commands' })
-        return; // message.channel.send(`You are blacklisted from the bot :(`);
+      
+        return; 
       }
 
       // Check if server is Blacklisted
-      if (guildBlacklistSettings && guildBlacklistSettings.isBlacklisted) {
-        //  logger.warn(`${message.author.tag} tried to use "${cmd}" command but the guild is blacklisted`, { label: 'Commands' })
-        return; //message.channel.send(` This guild is Blacklisted :(`);
+      if (guildBlacklistSettings && guildBlacklistSettings.isBlacklisted){
+        return; 
       }
       //-------------/////
 
-      ////////
+    
       if (guild) {
         if (!interaction.channel.permissionsFor(bot.user).has("SEND_MESSAGES"))
           return;
@@ -62,8 +61,7 @@ module.exports = class {
           return await interaction.reply({
             content: `This command is **Disable** for now`
           });
-        //-----comand information-------///
-        ///////----------------------------subcommand------------------///
+  
         
 
         /////////guild owner
@@ -167,11 +165,10 @@ module.exports = class {
           }
         }
         timestamps.set(interaction.userId, now);
-        ///  let prefix = guild.prefix;
-        ///  if (command) command.run(bot, message, args, prefix, data, cmd, prime);
+      
         setTimeout(() => timestamps.delete(interaction.userId), cooldownAmount);
 
-        await command.run(interaction, bot);
+  if(command) command.run(interaction, bot,data);
       }
     } catch (error) {
       if (error) console.error(error);

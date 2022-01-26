@@ -4,26 +4,28 @@ const { Color } = config.embed.Color;
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("xp")
-    .setDescription("xptoggle")
-  .addStringOption(option => option.setName("toggle"). setDescription("xpon")),
+    .setDescription("xptoggle"),
+  //.addStringOption(option => option.setName("toggle"). setDescription("xpon")),
   memberPermissions: ["SEND_MESSAGES", "MANAGE_GUILD"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   enabled: true,
   cooldown: 10000,
   prime: false,
-  run: async (bot, interaction) => {
+  run: async (bot, interaction ,data) => {
     
-    let guild = await Guild.findOne({guildID: interaction.guildId});
-     
+  
     if ( "on") {
-      guild.xp.onoff = "on";
-      guild.save();
-      return interaction.reply({content:`xp status has been update to **on**`})
+      data.guild.xp.onoff = "on";
+      data.guild.save();
+  return interaction.reply({content:`On`})
+     
+     }
     
-     } else if ("off") {
-        guild.xp.onoff = "off";
-        guild.save();
+    
+   if ("off") {
+        data.guild.xp.onoff = "off";
+       data.guild.save();
       return interaction.reply({content:` Xp system from guild is disabled`})
     }
   
@@ -34,5 +36,5 @@ module.exports = {
     
     
     
-  },
+  }
 };
