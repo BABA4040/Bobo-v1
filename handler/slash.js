@@ -13,7 +13,7 @@ module.exports = async (bot) => {
   //////resting slash command
   const commands = [];
 
-  try {
+  //try {
     console.log("Started refreshing application (/) commands.");
 
     if (!guild) {
@@ -31,9 +31,9 @@ module.exports = async (bot) => {
 
       console.log("Successfully reloaded application (/) commands.");
     }
-  } catch (error) {
+/*  } catch (error) {
     console.log(error);
-  }
+  }*/
 
   fs.readdirSync("./C-slash/").forEach((dir) => {
     const commandFiles = fs
