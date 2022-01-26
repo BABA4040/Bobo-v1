@@ -16,7 +16,7 @@ module.exports = {
   run: async (bot, interaction ,data) => {
     
   
-    if ( "on") {
+    if ("on") {
       data.guild.xp.onoff = "on";
       data.guild.save();
   return interaction.reply({content:`On`})
