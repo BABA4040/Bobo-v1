@@ -3,23 +3,25 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Color } = config.embed.Color;
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("prefix")
-    .setDescription("setprefix")
-
-
+    .setName("xp toggle")
+    .setDescription("xptoggle")
    .addSubcommand((subcommand) =>
       subcommand
-        .setName("set")
-        .setDescription("setprefix in guild")
-        .addUserOption((option) =>
-          option.setName("input").setDescription("The user")
+        .setName("xp)
+        .setDescription("to on xp in server")
+        .addStringOption((option) =>
+          option.setName("xp").setDescription("on or of")
         )
     ),
-  memberPermissions: ["SEND_MESSAGES", "MANAGE_GUILD", "ADMINISTRATOR"],
+  memberPermissions: ["SEND_MESSAGES", "MANAGE_GUILD"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   enable: true,
   cooldown: 10000,
   prime: false,
-  run: async (bot, message, args, dev) => {},
+  run: async (bot, message, args, dev) => {
+
+  
+  
+  },
 };
