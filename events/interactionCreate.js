@@ -63,6 +63,8 @@ module.exports = class {
             content: `This command is **Disable** for now`
           });
         //-----comand information-------///
+        ///////----------------------------subcommand------------------///
+        
 
         /////////guild owner
 
