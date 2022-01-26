@@ -42,9 +42,11 @@ module.exports = async (bot) => {
 
     for (const file of commandFiles) {
       const command = require(`../C-slash/${dir}/${file}`);
-      console.log(command.data.name);
+     // console.log(command.data.name);
       commands.push(command.data);
       bot.slash.set(command.data.name, command);
+      table.addRow(file,"👍")
+      console.log(table.toString())
     }
   });
 };
