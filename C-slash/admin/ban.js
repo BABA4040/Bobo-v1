@@ -33,19 +33,17 @@ module.exports = {
       const moderationPosition = interaction.member.roles.highest.position;
       if (
         interaction.member.ownerId !== interaction.user.id&&
-        !(moderationPosition > memberPosition)
+        !(moderationPosition > memberPosition )
       ) {
       
         await interaction.reply({
           content: `You can't sanction or update a sanction for a member who has an higher or equal role hierarchy to yours!
     `,
         });
-      }
-      if (!member.bannable) {
-        
-      await  interaction.reply({
+      
+      await  interaction.editReply({
           content: `An error has occurred... Please check that I have the permission to ban this specific member and try again!`,
-        });
+      })
       }
 
       const channelEmbed = await interaction.guild.channels.cache.get(
@@ -85,8 +83,7 @@ module.exports = {
       )
       .catch(() => null);
 
-    await user
-      .ban({ reason: `Ban Command: ${ "Unspecified"}` })
+    await user.ban({ reason: `Ban Command: ${ "Unspecified"}` })
     
         interaction.reply({
           content: `Successfully banned **${user.tag}**`,
