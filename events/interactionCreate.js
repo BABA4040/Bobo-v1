@@ -6,8 +6,8 @@ module.exports = class {
 
     if (!interaction.isCommand()) return;
 
-    const command = bot.slash.get(interaction.commandName); //,interaction.options.getSubcommand());
-    if (!command) return;
+   // const command = bot.slash.get(interaction.commandName); //,interaction.options.getSubcommand());
+  //  if (!command) return;
     try {
       let guild = await Guild.findOne({ guildID: interaction.guildId });
       if (!guild) {
@@ -55,6 +55,8 @@ module.exports = class {
 
     
       if (guild) {
+        const command = bot.slash.get(interaction.commandName)
+        
         if (!interaction.channel.permissionsFor(bot.user).has("SEND_MESSAGES"))
           return;
         if (!command.enabled)
