@@ -21,14 +21,12 @@ prime: false,
 
 
 
-const guild= await news.findOne({
-        tag: '768944616724103170'
-      });
+
       
 let embed = new Discord.MessageEmbed()
       .setColor(config.embed.Color)
       .setTitle(`Bobo News`)
-    .setDescription(`***__Date Published__ ${moment(guild.time).format("dddd, MMMM Do YYYY")}*** \n**__[\`${moment(guild.time).fromNow()}\`]__**\n\n ${guild.news}`)
+    .setDescription(`***__Date Published__ ${moment(data.news.time).format("dddd, MMMM Do YYYY")}*** \n**__[\`${moment(data.news.time).fromNow()}\`]__**\n\n ${data.news.news}`)
   
       .setFooter('Bobot Teams')
       .setTimestamp();

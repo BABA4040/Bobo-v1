@@ -23,6 +23,8 @@ module.exports = class {
         User.create({ userID: interaction.user.id });
       }
       data.user = user;
+      let news = await News.findOne({tag:"768944616724103170"})
+      data.news = news
       //---------------prime data-////////
 
       let prime = await Prime.findOne({ Guild: interaction.guild.id });

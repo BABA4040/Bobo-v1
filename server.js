@@ -50,6 +50,7 @@ global.User = require("./data/user.js");
 global.Owner = require("./data/owner.js");
 global.Prime = require("./data/prime.js");
 global.Lang = require("./data/lang.js");
+global.News= require("./data/news.js");
 global.Maintenance = require("./data/maintenance.js");
 global.Black = require("./data/blacklist");
 bot.commands = new Collection();
