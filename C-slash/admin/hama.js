@@ -5,7 +5,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("xp")
     .setDescription("xptoggle")
-  .addStringOption(option => option.setName("toggle"). setDescription("xpon")),
+  .addStringOption(option => option.setName("toggle"). setDescription("xpon").setRequired(true)),
+                   
   category: ["admin"],
   memberPermissions: ["SEND_MESSAGES", "MANAGE_GUILD"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
@@ -14,9 +15,9 @@ module.exports = {
   cooldown: 1000,
   prime: false,
   run: async (interaction,bot,data) => {
-    
+    const toggle = interaction.options.getString('toggle')
   
-    if ("on") {
+    if (toggle ==="on") {
       data.guild.xp.onoff = "on";
       data.guild.save();
   return interaction.reply({content:`On`})
@@ -24,7 +25,7 @@ module.exports = {
      }
     
     
-   if ("off") {
+   if (toggle === "off") {
         data.guild.xp.onoff = "off";
        data.guild.save();
       return interaction.reply({content:` Xp system from guild is disabled`})
