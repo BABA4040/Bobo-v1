@@ -83,7 +83,7 @@ module.exports = {
       )
       .catch((err) => console.log(err.name));
 
-    await user.ban({ reason: `Ban Command: ${ "Unspecified"}` })
+    await member.ban({ reason: `Ban Command: ${ "Unspecified"}` })
     
         interaction.reply({
           content: `Successfully banned **${user.tag}**`,

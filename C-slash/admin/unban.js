@@ -24,7 +24,8 @@ prime: false,
 let ban = await interaction.guild.bans.fetch(user)
       
       
-      if(!ban){ return interaction.reply({content:`<This user not found>`})
+      if(!ban){ return 
+               interaction.reply({content:`<This user not found>`})
               }
       if(ban){
         interaction.guild.members.unban(user)
