@@ -5,13 +5,17 @@ module.exports = {
 data: new SlashCommandBuilder()
 .setName("kick")
 .setDescription("kick user")
-.addStringOption(option =>
-option.setName('')
-.setDescription('')
-.setRequired(true)),
+.addUserOption(option =>
+option.setName('target')
+.setDescription('target user to kick')
+.setRequired(true))
+.addStringOption(option=>
+option.setName('reason')
+.setDescription (`Reason of kick`)),
+  
   enabled: true,			    
-  memberPermissions: [ "SEND_MESSAGES" ],			
-  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
+  memberPermissions: [ "SEND_MESSAGES","KICK_MEMBERS" ],			
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","KICK_MEMBERS" ],		
   enabled:true,
   category:["admin"],
   ownerOnly: false,			
@@ -20,32 +24,33 @@ prime: false,
   run: async (interaction,bot,data) => {
 
     
-     let user = await message.mentions.members.first() || await message.guild.members.fetch(args[1])
+     let user = await interaction.options.getUser('target')
      
-      let reason = args.slice(1).join(" ");
-      const member = await message.guild.members.fetch(user.id).catch(() => {});
+     
+      let reason = await interaction.options.getString('reason');
+      const member = await interaction.guild.members.fetch(user.id).catch(() => {});
 if(member){
     
   
     const memberPosition = member.roles.highest.position;
-			const moderationPosition = message.member.roles.highest.position;
-			if(message.member.ownerId !== message.author.id && !(moderationPosition > memberPosition)){
-				return message.channel.send({content:`You can't sanction or update a sanction for a member who has an higher or equal role hierarchy to yours!
+			const moderationPosition = interaction.member.roles.highest.position;
+			if(interaction.member.ownerId !== interaction.user.id && !(moderationPosition > memberPosition)){
+				return interaction.followUp({content:`You can't sanction or update a sanction for a member who has an higher or equal role hierarchy to yours!
     `})
 			}
 			if(!member.kickable) {
-				return message.channel.send({content:`An error has occurred... Please check that I have the permission to ban this specific member and try again!`})
+				return interaction.reply({content:`An error has occurred... Please check that I have the permission to ban this specific member and try again!`})
 			}
 		////// send to log channel
-      const channelEmbed = await message.guild.channels.cache.get(data.plugins.modlogs)
+      const channelEmbed = await interaction.guild.channels.cache.get(data.guild.plugins.modlogs)
 
       if(!channelEmbed) return;
     const embed = new Discord.MessageEmbed()
     .setDescription(`:pencil: **Kick Action**`)
-    .addField('Moderator Name', message.author.toString(), true)
+    .addField('Moderator Name', interaction.user.tag, true)
     .addField('User kicked',member.user.username, true)
-    .setFooter({text:message.guild.name})
-    .setThumbnail(message.guild.iconURL())
+    .setFooter({text:interaction.guild.name})
+    .setThumbnail(interaction.guild.iconURL())
     .setTimestamp()
     .setColor(config.embed.Color)
   
@@ -53,19 +58,19 @@ if(member){
    
         if(channelEmbed &&
       channelEmbed.viewable &&
-      channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
+      channelEmbed.permissionsFor(interaction.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
             channelEmbed.send({embeds:[embed]}).catch((err)=>{console.log(err)})
           
             setTimeout(()=>{
             }, 3000)
       }}
         
-      await user.send(`**${message.author.tag}**kicked you from ${message.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
+      await user.send(`**${interaction.user.tag}**kicked you from ${interaction.guild.name}!\n**Reason**: ${reason|| 'Unspecified.'}`)
     .catch(() => null);
 
-    return user.kick({ reason: `Kick Command: ${message.author.tag}: ${reason || 'Unspecified'}`})
-    .then(_member => message.channel.send(`Successfully Kicked **${_member.user.tag}**`))
-    .catch((err) => message.channel.send(`Failed to ban **${user.user.tag} : reason: Your role not high than this member or ${err.name}**!`));
+    return member.kick({ reason: `Kick Command: ${interaction.user.tag}: ${reason || 'Unspecified'}`})
+    .then(_member => interaction.reply(`Successfully Kicked **${_member.user.tag}**`))
+    .catch((err) => interaction.editReply(`Failed to ban **${member.user.tag} : reason: Your role not high than this member or ${err.name}**!`));
 
 
 
