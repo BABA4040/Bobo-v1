@@ -3,23 +3,7 @@ const schema = mongoose.Schema({
   name: { type: String },
   info: { type: String, default: null },
 
-  isPremium: {
-    type: String,
 
-    default: false,
-  },
-  premium: {
-    redeemedBy: {
-      id: { type: String, default: null },
-      tag: { type: String, default: null },
-    },
-
-    redeemedAt: { type: String, default: null },
-
-    expiresAt: { type: String, default: null },
-
-    plan: { type: String, default: null },
-  },
 
   birthdate: { type: Number }, // Birthdate of the user (the timestamp)
   money: { type: Number, default: 0 },
