@@ -5,7 +5,7 @@ module.exports = {
 data: new SlashCommandBuilder()
 .setName("unban")
 .setDescription("unabn user")
-.addSteingOption(option =>
+.addStringOption(option =>
 option.setName('id')
 .setDescription('id of user you want unbanned')
 .setRequired(true)),
@@ -35,7 +35,7 @@ let ban = await interaction.guild.bans.fetch(user)
       if(!channelEmbed) return;
     const embed = new Discord.MessageEmbed()
     .setDescription(`:pencil: **Auto role disabled**`)
-    .addField('Moderator Name',interaction.user.tag), true)
+    .addField('Moderator Name',interaction.user.tag, true)
     //.addField('Role Name',role.name, true)
     .setFooter({text:interaction.guild.name})
     .setThumbnail(interaction.guild.iconURL())
