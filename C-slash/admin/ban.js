@@ -35,13 +35,14 @@ module.exports = {
         interaction.member.ownerId !== interaction.user.id&&
         !(moderationPosition > memberPosition)
       ) {
-        await interaction.deferReply();
+      
         return interaction.reply({
           content: `You can't sanction or update a sanction for a member who has an higher or equal role hierarchy to yours!
     `,
         });
       }
-      if (!member.bannable) {await interaction.deferReply();
+      if (!member.bannable) {
+        
         return interaction.reply({
           content: `An error has occurred... Please check that I have the permission to ban this specific member and try again!`,
         });
@@ -89,9 +90,9 @@ module.exports = {
     
         interaction.reply({
           content: `Successfully banned **${user.tag}**`,
-        })
-      
- 
-ch((err) =>h(async(err) =>interaction.editReply({ content: `Failed to ban **${user.user.tag}**`}))
+        })r) =>h(() =>{
+          
+          
+          interaction.editReply({ content: `Failed to ban **${user.user.tag}**`})})
              }
 };
