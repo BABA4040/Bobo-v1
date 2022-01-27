@@ -94,8 +94,21 @@ module.exports = class {
         }
       }
 
-      //-----------------------------fetchinvite---------------------////
+      //-----------------------------modlogse---------------------////
+const channelEmbed = await message.guild.channels.cache.get(data.guild.plugins.modlogs)
 
+      if(channelEmbed &&
+      channelEmbed.viewable &&
+      channelEmbed.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
+    
+            setTimeout(()=>{
+            }, 3000)
+      }
+        
+
+      
+      
+      
       ///-----------------------------------------permissoins--------------------------------///
       if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES"))
         return;
@@ -179,7 +192,7 @@ module.exports = class {
       }
       timestamps.set(message.author.id, now);
       let prefix = guild.prefix;
-      if (command) command.run(bot, message, args, prefix, data, cmd, prime);
+      if (command) command.run(bot, message, args, prefix, data, cmd, prime,channelEmbed);
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
     }
   }

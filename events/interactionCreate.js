@@ -65,7 +65,19 @@ module.exports = class {
           });
   
         
+//---------moflogs-----------////
+        
+        const channelEmbed = await interaction.guild.channels.cache.get(data.guild.plugins.modlogs)
 
+        if(channelEmbed &&
+      channelEmbed.viewable &&
+      channelEmbed.permissionsFor(interaction.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])){
+          
+          
+            setTimeout(()=>{
+            }, 3000)
+      }
+        
         /////////guild owner
 
         if (command.guildOwner) {
@@ -170,7 +182,7 @@ module.exports = class {
       
         setTimeout(() => timestamps.delete(interaction.userId), cooldownAmount);
 
-  if(command) command.run(interaction, bot,data);
+  if(command) command.run(interaction, bot,data,channelEmbed);
       }
     } catch (error) {
       if (error) console.error(error);
