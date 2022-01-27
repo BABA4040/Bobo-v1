@@ -84,7 +84,7 @@ prime: false,
 
 		const emojis = interaction.guild.emojis.cache;
 
-		const embed = new Discord.essageEmbed()
+		const embed = new Discord.MessageEmbed()
       .setTitle("Guild information")
 			.setColor(config.embed.Color)
 			.setThumbnail(interaction.guild.iconURL({ dynamic: true }))
@@ -94,16 +94,16 @@ prime: false,
                         .addField("Region", `${regions[interaction.guild.region]}`)
                         .addField("Explicit Filter", `${filterLevels[interaction.guild.explicitContentFilter]}`)
                         .addField("Verification Level", `${verificationLevels[interaction.guild.verificationLevel]}`)
-                        .addField("Time Created", `${moment(interaction.guild.createdTimestamp).format('LT')} ${moment(message.guild.createdTimestamp).format('LL')} ${moment(message.guild.createdTimestamp).fromNow()}`)
+                        .addField("Time Created", `${moment(interaction.guild.createdTimestamp).format('LT')} ${moment(interaction.guild.createdTimestamp).format('LL')} ${moment(interaction.guild.createdTimestamp).fromNow()}`)
                         .addField("Role Count", `${roles.length}`)
-                        .addField("Boost Count", `${message.guild.premiumSubscriptionCount || '0'}`)
-                        .addField("Member Count", `${message.guild.memberCount}`)
+                        .addField("Boost Count", `${interaction.guild.premiumSubscriptionCount || '0'}`)
+                        .addField("Member Count", `${interaction.guild.memberCount}`)
                         .addField("Bots", `${members.filter(member => member.user.bot).size}`)
                         .addField(`Channels`, `(${channel})`)
                         .addField("Emoji Count", `${emojis.size}`)
 
 
-	      message.channel.send({embeds: [embed] });
+	    interaction.reply({embeds: [embed] });
 
 
 
