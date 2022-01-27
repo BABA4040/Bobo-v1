@@ -5,7 +5,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("xp")
     .setDescription("xptoggle")
-  .addStringOption(option => option.setName("toggle"). setDescription("xpon").setRequired(true)),
+  .addStringOption(option => option.setName("toggle"). setDescription("only off or on").setRequired(true)),
                    
   category: ["admin"],
   memberPermissions: ["SEND_MESSAGES", "MANAGE_GUILD"],
