@@ -48,7 +48,7 @@ if(member){
     const embed = new Discord.MessageEmbed()
     .setDescription(`:pencil: **Kick Action**`)
     .addField('Moderator Name', interaction.user.tag, true)
-    .addField('User kicked',member.user.username, true)
+    .addField('User kicked',member.user.tag, true)
     .setFooter({text:interaction.guild.name})
     .setThumbnail(interaction.guild.iconURL())
     .setTimestamp()
