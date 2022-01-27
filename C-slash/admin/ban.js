@@ -53,7 +53,7 @@ module.exports = {
       if (!channelEmbed) return;
       const embed = new Discord.MessageEmbed()
         .setDescription(`:pencil: **Ban Action**`)
-        .addField("Moderator Name", interaction.author.toString(), true)
+        .addField("Moderator Name", interaction.user.tag, true)
         .addField("User banned", member.user.username, true)
         .setFooter({ text: interaction.guild.name })
         .setThumbnail(interaction.guild.iconURL())

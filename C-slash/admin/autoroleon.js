@@ -58,7 +58,7 @@ prime: false,
       if(!channelEmbed) return;
     const embed = new Discord.MessageEmbed()
     .setDescription(`:pencil: **Auto role enabled**`)
-    .addField('Moderator Name', interaction.author.toString(), true)
+    .addField('Moderator Name', interaction.user.tag, true)
     .addField('Role Name',role.name, true)
     .setFooter({text:interaction.guild.name})
     .setThumbnail(interaction.guild.iconURL())
