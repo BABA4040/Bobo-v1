@@ -86,12 +86,12 @@ module.exports = {
 
     return user
       .ban({ reason: `Ban Command: ${ "Unspecified"}` })
-      await interaction.deferReply({ ephemeral: true });
-        interaction.editReply({
+    
+        interaction.reply({
           content: `Successfully banned **${user.tag}**`,
         })
       
  
-ch((err) =>h(async(err) =>await interaction.deferReply(); interaction.reply({ content: `Failed to ban **${user.user.tag}**`});
-  }
+ch((err) =>h(async(err) =>interaction.editReply({ content: `Failed to ban **${user.user.tag}**`}))
+             }
 };
