@@ -3,15 +3,15 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Color } = require("../../config.js")
 module.exports = {
 data: new SlashCommandBuilder()
-.setName("autorole")
+.setName("autoroleon")
 .setDescription("give role when user jojn")
   
 .addStringOption(option =>
 option.setName('status')
-.setDescription('on or off')
+.setDescription('on')
 .setRequired(true))
 .addRoleOption(option=>
-               option.setName('mention')
+               option.setName('role')
                . setDescription ('mention role')
                .setRequired(true)),
                 
@@ -77,10 +77,10 @@ prime: false,
  
       
       
-		}}
+		}}/*
 
 		if(status === "off"){
-
+      
 			if(!data.guild.plugins.autorole.enabled){
 				return interaction.reply({content:`**The autorole is already disabled.**\n\n:arrow_right_hook: *Send ${prefix}autorole on @YourRole to enable it again!*`})
 			}
@@ -94,7 +94,7 @@ prime: false,
             
 			interaction.reply({content:`
       
-      The autorole is already disabled.**\n\n:arrow_right_hook: *Send ${prefix}autorole on @YourRol to enable it again!*
+      The autorole is already disabled.**
 
       
       
@@ -121,8 +121,7 @@ prime: false,
           
             setTimeout(()=>{
             }, 3000)
-      }}
-
+      }}*/
     
     
   }}
