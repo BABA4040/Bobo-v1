@@ -36,14 +36,14 @@ module.exports = {
         !(moderationPosition > memberPosition)
       ) {
       
-        return interaction.reply({
+        await interaction.reply({
           content: `You can't sanction or update a sanction for a member who has an higher or equal role hierarchy to yours!
     `,
         });
       }
       if (!member.bannable) {
         
-        return interaction.reply({
+      await  interaction.reply({
           content: `An error has occurred... Please check that I have the permission to ban this specific member and try again!`,
         });
       }
@@ -85,14 +85,14 @@ module.exports = {
       )
       .catch(() => null);
 
-    return user
+    await user
       .ban({ reason: `Ban Command: ${ "Unspecified"}` })
     
         interaction.reply({
           content: `Successfully banned **${user.tag}**`,
-        })r) =>h(() =>{
+        }).catch( ()=>
           
           
-          interaction.editReply({ content: `Failed to ban **${user.user.tag}**`})})
+          interaction.editReply({ content: `Failed to ban **${user.user.tag}**`}))
              }
 };
