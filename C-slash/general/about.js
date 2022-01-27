@@ -3,12 +3,9 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Color } = require("../../config.js")
 module.exports = {
 data: new SlashCommandBuilder()
-.setName("")
-.setDescription("")
-.addStringOption(option =>
-option.setName('')
-.setDescription('')
-.setRequired(true)),
+.setName("infobot")
+.setDescription("about bot")
+,
   enabled: true,			    
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		

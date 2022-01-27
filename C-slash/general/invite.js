@@ -3,12 +3,9 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Color } = require("../../config.js")
 module.exports = {
 data: new SlashCommandBuilder()
-.setName("")
-.setDescription("")
-.addStringOption(option =>
-option.setName('')
-.setDescription('')
-.setRequired(true)),
+.setName("invite")
+.setDescription("invite link")
+,
   enabled: true,			    
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
@@ -19,3 +16,13 @@ option.setName('')
 prime: false,
   run: async (interaction,bot,data) => {
 
+let embed = new Discord.MessageEmbed()
+      .setColor(Color)
+      .setTitle("**Bobo Bot**  InviteLink!")
+      .setURL(
+        `https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=260383435985&scope=bot%20applications.commands`
+)
+     
+      
+      interaction.reply({embeds:[embed]})
+      }}
