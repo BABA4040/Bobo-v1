@@ -21,15 +21,13 @@ prime: false,
 
     
     let user = await interaction.options.getString("id")
-let ban = await interaction.guild.bans.fetch(user)
-      
-      
-      if(!ban){ return 
+let ban = await interaction.guild.bans.fetch(user).catch(()=>{return 
                interaction.reply({content:`<This user not found>`})
-              }
+              });
       if(ban){
-        interaction.guild.members.unban(user)
-      }
+        interaction.guild.members.unban(user).catch(()=>{return interaction.reply({content:`User not found`})})
+                                                  
+                                                        
           /// send to log channel
     const channelEmbed = await interaction.guild.channels.cache.get(data.guild.plugins.modlogs)
 
@@ -59,6 +57,6 @@ let ban = await interaction.guild.bans.fetch(user)
                                       
 
   
-      
+      }  
 
   }}
