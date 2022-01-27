@@ -71,7 +71,7 @@ module.exports = {
           console.log(err);
         });
 
-        setTimeout(() => {}, 3000);
+       // setTimeout(() => {}, 3000);
       }
     }
 
@@ -81,7 +81,7 @@ module.exports = {
           interaction.guild.name
         }!\n**Reason**: ${"Unspecified."}`
       )
-      .catch(() => null);
+      .catch((err) => console.log(err.name));
 
     await user.ban({ reason: `Ban Command: ${ "Unspecified"}` })
     
