@@ -53,8 +53,8 @@ let code = interaction.options.getString('code')
       );
 
       guildDB.isPremium = "true";
-      guildDB.premium.redeemedBy.id = interaction.user.id;
-      guildDB.premium.redeemedBy.tag = interaction.user.tag;
+      guildDB.premium.redeemedBy.id = interaction.guild.id;
+      guildDB.premium.redeemedBy.tag = interaction.guild.name;
       guildDB.premium.redeemedAt = Date.now();
       guildDB.premium.expiresAt = premium.expiresAt;
       guildDB.premium.plan = premium.plan;
