@@ -45,36 +45,13 @@ prime: false,
     
 
 
-let user= await interaction.options.getUser('target')
-let member = await interaction.guild.users.fetch(user.id)
-//let nickname = member.user.nickname !== undefined && member.nickname !== null ? member.user.nickname : "None";
-///
-const bots = member.user.bot ? "True" : "False";
-///
-if (member.premiumSince) {
-    boost = "Yes"
-  } else {
-    boost = "No"
-  }
-///
+let member = await interaction.options.getUser('target') || interaction.user
 
-      const userFlags = member.user.flags.toArray();
       const embed = new Discord.MessageEmbed()
       .setColor(Color)
-      .setThumbnail(member.user.displayAvatarURL())
-      .addField("Username", `${member.user.username}`, true)
-      .addField("Discriminator", `${member.user.discriminator}`, true)
-   //   .addField("Nickname", `${nickname}`, true)
-      .addField("User Id", `${member.id}`, true)
-      .addField("Is Bot", `${bots}`, true)
-      .addField("Subscription",`${data.isPremium}`, true)
-      .addField("Plan",`${data.premium.plan || "No have premium"}`, true)
-            
-      .addField("Booster", `${boost}`, true)
-      .addField("Flags", `${userFlags.length ? userFlags.map(flag => flags[flag]).join(', ') : 'None'}`, true)
+      .setThumbnail(member.displayAvatarURL())
       .addField("Join", member.joinedAt.toDateString())
-      .addField("Creation", member.user.createdAt.toDateString())
-      .addField("Roles", `${member.roles.cache.filter(r => r.id !== interaction.guild.id).map(roles => `\`${roles.name}\``).length} Roles: <@&${member._roles.join('> <@&')}>`)
-
+      .addField("Creation", member.createdAt.toDateString())
+  
   interaction.reply({embeds:[embed]})}}
 
