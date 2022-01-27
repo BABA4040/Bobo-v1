@@ -12,7 +12,7 @@ const guild = "850129663896190996";
 module.exports = async (bot) => {
   //////resting slash command
   const commands = [];
-(async()=>{
+bot.once("ready",async()=>{
   try {
     console.log("Started refreshing application (/) commands.");
 

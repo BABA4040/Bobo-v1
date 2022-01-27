@@ -13,7 +13,7 @@ module.exports = {
   enabled: true,
   cooldown: 1000,
   prime: false,
-  run: async (bot, interaction ,data) => {
+  run: async (interaction,bot,data) => {
     
   
     if ("on") {
