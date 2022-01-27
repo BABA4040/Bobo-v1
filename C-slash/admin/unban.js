@@ -26,8 +26,8 @@ let ban = await interaction.guild.bans.fetch(user).catch(()=>{return
               });
       if(ban){
         interaction.guild.members.unban(user).catch(()=>{return interaction.reply({content:`User not found`})})
-                                                  
-                                                        
+             return interaction.reply({content:`User unbanned`})                                     
+                           
           /// send to log channel
     const channelEmbed = await interaction.guild.channels.cache.get(data.guild.plugins.modlogs)
 
@@ -51,12 +51,13 @@ let ban = await interaction.guild.bans.fetch(user).catch(()=>{return
             setTimeout(()=>{
             }, 3000)
       }
+      }else{
+        return interaction.reply({content:`User not found`})
       
-      
-      return interaction.reply({content:`Unbanned this user`})
+    // return interaction.reply({content:`Unbanned this user`})
                                       
-
+      }
   
-      }  
+      }
 
-  }}
+  }
