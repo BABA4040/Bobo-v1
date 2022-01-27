@@ -28,7 +28,7 @@ data: new SlashCommandBuilder()
 .setName("userinfo")
 .setDescription("information user")
 .addUserOption(option =>
-option.setName('targer')
+option.setName('target')
 .setDescription('target any user')
 ),
   enabled: true,			    
@@ -50,8 +50,11 @@ let member = await interaction.options.getUser('target') || interaction.user
       const embed = new Discord.MessageEmbed()
       .setColor(Color)
       .setThumbnail(member.displayAvatarURL())
-      .addField("Join", member.joinedAt.toDateString())
-      .addField("Creation", member.createdAt.toDateString())
+      .addField("Join", member.joinedAt)
+      .addField("Creation", member.createdAt)
   
-  interaction.reply({embeds:[embed]})}}
+  interaction.reply({embeds:[embed]})
+  
+  
+  }}
 
