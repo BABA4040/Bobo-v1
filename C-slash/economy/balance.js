@@ -1,14 +1,15 @@
 const Discord = require("discord.js")
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { Color } = require("../../config.js")
-module.exports = {
+const m = "<:Bobocash:897148836567457862>"
+
+module.exports ={
+
 data: new SlashCommandBuilder()
 .setName("balance")
 .setDescription("show your balance or balance of anyuser")
-.addStringOption(option =>
+.addUserOption(option =>
 option.setName('target')
-.setDescription('tag')
-.setRequired(true)),
+.setDescription('target anyuser to show money')),
   enabled: true,			    
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
@@ -19,18 +20,19 @@ option.setName('target')
 prime: false,
   run: async (interaction,bot,data) => {
 
-    
+    const user = await interaction.options.getUser('target')||interaction.user
+    const member = await interaction.guild.members.fetch(user.id)
     if (member) {
       let autho = await User.findOne({ userID: member.id });
 if(!autho) return interaction.reply({content:`user not have any data`})
       interaction.reply({
         content:`
-          🏦 **${member.username}**, credits balance is __${autho.money.toLocaleString() ||"0"}__ ${m}`
+          🏦 **${member.user.username}**, credits balance is __${autho.money.toLocaleString() ||"0"}__ ${m}`
       });
     }
     if (!member) {
       let author = await User.findOne({ userID: interaction.user.id });
       interaction.reply({
-        content: `🏦 **${message.author.username}**, Your credits balance is:  __\`${author.money.toLocaleString()||"0"}\`__${m}
+        content: `🏦 **${interaction.user.username}**, Your credits balance is:  __\`${author.money.toLocaleString()||"0"}\`__${m}
       `});
     }}}
