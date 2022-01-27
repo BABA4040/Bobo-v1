@@ -77,7 +77,7 @@ module.exports = {
 
     await user
       .send(
-        `**${interaction.author.tag}** banned you from ${
+        `**${interaction.user.tag}** banned you from ${
           interaction.guild.name
         }!\n**Reason**: ${"Unspecified."}`
       )

@@ -3,52 +3,39 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Color } = require("../../config.js")
 module.exports = {
 data: new SlashCommandBuilder()
-.setName("autoroleoff")
-.setDescription("disable autorole")
-  
-.addStringOption(option =>
-option.setName('status')
-.setDescription(' off')
+.setName("unban")
+.setDescription("unabn user")
+.addSteingOption(option =>
+option.setName('id')
+.setDescription('id of user you want unbanned')
 .setRequired(true)),
   enabled: true,			    
-  memberPermissions: [ "SEND_MESSAGES","MANAGE_ROLES"],			
-  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
+  memberPermissions: [ "SEND_MESSAGES","BAN_MEMBERS" ],			
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","BAN_MEMBERS" ],		
   enabled:true,
   category:["admin"],
   ownerOnly: false,			
   cooldown: 10000,
 prime: false,
   run: async (interaction,bot,data) => {
-    let status = await interaction.options.getString('status')
+
     
-
-				if(status === "off"){
-      
-			if(!data.guild.plugins.autorole.enabled){
-				return interaction.reply({content:`**The autorole is already disabled.**`})
-			}
-
-			data.guild.plugins.autorole = {
-				enabled: false,
-				role: null
-			};
-			data.guild.markModified("plugins.autorole");
-			await data.guild.save();
-            
-			interaction.reply({content:`
-      
-      The autorole is already disabled.**
-
+    let user = await interaction.options.getString("id")
+let ban = await interaction.guild.bans.fetch(user)
       
       
-`})
-      
+      if(!ban){ return interaction.reply({content:`<This user not found>`})
+              }
+      if(ban){
+        interaction.guild.members.unban(user)
+      }
+          /// send to log channel
     const channelEmbed = await interaction.guild.channels.cache.get(data.guild.plugins.modlogs)
 
       if(!channelEmbed) return;
     const embed = new Discord.MessageEmbed()
     .setDescription(`:pencil: **Auto role disabled**`)
-    .addField('Moderator Name', interaction.user.tag, true)
+    .addField('Moderator Name',interaction.user.tag), true)
     //.addField('Role Name',role.name, true)
     .setFooter({text:interaction.guild.name})
     .setThumbnail(interaction.guild.iconURL())
@@ -64,10 +51,13 @@ prime: false,
           
             setTimeout(()=>{
             }, 3000)
-      }}
+      }
+      
+      
+      return interaction.reply({content:`Unbanned this user`})
+                                      
 
-    
-    
+  
+      
+
   }}
-
-    

@@ -9,23 +9,23 @@ module.exports = class {
     const command = bot.slash.get(interaction.commandName); //,interaction.options.getSubcommand());
    if (!command) return;
     try {
-      let guild = await Guild.findOne({ guildID: interaction.guildId });
+      let guild = await Guild.findOne({ guildID: interaction.guild.id });
       if (!guild) {
-        Guild.create({ guildID: interaction.guildId });
+        Guild.create({ guildID: interaction.guild.id });
       }
       data.guild = guild;
       ///-------------user data--&------////
 
       let user = await User.findOne({
-        userID: interaction.userId
+        userID: interaction.user.id
       });
       if (!user) {
-        User.create({ userID: interaction.userId });
+        User.create({ userID: interaction.user.id });
       }
       data.user = user;
       //---------------prime data-////////
 
-      let prime = await Prime.findOne({ Guild: interaction.guildId });
+      let prime = await Prime.findOne({ Guild: interaction.guild.id });
       if (prime && prime.log === "enable") return; //message.channel.send(`you don't have Premium version`);
       ///----------- white list--//
 
@@ -36,10 +36,10 @@ module.exports = class {
       ////------black list------/////
 
       const userBlacklistSettings = await Black.findOne({
-        userID: interaction.userId
+        userID: interaction.user.id
       });
       const guildBlacklistSettings = await Black.findOne({
-        Guild: interaction.guildId
+        Guild: interaction.guild.id
       });
 
       if (userBlacklistSettings && userBlacklistSettings.isBlacklisted) {
