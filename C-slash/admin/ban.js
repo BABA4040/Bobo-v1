@@ -7,10 +7,10 @@ module.exports = {
     .setDescription("ban user")
     .addUserOption((option) =>
       option.setName("target").setDescription("Select a user").setRequired(true)
-    )
-    .addStringOption((option) =>
-      option.setName("reason").setDescription("set reason to ban")
     ),
+    /*addStringOption((option) =>
+      option.setName("reason").setDescription("set reason to ban")
+    ),*/
 
   enabled: true,
   memberPermissions: ["SEND_MESSAGES"],
@@ -79,12 +79,12 @@ module.exports = {
       .send(
         `**${interaction.author.tag}** banned you from ${
           interaction.guild.name
-        }!\n**Reason**: ${reason || "Unspecified."}`
+        }!\n**Reason**: ${"Unspecified."}`
       )
       .catch(() => null);
 
     return user
-      .ban({ reason: `Ban Command: ${reason || "Unspecified"}` })
+      .ban({ reason: `Ban Command: ${ "Unspecified"}` })
       .then((_member) =>
         interaction.reply({
           content: `Successfully banned **${_member.user.tag}**`,
