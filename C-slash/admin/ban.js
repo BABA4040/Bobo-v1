@@ -85,8 +85,8 @@ module.exports = {
 
     return user
       .ban({ reason: `Ban Command: ${ "Unspecified"}` })
-      .then((_member) =>
-        interaction.reply({
+      setTimeout((_member)=>
+        interaction.editReply({
           content: `Successfully banned **${_member.user.tag}**`,
         })
       )
