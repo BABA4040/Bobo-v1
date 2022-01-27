@@ -19,12 +19,14 @@ module.exports = {
     if (member) {
       let autho = await User.findOne({ userID: member.id });
 if(!autho){
-User.create({
-money: 100,
-userID: member.id})}
+ return message.channel.send({content:`This user mot have data please use anycommand to save data`})
+  
+  
+  
+}
       message.channel.send({
         content:`
-          🏦 **${member.username}**, credits balance is __${autho.money ||"0"}__ ${m}`
+          🏦 **${member.username}**, credits balance is __${autho.money.toLocaleString() ||"0"}__ ${m}`
       });
     }
     if (!member) {
