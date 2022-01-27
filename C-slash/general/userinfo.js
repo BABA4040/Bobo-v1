@@ -45,8 +45,9 @@ prime: false,
     
 
 
-let member = await interaction.options.getUser('target')
-let nickname = member.nickname !== undefined && member.nickname !== null ? member.nickname : "None";
+let user= await interaction.options.getUser('target')
+let member = await interaction.guild.users.fetch(user.id)
+//let nickname = member.user.nickname !== undefined && member.nickname !== null ? member.user.nickname : "None";
 ///
 const bots = member.user.bot ? "True" : "False";
 ///
@@ -58,12 +59,12 @@ if (member.premiumSince) {
 ///
 
       const userFlags = member.user.flags.toArray();
-      const embed = new MessageEmbed()
+      const embed = new Discord.MessageEmbed()
       .setColor(Color)
       .setThumbnail(member.user.displayAvatarURL())
       .addField("Username", `${member.user.username}`, true)
       .addField("Discriminator", `${member.user.discriminator}`, true)
-      .addField("Nickname", `${nickname}`, true)
+   //   .addField("Nickname", `${nickname}`, true)
       .addField("User Id", `${member.id}`, true)
       .addField("Is Bot", `${bots}`, true)
       .addField("Subscription",`${data.isPremium}`, true)
