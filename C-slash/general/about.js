@@ -30,6 +30,7 @@ prime: false,
         .addField(`**Discord.js Version**`, `${Discord.version}`)
         .addField(`**Ping**`, `${Math.round(bot.ws.ping)}ms`)
         .addField(`**Guilds**`, `${bot.guilds.cache.size}`)
+interaction.reply({embeds:[embed]})
     
 
   }}
