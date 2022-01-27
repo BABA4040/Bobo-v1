@@ -24,7 +24,7 @@ module.exports = {
     // let data = await Guild.findOne({guildID: message.guild.id})
 
     let user = await interaction.options.getUser("target");
-    let reason = await interaction.options.getString("reason");
+   // let reason = await interaction.options.getString("reason");
     const member = await interaction.guild.members
       .fetch(user.id)
       .catch(() => {});
@@ -32,7 +32,7 @@ module.exports = {
       const memberPosition = member.roles.highest.position;
       const moderationPosition = interaction.member.roles.highest.position;
       if (
-        interaction.member.ownerId !== interaction.use&&
+        interaction.member.ownerId !== interaction.user.id&&
         !(moderationPosition > memberPosition)
       ) {
         return interaction.reply({
