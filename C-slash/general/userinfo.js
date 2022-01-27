@@ -17,7 +17,7 @@ const flags = {
 
 
 
-
+const moment = require('moment')
 
 
 const Discord = require("discord.js")
@@ -50,8 +50,8 @@ let member = await interaction.options.getUser('target') || interaction.user
       const embed = new Discord.MessageEmbed()
       .setColor(Color)
       .setThumbnail(member.displayAvatarURL())
-      .addField("Join", member.joinedAt)
-      .addField("Creation", member.createdAt)
+      .addField("Join", moment(member.joinedAt).format('dddd, do MMMM YYYY'))
+      .addField("Creation", moment(member.createdAt).format('dddd, do MMMM YYYY') )
   
   interaction.reply({embeds:[embed]})
   
