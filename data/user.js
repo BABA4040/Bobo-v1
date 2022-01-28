@@ -37,7 +37,7 @@ const schema = mongoose.Schema({
       uses: { type: Number, default: 0 },
     },
 
-    tips: {
+    reps: {
       given: { type: Number, default: 0 },
       received: { type: Number, default: 0 },
       timestamp: { type: Number, default: 0 },
