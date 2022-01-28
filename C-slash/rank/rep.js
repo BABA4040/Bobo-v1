@@ -6,8 +6,8 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Color } = require("../../config.js")
 module.exports = {
 data: new SlashCommandBuilder()
-.setName("")
-.setDescription("")
+.setName("rep")
+.setDescription("rep")
 .addStringOption(option =>
 option.setName('')
 .setDescription('')
@@ -39,7 +39,7 @@ if (tipper.data.reps.timestamp !== 0 && tipper.data.reps.timestamp - now > 0){
     .fetch(user)
 if (!member){
       return interaction.reply({content:`❎ **${interaction.user.tag}**, could not add rep to this user. Reason: User not found!`});
-    } else if (member.bot){
+    } else if (member.user.bot){
       return message.channel.send({content:`❎ **${interaction.user.tag}**, you cannot rep a bot!`});
     };
     
@@ -60,6 +60,19 @@ if (doc.money === null){
       };
 tipper.data.reps.timestamp = now + 432e5;
       tipper.data.reps.given++;
-      doc.data.tips.received++;
+      doc.data.reps.received++;
+    
+    return Promise.all([ doc.save(), tipper.save() ])
+      .then(() => interaction.reply({content:[
+        `\\✅ **${interaction.user.tag}**, repped **${amount}** to **${member.user.tag}**.`,
+        overflow ? `\n\\⚠️ **Overflow Warning**: **${member.user.tag}**'s wallet just overflowed! You need to transfer some of your credits to your bank!` : '',
+        unregistered ? `\n\\⚠️ **Unregistered**: **${member.user.tag}** is unregistered, the bonus credits will not be added.` : ''
+      ].join('')}))
+      .catch(() => interaction.reply({content:`\`❎ [DATABASE_ERR]:\` Unable to save the document to the database, please try again later!`}))
+    
+  
+}
 
-  }}
+    
+
+  }
