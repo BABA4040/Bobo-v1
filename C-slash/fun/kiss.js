@@ -21,4 +21,25 @@ prime: false,
   run: async (interaction,bot,data) => {
 
     
+        try{
+const user = await interaction.options.getUser('your_love')
+  
+
+  
+    const response = await fetch("https://nekos.life/api/v2/img/kiss");
+    const body = await response.json();
+   const embed = new Discord.MessageEmbed() // Prettier
+     
+     .setDescription("So sweeet 😘")
+     .setImage(body.url)
+     .setColor(config.embed.Color)
     
+     .setTimestamp()
+     .setURL(body.url)
+    interaction.reply({embeds:[embed]});
+    }catch (err) {
+     console.log(err)
+    interaction.editReply({content: `Something went wrong...`
+                   
+     })
+    }}}
