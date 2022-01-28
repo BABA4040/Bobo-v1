@@ -1,1 +1,0 @@
-exports.Color = `RED`;

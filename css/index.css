@@ -1,0 +1,146 @@
+.fade-in {
+animation: fadeIn ease 2s;
+-webkit-animation: fadeIn ease 2s;
+-moz-animation: fadeIn ease 2s;
+-o-animation: fadeIn ease 2s;
+-ms-animation: fadeIn ease 2s;
+}
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+@media screen and (min-width: 500px){
+  
+  .button-container {
+margin-left: 220px;
+margin-top: 50px;
+  display: flex;
+
+}
+  
+  .button-container li{
+  list-style: none;
+}
+  
+  .text-page{
+    text-align: center;
+  }
+}
+.fade-in-scroll {
+  opacity: 0;
+}
+.button-container {
+
+  display: flex;
+padding-left: 90px;
+}
+
+.button-container li{
+  list-style: none;
+}
+.button-container li a{
+  display: block;
+  margin: 10px;
+  
+  margin-right: 20px;
+  margin-left: 0px;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  min-width: 100px;
+  text-align: center;
+  background-color: #272928;
+  border-radius: 5px;
+}
+.button-container li a:hover{
+  color: white;
+  background-color: hotpink;
+}/*
+.btn-down{
+  position: absolute;
+ width: 100%;
+ display: none;
+ height:3px;
+ background-color: white;
+  border-radius: 4px;
+}*/
+.btn-down{
+ position: absolute;
+  cursor: pointer;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+*/
+
+.btn-down .nav{
+  height: 3px;
+  width: 100%;
+  display: block;
+  position: fixed;
+  background-color: white;
+ 
+  border-radius: 10px;
+}
+.nav-bar-toggle{
+  
+position: absolute;
+  cursor: pointer;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.nav-bar-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+/***----------all text information-------**/
+.text-page{
+color: white;
+padding-top:30px;
+padding-bottom:300px;
+
+padding-left: 10px;
+/* animation: anime 30s ease-out infinite;*/
+}
+.text-page .text-contet {
+ /* font-size: 30px;*/
+  text-align: center;
+}
+
+.icons .icon{
+  color: white;
+  font-size: 20px;
+}
+

@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+
+
+:root{
+  --white-text: white;
+  --black: #18191C;
+  --red-text: red;
+  --nili:#00031C;
+  --nilitox:#0D0027;
+  
+}
+
+
+
+*{
+ box-sizing: border-box;
+}
+
+body {
+  background-image:  url('../img/background.jpeg');
+  animation: fadein 30s ease-out infinite;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+  font-family: "Quicksand",sans-serif;
+
+}
+
+@keyframes hama{
+ from{ background: gold;
+ right: 10px;
+   
+ }
+ to{
+   background: var(--black);
+   right: 100px;
+ }
+}
+.up-page{
+  position: fixed;
+  display: inline-block;
+  top:0;
+  left:0;
+  width: 40px;
+ height:100%;
+  /*background-color: var(--nav-color);*/
+  
+}
+.up-page .up-link img{
+  width: 40px;
+  height: 40px;
+
+}
+  
+
+
+
+.up-link{
+  position: absolute;
+  display: none;
+  height: 100%;
+  width: 200px;
+ 
+  
+}
+
+.up-link a{
+ 
+  text-decoration: none;
+  
+}
+.up-page .up-link .logo{
+  color: var(--red-text)
+}
+.up-page .up-link span{
+  color:var(--white-text) ;
+ font-size: 20px;
+text-align: center;
+
+line-height: 70px;
+ 
+}
+.up-page .up-link li{
+  
+  list-style: none;
+  
+ }
+ 
+.up-page .up-link li:hover {
+  margin: 10px;
+  margin-right: 20px;
+  margin-left: 0px;
+  padding: 10px;
+  color: white;
+  min-width: 100px;
+  background-color: #272928;
+  border-radius: 5px;
+}
+
+.up-page:hover .up-link{
+  display: block;
+  background-color: var(--black);
+  top:0;
+  left:0;
+}
+/*-+++-+------ banner png*/
+.main-container{
+ 
+  width: 350px;
+  height: 200px;
+
+
+
+}
+.main-container img{
+  width: 150px;
+  height: 150px;
+  align-items: center;
+ margin-left: 30px;
+ border-radius: 40px;
+}
+  /*------text in logo*/
+  .main-container .bobo-text{
+    text-align: left;
+    font-size: 40px;
+    margin-left: 150px;
+    text-shadow: 10px 10px 10px 10px rgba(0,0,0.5);
+    color: var(--white-text);
+    
+  }
+  .main-container .text-title p{
+    color: var(--white-text);
+   display: inline-block;
+    margin-left: 50px;
+    font-size: 16px;
+  }
+  
+  /**----media*-*/
+  @media screen and (min-width: 500px){
+ .main-container{
+   width: 450px;
+ }
+.main-container {
+  margin-left: 10rem;
+  
+}
+.main-container .bobo-text{
+  font-size: 60px;
+}
+.main-container .text-title{
+   margin-left: 3em;
+   display: block;
+   font-size: 30px;
+}
+ 
+
+ 
+ 
+ 
+ 
+     }/*
+     @media screen and(min-heigh: 400px){
+       
+       .main-container .text-title{
+        display: inline-block;
+         margin-left: 300px;
+       }
+       
+       
+       
+       
+       
+       
+       
+     }*/
+     /*---------*/
+    
+    
+    
+    
+  /*---max text*/
+  .banner-png .max-text{
+    display: none;
+  }
+  
+  /*---wave--------*/
+
+.wave-page {
+  width: 100%;
+  height: 100px;
+  
+  
+  background-image: url('../img/wave.png');
+}
+/*------text contet***----*/
+
+@keyframes anime {
+  0% {background-color: var(--nili) ;
+  background-position: 0% 50%;
+  
+  }
+ 50% {background-color: var(--nilitox);
+  background-position: 100% 50%;
+ 
+ }
+  100%{
+   background-color: var(--black);
+   background-position: 0% 50%;
+ }
+}
+
+
+
+
+
+/**-----fadin*/
+@keyframes fadein{
+  0% { background-color:var(--nili);
+  background-position: 0% 50%;
+  }
+  50% {background-color: var(--nilitox);
+  background-position: 100% 50%;
+  }
+  
+  
+ 100%{
+   background-color: var(--black);
+   background-position: 0% 50%;
+ }
+  
+}
+ 
+/*-----belo of wave----*/
+.container{
+  background-color: darkgray;
+}

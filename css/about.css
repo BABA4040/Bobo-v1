@@ -1,0 +1,33 @@
+.container-about{
+  text-align: center;
+  color:white;
+}
+
+.container-about img{
+  width: 40px;
+  height: 40px;
+
+}
+.button-container{
+  
+  display: flex;
+
+}
+.button-container li a{
+  display: block;
+  margin: 10px;
+  
+  margin-right: 20px;
+  margin-left: 0px;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  min-width: 100px;
+  text-align: center;
+  background-color: #272928;
+  border-radius: 5px;
+}
+.button-container li a:hover{
+  color: white;
+  background-color: hotpink;
+}
