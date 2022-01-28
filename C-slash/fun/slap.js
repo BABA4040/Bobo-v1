@@ -4,10 +4,10 @@ const fetch = require("node-fetch")
 module.exports = {
 data: new SlashCommandBuilder()
 .setName("slap")
-.setDescription("slap your")
-.addStringOption(option =>
-option.setName('')
-.setDescription('')),
+.setDescription("slap yourself or user 👋")
+.addUserOption(option =>
+option.setName('target_slap')
+.setDescription('mention someone')),
   enabled: true,			    
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
