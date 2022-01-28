@@ -269,7 +269,7 @@ prime: false,
     ctx.font = "bold 30px sans-serif";
     ctx.fillStyle = "#FFFF";
     ctx.textAlign = "center";
-    ctx.fillText(member.displayName, 150, 350, 280);
+    ctx.fillText(member.username, 150, 350, 280);
     ctx.font = "20px sans-serif";
     ctx.fillText(member.tag, 150, 375, 280);
 
@@ -327,7 +327,7 @@ prime: false,
     ctx.font = "bold 30px sans-serif";
     ctx.fillStyle = color;
     ctx.textAlign = "center";
-    ctx.fillText("♾️", 240, 460, 50);
+    ctx.fillText(currxp, 240, 460, 50);
     ctx.font = "bold 15px sans-serif";
     ctx.textAlign = "center";
     ctx.fillText("XP", 240, 480, 50);
@@ -355,9 +355,10 @@ prime: false,
       ctx.drawImage(hat, 0, 0, 300, 300);
     }
     
-///await interaction.deferReply();
-		await wait(6000);
-return interaction.reply({
+
+await interaction.deferReply().catch(()=>{})
+    await wait(5000)
+await interaction.followUp({
       files: [{ attachment: canvas.toBuffer(), name: "rank.png" }]
     })
   }
