@@ -5,10 +5,10 @@ const { createCanvas, loadImage } = require("canvas");
 const text = require(`${process.cwd()}/util/string.js`);
 const moment = require("moment");
 moment.suppressDeprecationWarnings = true;
-
+const wait = require('util').promisify(setTimeout);
 module.exports = {
 data: new SlashCommandBuilder()
-.setName("porfile")
+.setName("profile")
 .setDescription("show your profile")
 .addUserOption(option =>
 option.setName('target_user')
@@ -354,9 +354,11 @@ prime: false,
       ctx.beginPath();
       ctx.drawImage(hat, 0, 0, 300, 300);
     }
-i
-    interaction.reply({
+    
+///await interaction.deferReply();
+		await wait(6000);
+return interaction.reply({
       files: [{ attachment: canvas.toBuffer(), name: "rank.png" }]
-    });
+    })
   }
 };
