@@ -1,44 +1,38 @@
-const Discord = require("discord.js");
-
+const Discord = require("discord.js")
+const { SlashCommandBuilder } = require("@discordjs/builders");
 const profile = require(`../../data/user.js`);
 const { createCanvas, loadImage } = require("canvas");
 const text = require(`${process.cwd()}/util/string.js`);
 const moment = require("moment");
 moment.suppressDeprecationWarnings = true;
 
-const { Color } = require("../../config.js");
 module.exports = {
-  name: "profile",
-  aliases: ["profile", "p"],
-  enabled: true,
-  memberPermissions: ["SEND_MESSAGES"],
-  botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
-  ownerOnly: false,
-  cooldown: 5000,
-  run: async (bot, message, args, [member = ''], command) => {
-    
-  //  let member = await message.mentions.members.first() || message.author
-    member = member.match(/\d{17,18}/)?.[0] || message.mentions.members.first() || message.member.id;
-    member = await message.guild.members.fetch(member).catch(() => message.member);
-
-    
+data: new SlashCommandBuilder()
+.setName("porfile")
+.setDescription("show your profile")
+.addUserOption(option =>
+option.setName('target_user')
+.setDescription('target user profile')),
+  enabled: true,			    
+  memberPermissions: [ "SEND_MESSAGES" ],			
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
+  enabled:true,
+  category:["general"],
+  ownerOnly: false,			
+  cooldown: 10000,
+prime: false,
+  run: async (interaction,bot,data) => {
+    const member = interaction.options.getUser('target_user')|| interaction.user
+     if(member.bot){
+       return interaction.reply({content:`sir I don't have data in databse please mention user not bot `})
+     }
+    let doc = await User.findOne({ userID: member.id });
    
-
-   //let member = (await message.mentions.members.first()) || message.author;
-    //member = await message.guild.members.fetch(member).catch(() => message.member);
-
-    if(member.bot){
-    ///  bot.commands.cooldowns.get(command.name).users.delete(message.author.id);
-      return message.channel.send({content:`❎ Bots cannot earn XP!`});
-    };
-
-    let doc = await profile.findOne({ userID: member.id });
-   
-    const server_rank = await profile.find({ 'data.xp.id': message.guild.id })
-      .then(docs => Promise.resolve(docs.sort((A,B) => B.data.xp.find(x => x.id === message.guild.id).xp - A.data.xp.find(x => x.id === message.guild.id).xp)))
+    const server_rank = await User.find({ 'data.xp.id': interaction.guild.id })
+      .then(docs => Promise.resolve(docs.sort((A,B) => B.data.xp.find(x => x.id === interaction.guild.id).xp - A.data.xp.find(x => x.id === message.guild.id).xp)))
       .then(sorted => sorted.findIndex(x => x.userID === doc.userID) + 1);
 
-   const server_data = doc.data.xp.find(x => x.id === message.guild.id);
+   const server_data = doc.data.xp.find(x => x.id === interaction.guild.id);
    
   
     
@@ -277,7 +271,7 @@ module.exports = {
     ctx.textAlign = "center";
     ctx.fillText(member.displayName, 150, 350, 280);
     ctx.font = "20px sans-serif";
-    ctx.fillText(member.user.tag, 150, 375, 280);
+    ctx.fillText(member.tag, 150, 375, 280);
 
     // add xp
     ctx.arc(60, 460, 35, 0, Math.PI * 2);
@@ -361,7 +355,7 @@ module.exports = {
       ctx.drawImage(hat, 0, 0, 300, 300);
     }
 
-    message.channel.send({
+    interaction.reply({
       files: [{ attachment: canvas.toBuffer(), name: "rank.png" }]
     });
   }
