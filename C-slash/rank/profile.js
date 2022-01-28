@@ -1,43 +1,53 @@
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const profile = require(`../../data/user.js`);
 const { createCanvas, loadImage } = require("canvas");
 const text = require(`${process.cwd()}/util/string.js`);
 const moment = require("moment");
 moment.suppressDeprecationWarnings = true;
-const wait = require('util').promisify(setTimeout);
+const wait = require("util").promisify(setTimeout);
 module.exports = {
-data: new SlashCommandBuilder()
-.setName("profile")
-.setDescription("show your profile")
-.addUserOption(option =>
-option.setName('target_user')
-.setDescription('target user profile')),
-  enabled: true,			    
-  memberPermissions: [ "SEND_MESSAGES" ],			
-  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
-  enabled:true,
-  category:["general"],
-  ownerOnly: false,			
+  data: new SlashCommandBuilder()
+    .setName("profile")
+    .setDescription("show your profile")
+    .addUserOption((option) =>
+      option.setName("target_user").setDescription("target user profile")
+    ),
+  enabled: true,
+  memberPermissions: ["SEND_MESSAGES"],
+  botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+  enabled: true,
+  category: ["general"],
+  ownerOnly: false,
   cooldown: 10000,
-prime: false,
-  run: async (interaction,bot,data) => {
-    const member = interaction.options.getUser('target_user')|| interaction.user
-     if(member.bot){
-       return interaction.reply({content:`sir I don't have data in databse please mention user not bot `})
-     }
-    let doc = await User.findOne({ userID: member.id });
-   
-    const server_rank = await User.find({ 'data.xp.id': interaction.guild.id })
-      .then(docs => Promise.resolve(docs.sort((A,B) => B.data.xp.find(x => x.id === interaction.guild.id).xp - A.data.xp.find(x => x.id === message.guild.id).xp)))
-      .then(sorted => sorted.findIndex(x => x.userID === doc.userID) + 1);
+  prime: false,
+  run: async (interaction, bot, data) => {
+    const member =
+      interaction.options.getUser("target_user") || interaction.user;
+    if (member.bot) {
+      return interaction.reply({
+        content: `sir I don't have data in databse please mention user not bot `,
+      });
+    }
+    let doc = await User.findOne({ userID: member.id }) || new User({userID: member.id});
 
-   const server_data = doc.data.xp.find(x => x.id === interaction.guild.id);
-   
-  
-    
+    const server_rank = await User.find({ "data.xp.id": interaction.guild.id })
+      .then((docs) =>
+        Promise.resolve(
+          docs.sort(
+            (A, B) =>
+              B.data.xp.find((x) => x.id === interaction.guild.id).xp -
+              A.data.xp.find((x) => x.id === interaction.guild.id).xp
+          )
+        )
+      )
+      .then((sorted) => sorted.findIndex((x) => x.userID === doc.userID) + 1);
+
+    const server_data = doc.data.xp.find((x) => x.id === interaction.guild.id);
+
     const cap = 50 * Math.pow(server_data.level, 2) + 250 * server_data.level;
-    const lowerLim = 50 * Math.pow(server_data.level - 1, 2) + 250 * (server_data.level - 1);
+    const lowerLim =
+      50 * Math.pow(server_data.level - 1, 2) + 250 * (server_data.level - 1);
     const range = cap - lowerLim;
     const currxp = server_data.xp - lowerLim;
     const percentDiff = currxp / range;
@@ -53,14 +63,14 @@ prime: false,
     const def = await loadImage(
       doc.attch.background || "https://i.imgur.com/57eRI6H.jpg"
     );
-    const defpattern = doc.attch.pattern ? await loadImage(doc.attch.pattern || "https://i.imgur.com/nx5qJUb.png"): null;
+    const defpattern = doc.attch.pattern
+      ? await loadImage(doc.attch.pattern || "https://i.imgur.com/nx5qJUb.png")
+      : null;
     ///const m = docawait loadImage(doc.attch.background || "https://i.imuger.com/nx5qJUb.png");
     const avatar = await loadImage(member.displayAvatarURL({ format: "png" }));
-    const badge = doc.data.badge ? await loadImage(doc.data.badge):null;
+    const badge = doc.data.badge ? await loadImage(doc.data.badge) : null;
     // add the wallpaper
     ctx.drawImage(def, 300, 65, 475, 250);
-    
-      
 
     // add the bio card
     ctx.beginPath();
@@ -87,14 +97,14 @@ prime: false,
     ctx.lineTo(310, 358);
     ctx.arcTo(310, 338, 330, 338, 20);
     ctx.lineWidth = 1;
-    
+
     ctx.strokeStyle = "rgba(255,255,255,0.5)";
     ctx.stroke();
 
     // add bio title
     ctx.beginPath();
     ctx.font = "bold 20px sans-serif";
-    ctx.fillStyle = "rgba(255,225,250,255)"
+    ctx.fillStyle = "rgba(255,225,250,255)";
     ctx.fillText("BIO", 330, 345, 50);
 
     // add bio text to bio carrd
@@ -152,7 +162,7 @@ prime: false,
     ctx.font = "18px sans-serif";
     ctx.fillStyle = "rgba(255,255,255,0.8)";
     ctx.fillText(`💴: ${doc.money || "0"}`, 330, 512, 80);
-  ///  ctx.fillText(`🏦: ${doc.bank || "0"}`, 430, 512, 80);
+    ///  ctx.fillText(`🏦: ${doc.bank || "0"}`, 430, 512, 80);
 
     // add emblem indicator
     if (!emblem) {
@@ -196,8 +206,8 @@ prime: false,
     ctx.fillText(doc.data.tips.received, canvas.width - 30, 50, 120);
 
     // reset shadow
-    if(badge){
-   /* ctx.beginPath();
+    if (badge) {
+      /* ctx.beginPath();
     ctx.moveTo(800, 0);
     ctx.lineTo(575, 10);
     ctx.lineTo(600, 80);
@@ -208,46 +218,46 @@ prime: false,
     ctx.shadowOffsetY = 30;
     ctx.fill();*/
 
-    ctx.shadowOffsetY = 0;
-    ctx.beginPath();
-    ctx.font = "bold 30px sans-serif";
-    ctx.fillStyle = "rgba(255,255,255,0.8)";
-    ctx.textAlign = "left";
-    ctx.fillText("BADGE", 400, 50, 50);
+      ctx.shadowOffsetY = 0;
+      ctx.beginPath();
+      ctx.font = "bold 30px sans-serif";
+      ctx.fillStyle = "rgba(255,255,255,0.8)";
+      ctx.textAlign = "left";
+      ctx.fillText("BADGE", 400, 50, 50);
 
-    // write received tips on tip shape
-    ctx.beginPath();
-    ctx.font = "bold 40px sans-serif";
-    ctx.textAlign = "center";
-    ctx.drawImage(badge,450, -30, 150, 130);
+      // write received tips on tip shape
+      ctx.beginPath();
+      ctx.font = "bold 40px sans-serif";
+      ctx.textAlign = "center";
+      ctx.drawImage(badge, 450, -30, 150, 130);
     }
     // add card on left side
     // add pattern inside card
-    if(defpattern){
-    ctx.fillStyle = "rgba(255,255,255,1)";
-    ctx.beginPath();
-    ctx.moveTo(0, 65);
-    ctx.lineTo(0, 535);
-    ctx.arcTo(0, 585, 50, 585, 50);
-    ctx.lineTo(250, 585);
-    ctx.lineTo(300, 585);
-    ctx.arcTo(300, 15, 250, 15, 50);
-    ctx.lineTo(50, 15);
-    ctx.arcTo(0, 15, 0, 65, 50);
-    ctx.stroke();
-    ctx.shadowBlur = 10;
-    ctx.shadowOffsetX = 10;
-    ctx.fill();
-    ctx.save();
-    ctx.clip();
-    ctx.drawImage(defpattern, 0, 0, 300, 600);
-    ctx.restore();
+    if (defpattern) {
+      ctx.fillStyle = "rgba(255,255,255,1)";
+      ctx.beginPath();
+      ctx.moveTo(0, 65);
+      ctx.lineTo(0, 535);
+      ctx.arcTo(0, 585, 50, 585, 50);
+      ctx.lineTo(250, 585);
+      ctx.lineTo(300, 585);
+      ctx.arcTo(300, 15, 250, 15, 50);
+      ctx.lineTo(50, 15);
+      ctx.arcTo(0, 15, 0, 65, 50);
+      ctx.stroke();
+      ctx.shadowBlur = 10;
+      ctx.shadowOffsetX = 10;
+      ctx.fill();
+      ctx.save();
+      ctx.clip();
+      ctx.drawImage(defpattern, 0, 0, 300, 600);
+      ctx.restore();
     }
     // reset shadow
     ctx.shadowOffsetX = 0;
     /////// bashi xwarawai rasmaka dasta chap
 
-  // ctx.drawImage(defpattern, 0, 0, 300, 225);
+    // ctx.drawImage(defpattern, 0, 0, 300, 225);
     // add wavy shape below the pattern
     ctx.beginPath();
     ctx.moveTo(0, 255);
@@ -294,7 +304,7 @@ prime: false,
     ctx.font = "bold 25px sans-serif";
     ctx.fillStyle = "#FFFF";
     ctx.textAlign = "center";
-    ctx.fillText( server_data.level|| "1", 60, 460, 35);
+    ctx.fillText(server_data.level || "1", 60, 460, 35);
     ctx.font = "bold 15px sans-serif";
     ctx.textAlign = "center";
     ctx.fillText("LEVEL", 60, 480, 35);
@@ -354,12 +364,11 @@ prime: false,
       ctx.beginPath();
       ctx.drawImage(hat, 0, 0, 300, 300);
     }
-    
 
-await interaction.deferReply().catch(()=>{})
-    await wait(5000)
-await interaction.followUp({
-      files: [{ attachment: canvas.toBuffer(), name: "rank.png" }]
-    })
-  }
+    await interaction.deferReply();
+    await wait(5000);
+    await interaction.followUp({
+      files: [{ attachment: canvas.toBuffer(), name: "rank.png" }],
+    }).catch(()=>{});
+  },
 };
