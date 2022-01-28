@@ -23,7 +23,7 @@ let tipper = await profile.findOne({userID: user.id})
     };
     const now = Date.now();
 
-   if (tipper.data.tips.timestamp !== 0 && tipper.data.tips.timestamp - now > 0){
+   if (tipper.data.reps.timestamp !== 0 && tipper.data.reps.timestamp - now > 0){
       return message.channel.send({content:`❎ **${message.author.tag}**, you already used your tip. You can wait for ${moment.duration(tipper.data.tips.timestamp - now).format('H [hours,] m [minutes, and] s [seconds]')} to tip someone again.`});
     } else if (!user){
       return message.channel.send({content:`✅ **${message.author.tag}**, you can now tip someone from this server!`});
@@ -57,9 +57,9 @@ let tipper = await profile.findOne({userID: user.id})
         doc.money += amount;
       };
 
-      tipper.data.tips.timestamp = now + 432e5;
-      tipper.data.tips.given++;
-      doc.data.tips.received++;
+      tipper.data.reps.timestamp = now + 432e5;
+      tipper.data.reps.given++;
+      doc.data.reps.received++;
 
       return Promise.all([ doc.save(), tipper.save() ])
       .then(() => message.channel.send({content:[

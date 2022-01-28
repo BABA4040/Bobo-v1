@@ -8,15 +8,15 @@ module.exports = {
 data: new SlashCommandBuilder()
 .setName("rep")
 .setDescription("rep")
-.addStringOption(option =>
-option.setName('')
-.setDescription('')
+.addUserOption(option =>
+option.setName('user')
+.setDescription('taget user 🎯')
 .setRequired(true)),
   enabled: true,			    
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   enabled:true,
-  category:["general"],
+  category:["rank"],
   ownerOnly: false,			
   cooldown: 10000,
 prime: false,
@@ -40,7 +40,7 @@ if (tipper.data.reps.timestamp !== 0 && tipper.data.reps.timestamp - now > 0){
 if (!member){
       return interaction.reply({content:`❎ **${interaction.user.tag}**, could not add rep to this user. Reason: User not found!`});
     } else if (member.user.bot){
-      return message.channel.send({content:`❎ **${interaction.user.tag}**, you cannot rep a bot!`});
+      return interaction.reply({content:`❎ **${interaction.user.tag}**, you cannot rep a bot!`});
     };
     
     let doc = await User.findOne({userID: member.id})
