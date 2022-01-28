@@ -3,37 +3,29 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Color } = require("../../config.js")
 module.exports = {
 data: new SlashCommandBuilder()
-.setName("")
-.setDescription("")
+.setName("setcolor")
+.setDescription("set color off your profile card")
 .addStringOption(option =>
-option.setName('')
-.setDescription('')
+option.setName('hex_code')
+.setDescription('put Hex color')
 .setRequired(true)),
   enabled: true,			    
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   enabled:true,
-  category:["general"],
+  category:["rank"],
   ownerOnly: false,			
   cooldown: 10000,
 prime: false,
   run: async (interaction,bot,data) => {
 
-    let doc = await profile.findOne({userID: message.author.id})
+    
 
-  if (!doc){
-      doc = new profile({ userID: message.author.id });
-    };
+    const hex = await interaction.options.getString('hex_code')
 
-    const hex = args[1]?.match(/[0-9a-f]{6}|default/i)?.[0];
-
-    if (!hex){
-      return message.channel.send({content:`❎ **${message.author.tag}**, please supply a valid HEX for the color. You may go to <https://www.google.com/search?q=color+picker> to get the desired hex. You may type \`default\` to revert the color to default.`});
-    };
-
-    doc.attch.color = hex === 'default' ? null : String('#' + hex);
-     doc.money -= 1000
-    return doc.save()
-    .then(() => message.channel.send({content:`✅ **${message.author.tag}**, your profile color has been updated to **${hex}**! And paided $1000 for change color`}))
-    .catch(() => message.channel.send({content:`❎ **${message.author.tag}**, your profile color update failed!`}));
+    data.user.attch.color = hex === 'default' ? null : String('#' + hex);
+     data.user.money -= 1000
+    return data.user.save()
+    .then(() => interaction.reply({content:`✅ **${interaction.user.tag}**, your profile color has been updated to **${hex}**! And paided $1000 for change color`}))
+    .catch(() => interaction.reply({content:`❎ **${interaction.user.tag}**, your profile color update failed!`}));
   }}
