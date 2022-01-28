@@ -203,6 +203,17 @@ module.exports = {
 
     // reset shadow
     if(badge){
+   /* ctx.beginPath();
+    ctx.moveTo(800, 0);
+    ctx.lineTo(575, 10);
+    ctx.lineTo(600, 80);
+    ctx.lineTo(800, 80);
+    ctx.fillStyle = color;
+    ctx.shadowBlur = 30;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 30;
+    ctx.fill();*/
+
     ctx.shadowOffsetY = 0;
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
