@@ -39,10 +39,8 @@ let tipper = await profile.findOne({userID: user.id})
     };
 
 
-    let doc = await profile.findOne({userID: member.id})
-      if (!doc){
-        doc = new profile.findOne({userID:member.id });
-      };
+    let doc = await profile.findOne({userID: member.id})||new profile.findOne({userID: member.id });
+  
 
       const amount = 1000;
       let overflow = false, excess = null, unregistered = false;
