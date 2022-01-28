@@ -214,7 +214,7 @@ module.exports = {
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
     ctx.textAlign = "right";
-    ctx.drawImage(badge,10, 130, 50, 60, 10, 10, 50, 60);
+    ctx.drawImage(badge,400, -10, 100, 100);
     }
     // add card on left side
     // add pattern inside card

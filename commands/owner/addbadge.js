@@ -17,25 +17,26 @@ module.exports = {
 ///let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
 let user = await message.mentions.users.first() || await bot.users.cache.get(args[1])
 if(!user) return message.channel.send({content:`please mention any one to give badge`})
-    let data= await User.findOneAndUpdate({userID: user.id})
+    let data= await User.findOne({userID: user.id})
 if(user){
 
   let id = args[2];
   if(!Number(id)) return message.channel.send({content:`Id required only number`})
   let badge = badges.find(x => x.id == id)
   
-  const old = data.data.badgeinv.find(x=> x.id=== config.badge.id)
+  const old = data.data.badgeinv.find(x=> x.id===badge.id)
   if(old){ return message.channel.send({content:`this user have badge`})
+         }
   if(!old){
   data.data.badgeinv.push({
     id: badge.id,
     type: badge.type,
-    link: badge.link
+    link: badge.assets.link
   
   })
-           return data.save()
+    data.save()
           return message.channel.send({content:` pushed to user`})
            
   
   
-}}}}}
+}}}}
