@@ -32,7 +32,7 @@ module.exports = {
       return message.channel.send({content:`❎ Bots cannot earn XP!`});
     };
 
-    let doc = await profile.findOneAndUpdate({ userID: member.id });
+    let doc = await profile.findOne({ userID: member.id });
    
     const server_rank = await profile.find({ 'data.xp.id': message.guild.id })
       .then(docs => Promise.resolve(docs.sort((A,B) => B.data.xp.find(x => x.id === message.guild.id).xp - A.data.xp.find(x => x.id === message.guild.id).xp)))
@@ -42,9 +42,8 @@ module.exports = {
    
   
     
-    const cap = (50 * Math.pow(server_data.level,2)) + (250 * server_data.level);
-      const lowerLim = (50 * Math.pow(server_data.level-1,2)) + (250 * (server_data.level-1));
-
+    const cap = 50 * Math.pow(server_data.level, 2) + 250 * server_data.level;
+    const lowerLim = 50 * Math.pow(server_data.level - 1, 2) + 250 * (server_data.level - 1);
     const range = cap - lowerLim;
     const currxp = server_data.xp - lowerLim;
     const percentDiff = currxp / range;
@@ -57,7 +56,6 @@ module.exports = {
     const hat = doc.attch.hat ? await loadImage(doc.attch.hat) : null;
     const emblem = doc.attch.emblem ? await loadImage(doc.attch.emblem) : null;
     const wreath = doc.attch.wreath ? await loadImage(doc.attch.wreath) : null;
-    const badge = doc.data.badge ? await loadImage(doc.data.badge):null;
     const def = await loadImage(
       doc.attch.background || "https://i.imgur.com/57eRI6H.jpg"
     );
@@ -177,9 +175,8 @@ module.exports = {
       ctx.beginPath();
       ctx.drawImage(emblem, 580, 400, 160, 160);
     }
-  
-    // add the tip shape/*
-    /*
+
+    // add the tip shape
     ctx.beginPath();
     ctx.moveTo(800, 10);
     ctx.lineTo(575, 10);
@@ -189,23 +186,8 @@ module.exports = {
     ctx.shadowBlur = 30;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 30;
-    ctx.fill();*/
-/////write badge
-    if(badge){
-    ctx.beginPath();
-    ctx.font = "bold 30px sans-serif";
-    ctx.fillStyle ="rgba(255,255,255,0.8)";
-    ctx.textAlign = "left";
-    ctx.fillText("BADGE",410,50,50)
-////////
-    
-    
-    ctx.beginPath();
-    ctx.font = "bold 30px sans-serif";
-    ctx.textAlign="right";
-    ctx.drawImage(badge, 450, -15,120, 100);
-    ctx.restore();}
-    
+    ctx.fill();
+
     // write tip on tip shape
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
@@ -221,8 +203,18 @@ module.exports = {
 
     // reset shadow
     ctx.shadowOffsetY = 0;
+    ctx.beginPath();
+    ctx.font = "bold 30px sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
+    ctx.textAlign = "left";
+    ctx.fillText("REP", 610, 50, 50);
 
-    
+    // write received tips on tip shape
+    ctx.beginPath();
+    ctx.font = "bold 30px sans-serif";
+    ctx.textAlign = "right";
+    ctx.drawImage(doc.data.badge,);
+
     // add card on left side
     // add pattern inside card
     if(defpattern){
@@ -329,7 +321,7 @@ module.exports = {
     ctx.font = "bold 30px sans-serif";
     ctx.fillStyle = color;
     ctx.textAlign = "center";
-    ctx.fillText(currxp, 240, 460, 50);
+    ctx.fillText("♾️", 240, 460, 50);
     ctx.font = "bold 15px sans-serif";
     ctx.textAlign = "center";
     ctx.fillText("XP", 240, 480, 50);
