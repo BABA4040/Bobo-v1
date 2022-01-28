@@ -51,7 +51,7 @@ prime: false,
       return interaction.reply({embeds:[
         new Discord.MessageEmbed()
         .setColor(config.embed.Color)
-        .setFooter(`XP Leaderboard | \©️${new Date().getFullYear()} Bobo`)
+        .setFooter({text:`XP Leaderboard | \©️${new Date().getFullYear()} Bobo`})
         .setAuthor(`🏆 ${interaction.guild.name} Leaderboard`, interaction.guild.iconURL({format: 'png', dynamic: true }) || null)
         .addField(`**${members.get(docs[0].id)?.displayName || '<Unknown User>'}** ranked the highest with **${text.commatize(docs[0].data.xp)}**XP!`,
         [
