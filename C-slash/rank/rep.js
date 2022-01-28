@@ -12,7 +12,7 @@ data: new SlashCommandBuilder()
 option.setName('user')
 .setDescription('taget user 🎯')
 .setRequired(true)),
-  enabled: true,			    
+  enabled: false,			    
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   enabled:true,

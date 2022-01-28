@@ -6,7 +6,7 @@ const { Color } = require("../../config.js")
 module.exports = {
   name: "tip",
   aliases: ["tip"],
-  enabled: true,
+  enabled: false,
  description: ["Tip any one you  want "],			    
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
@@ -39,7 +39,7 @@ let tipper = await profile.findOne({userID: user.id})
     };
 
 
-    let doc = await profile.findOne({userID: member.id})||new profile.findOne({userID: member.id });
+    let doc = await profile.findOne({userID: user.id}) ||new profile.findOne({userID: user.id });
   
 
       const amount = 1000;
