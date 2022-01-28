@@ -5,9 +5,10 @@ module.exports = {
 data: new SlashCommandBuilder()
 .setName("marry")
 .setDescription("marry with your girlfriend")
-.addStringOption(option =>
+.addUserOption(option =>
 option.setName('target_user')
-.setDescription('target your girlfriend')),
+.setDescription('target your girlfriend')
+.setRequired(true)),
   enabled: true,			    
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
@@ -58,7 +59,107 @@ for (const requester in pendings) {
           content: `🌀 You must waiting to accept Your Request 
 			 ${user.tag}`
         })
-    
+    } else if (requester === member.id) {
+        // If the asked member has sent pending request
+        const user =
+          bot.users.cache.get(receiver) || (await bot.users.fetch(receiver));
+        return interaction.reply({
+          content: `Your request has been sent to user  ${member.user.tag} to ${user.tag}`
+        });
+      } else if (receiver === member.id) {
+        // If there is a pending request for the asked member
+        const user =
+          bot.users.cache.get(requester) || (await bot.users.fetch(requester));
+        return interaction.reply({
+          content: `  ${member.user.tag} pending request ${user.tag}`
+        });
+      }
+    }
+    // Update pending requests
+    pendings[interaction.user.id] = member.id;
+
+    interaction.reply({
+      content: ` Request marry from: ${interaction.user.tag} to: ${member.user.toSteing()} if you agree please type: **\`yes\`** if your disagree type: **\`no\`**`
+    });
+
+    const collector = new Discord.MessageCollector(
+      interaction.channel,
+      m => m.author.id === member.id,
+      {
+        time: 120000
+      }
+    );
+    collector.on("collect", msg => {
+      ///if(msg.content.toLowerCase() === message.content.startsWith("yes"){
+      if (msg.content.startsWith("yes", "Yes", "YES")) {
+        return collector.stop(true);
+      }
+      //	if(msg.content.toLowerCase() === message.content.startsWith("no")){
+      if (msg.content.startsWith("no", "No", "NO")) {
+        return collector.stop(false);
+      }
+      if (!msg.content.startsWith("")) {
+        return interaction.reply({
+          content: `❎ Invalid answer Only Type: Yes Or No`
+        });
+      }
+    });
+    collector.on("end", async (_collected, reason) => {
+      // Delete pending request
+      delete pendings[interaction.user.id];
+      if (reason === "time") {
+        return interaction.reply({
+          content: `❎ Marry request time has been ended  
+				 ${member.user.toString()}`
+        });
+      }
+      if (reason) {
+        data.lover = member.id;
+        await data.save();
+        userData.lover = interaction.user.id;
+        await userData.save();
+        const messageOptions = {
+          content: `${member.toString()} :heart: ${message.author.toString()}`,
+          files: [
+            {
+              name: "unlocked.png",
+              attachment:
+                "https://media.discordapp.net/attachments/850135031015538748/894182688490127420/achievement3.png"
+            }
+          ]
+        };
+                let sent = false;
+        if (!userData.achievements.married.achieved) {
+          interaction.reply(messageOptions);
+          sent = true;
+          userData.achievements.married.achieved = true;
+          userData.achievements.married.progress.now = 1;
+          userData.markModified("achievements.married");
+          userData.save();
+        }
+        if (!userData.achievements.married.achieved) {
+          if (!sent) interaction.editReply({ content: messageOptions });
+          data.userData.achievements.married.achieved = true;
+          data.userData.achievements.married.progress.now = 1;
+          data.userData.markModified("achievements.married");
+          data.userData.save();
+        }
+        return interaction.reply({
+          content: ` Congratulations🎉💏
+			 ${interaction.user.tag}
+				and ${member.user.tag}`
+        });
+      } else {
+        return interaction.editreply({
+          content: `Sorry 😑 Your request has been denied  
+					creator: ${interaction.user.tag}
+					partner: ${member.user.tag}`
+        });
+      }
+    });
+
+
+
     
     
     
