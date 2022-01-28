@@ -4,6 +4,7 @@
   "description": "-- AWESOMENESS --",
   "main": "server.js",
   "scripts": {
+    "start":"npm start",
     "start": "node server.js"
   },
   "dependencies": {
