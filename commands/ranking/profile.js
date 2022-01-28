@@ -213,8 +213,8 @@ module.exports = {
     // write received tips on tip shape
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
-    ctx.textAlign = "right";
-    ctx.drawImage(badge,400, -10, 100, 100);
+    ctx.textAlign = "center";
+    ctx.drawImage(badge,450, -30, 150, 130);
     }
     // add card on left side
     // add pattern inside card
