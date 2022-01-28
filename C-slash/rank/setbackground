@@ -1,0 +1,49 @@
+const Discord = require("discord.js")
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { Color } = require("../../config.js")
+module.exports = {
+data: new SlashCommandBuilder()
+.setName("")
+.setDescription("")
+.addStringOption(option =>
+option.setName('')
+.setDescription('')
+.setRequired(true)),
+  enabled: true,			    
+  memberPermissions: [ "SEND_MESSAGES" ],			
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
+  enabled:true,
+  category:["general"],
+  ownerOnly: false,			
+  cooldown: 10000,
+prime: false,
+  run: async (interaction,bot,data) => {
+
+     let data = await User.findOne({userID:interaction.user.id})
+
+
+        let newBg = message.attachments.first()
+        let fetchBg = data.attch.background
+        if (!newBg) {
+            if (fetchBg) {
+                return message.channel.send({content:`🤨 **Profile Background Already Set As - \`${fetchBg}\`**`})
+            } else {
+                return message.channel.send({content:"❎ **You Need To Upload The Image To Set New Background!**"})
+            }
+        }
+
+    await User.updateOne({
+      userID: interaction.user.id},
+                         {
+      data:{
+        attch:{
+          $set:{
+            background:newBg.url
+          }}}},)
+      
+        
+      
+      
+
+    interaction.reply({content:`changed background`})
+    
