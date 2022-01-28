@@ -35,7 +35,7 @@ prime: false,
       });
     }
     
-if (member.user.bot) {
+if (member.bot) {
       return interaction.reply({ content: `❎ You can't Marry With Me` });
     }
 if (member.id === interaction.user.id) {
@@ -71,7 +71,7 @@ for (const requester in pendings) {
         const user =
           bot.users.cache.get(requester) || (await bot.users.fetch(requester));
         return interaction.reply({
-          content: `  ${member.user.tag} pending request ${user.tag}`
+          content: `  ${member.tag} pending request ${user.tag}`
         });
       }
     }
@@ -79,7 +79,7 @@ for (const requester in pendings) {
     pendings[interaction.user.id] = member.id;
 
     interaction.reply({
-      content: ` Request marry from: ${interaction.user.tag} to: ${member.user.toSteing()} if you agree please type: **\`yes\`** if your disagree type: **\`no\`**`
+      content: ` Request marry from: ${interaction.user.tag} to: ${member.toString()} if you agree please type: **\`yes\`** if your disagree type: **\`no\`**`
     });
 
     const collector = new Discord.MessageCollector(
@@ -110,16 +110,16 @@ for (const requester in pendings) {
       if (reason === "time") {
         return interaction.reply({
           content: `❎ Marry request time has been ended  
-				 ${member.user.toString()}`
+				 ${member.toString()}`
         });
       }
       if (reason) {
-        data.lover = member.id;
-        await data.save();
+        data.guild.lover = member.id;
+        await data.guild.save();
         userData.lover = interaction.user.id;
         await userData.save();
         const messageOptions = {
-          content: `${member.toString()} :heart: ${message.author.toString()}`,
+          content: `${member.toString()} :heart: ${interaction.user.tag}`,
           files: [
             {
               name: "unlocked.png",
@@ -130,7 +130,7 @@ for (const requester in pendings) {
         };
                 let sent = false;
         if (!userData.achievements.married.achieved) {
-          interaction.reply(messageOptions);
+          interaction.eply(messageOptions);
           sent = true;
           userData.achievements.married.achieved = true;
           userData.achievements.married.progress.now = 1;
@@ -139,21 +139,21 @@ for (const requester in pendings) {
         }
         if (!userData.achievements.married.achieved) {
           if (!sent) interaction.editReply({ content: messageOptions });
-          data.userData.achievements.married.achieved = true;
-          data.userData.achievements.married.progress.now = 1;
-          data.userData.markModified("achievements.married");
-          data.userData.save();
+          userData.achievements.married.achieved = true;
+          userData.achievements.married.progress.now = 1;
+          userData.markModified("achievements.married");
+          userData.save();
         }
         return interaction.reply({
           content: ` Congratulations🎉💏
 			 ${interaction.user.tag}
-				and ${member.user.tag}`
+				and ${member.tag}`
         });
       } else {
         return interaction.editreply({
           content: `Sorry 😑 Your request has been denied  
 					creator: ${interaction.user.tag}
-					partner: ${member.user.tag}`
+					partner: ${member.tag}`
         });
       }
     });
