@@ -30,7 +30,6 @@ const cmd = require("node-cmd");
 const { I18n } = require("locale-parser");
 bot.reva = new I18n({ defaultLocale: "en" });
 
-
 global.mongoose = require("mongoose");
 
 mongoose
