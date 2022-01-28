@@ -354,7 +354,7 @@ prime: false,
       ctx.beginPath();
       ctx.drawImage(hat, 0, 0, 300, 300);
     }
-
+i
     interaction.reply({
       files: [{ attachment: canvas.toBuffer(), name: "rank.png" }]
     });
