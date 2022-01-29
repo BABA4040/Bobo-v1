@@ -85,7 +85,7 @@ module.exports = {
             `**Congratulations!**\n\n**${message.guild.name}** Is now a premium guild! Thanks a ton!\n\nIf you have any questions please contact me [here](r)\n\n**Could not send your Reciept via dms so here it is:**\n**Reciept ID:** ${ID}\n**Redeem Date:** ${DDate}\n**Guild Name:** ${message.guild.name}\n**Guild ID:** ${message.guild.id}\n\n**Please make sure to keep this information safe, you might need it if you ever wanna refund / transfer servers.**\n\n**Expires At:** ${expires}`
           )
           .setColor("RANDOM")
-          .setFooter(message.guild.name);
+          .setFooter({text:message.guild.name});
         return message.channel.send({ embeds: [embed] });
 
       
@@ -96,7 +96,7 @@ module.exports = {
           `**Congratulations!**\n\n**${message.author.username}** Is now a premium User! Thanks a ton!\n\nIf you have any questions please contact me [here](https://discord.gg/rjhPpahNNR)\n**your receipt has been sent via dms**\n\n**Expires At:** ${expires}`
         )
         .setColor("RANDOM")
-        .setFooter(message.guild.name);
+        .setFooter({text:message.guild.name});
      return message.channel.send({ embeds: [embed2] });
     
       
