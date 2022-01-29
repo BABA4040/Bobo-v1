@@ -202,6 +202,7 @@ module.exports = {
     ctx.fillText(doc.data.reps.received, canvas.width - 30, 50, 120);
 
     // reset shadow
+ctx.shadowOffsetY = 0;
     if(badge){
    /* ctx.beginPath();
     ctx.moveTo(800, 0);
