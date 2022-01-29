@@ -21,10 +21,10 @@ module.exports = {
 
     const pages = new Pages(_.chunk(doc.inventory, 25).map((chunk, i, o) => {
       return new MessageEmbed()
-      .setColor('GREY')
+      .setColor(config.embed.Color)
       .setTitle(`${message.author.tag}'s Inventory`)
       .setDescription('[ WIP ]')
-      .setFooter(`Market | \©️${new Date().getFullYear()} Bobo\u2000\u2000•\u2000\u2000Page ${i+1} of ${o.length}`)
+      .setFooter({text:`Market | \©️${new Date().getFullYear()} Bobo\u2000\u2000•\u2000\u2000Page ${i+1} of ${o.length}`})
       .addFields(...chunk.sort((A,B) => A.id - B.id ).map(d => {
         const item = market.find(x => x.id == d.id);
         return {
