@@ -67,7 +67,7 @@ const collector = message.channel.createMessageCollector({filter:
           data.markModified("plugins.welcome");
           await data.save();
           message.channel.send({
-            content: `*Alright, done!**\n\n:arrow_right_hook: *Answer by sending ${prefix}welcome test to preview your custom welcome message!* <#${welcome.channel}>`,
+            content: `*Alright, done!**\n\n:arrow_right_hook: *Answer by sending welcome test to preview your custom welcome message!* <#${welcome.channel}>`,
           });
         
         return collector.stop();
@@ -98,7 +98,7 @@ const collector = message.channel.createMessageCollector({filter:
           }
           welcome.channel = channel.id;
           message.channel.send({
-            content: `"**Please enter your desired welcome message.**\n\n**If you want to:**\n*-* __Mention the user__: {user}\n*-* __Get the member count__: {membercount}\n*-* __Get the server name__: {server}\n\n**Usage example:**\nWelcome to {server}, {user}! We are now {membercount}!\n:fast_forward:\nWelcome to {{guildName}}, {{author}}! We are now {{memberCount}}!"`,
+            content: `"**Please enter your desired welcome message.**\n\n**If you want to:**\n*-* __Mention the user__: {user}\n*-* __Get the member count__: {membercount}\n*-* __Get the server name__: {server}\n\n**Usage example:**\nWelcome to {server}, {user}! We are now {membercount}!\n:fast_forward:\nWelcome to ${message.guild.namw}, ${message.author.toString}! We are now ${message.guild.memberCount}!"`,
           });
         }
       });
