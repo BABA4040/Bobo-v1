@@ -8,7 +8,7 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 
 const rest = new REST({ version: "9" }).setToken(config.token);
-const guild = "850129663896190996";
+const guild = false;
 module.exports = async (bot) => {
   //////resting slash command
   const commands = [];
