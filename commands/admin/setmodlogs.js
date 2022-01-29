@@ -12,11 +12,11 @@ module.exports = {
   cooldown: 6000,
   run: async (bot, message, args, dev,data) => {
 const areModLogsEnabled = Boolean(data.guild.plugins.modlogs);
-		const sentChannel = await Resolvers.resolveChannel({
+		const sentChannel =await message.mentions.channels.first(); /*await Resolvers.resolveChannel({
 			message,
 			search: args.join(" "),
 			channelType: "GUILD_TEXT"
-		});
+		});*/
 
 		if (!sentChannel && areModLogsEnabled) {
 			data.guild.plugins.modlogs = null;
