@@ -203,7 +203,7 @@ module.exports = {
     ctx.beginPath();
     ctx.font = "bold 30px sans-serif";
     ctx.textAlign = "right";
-    ctx.fillText(doc.data.tips.received, canvas.width - 30, 50, 120);
+    ctx.fillText(doc.data.reps.received, canvas.width - 30, 50, 120);
 
     // reset shadow
     if (badge) {
