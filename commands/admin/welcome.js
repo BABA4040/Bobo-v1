@@ -13,7 +13,7 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_CHANNELS"],
   ownerOnly: false,
   cooldown: 6000,
-  run: async (bot, message, args, dev, prefix) => {
+  run: async (bot, message, args, prefix) => {
     let data = await Guild.findOneAndUpdate({ guildID: message.guild.id });
 
     if (args[1] === "test" && data.plugins.welcome.enabled) {
