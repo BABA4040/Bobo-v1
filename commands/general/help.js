@@ -3,7 +3,7 @@ module.exports = {
   name: "help",
   aliases: ["h"],
   enabled: true,            
-  memberPermissions: [ "ADMINISTRATOR" ],            
+  memberPermissions: [ "SEND_MESSAGES" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
   cooldown: 10000,
@@ -12,7 +12,7 @@ module.exports = {
 let embed = new Discord.MessageEmbed()
       .setColor("RED")
       .setDescription(`a game bot for spending time and enjoying[ Invite ](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=260383435985&scope=bot%20applications.commands) - [ Support ](https://discord.gg/rjhPpahNNR)`)
-      .addField ("Admin || ⚠️","`prefix`, `xp`,`welcome`,`goodbye`,`setmodlogs`,`ban`,`kick`,`unban`,`unbanall`,`lock`,`unlock`,`lockdown`,`xpreset`,`resetroles`,`setxpch`,")
+      .addField ("Admin || ⚠️","`prefix`, `xp`,`welcome`,`goodbye`,`setmodlogs`,`ban`,`kick`,`unban`,`unbanall`,`lock`,`unlock`,`lockdown`,`xpreset`,`resetroles`,`setxpch`,`autorole`,")
       .addField("General || 🌎","`news`, `about`,  `invite`, `serverinfo`, `userinfo`, `ping`, `bots`,`redeem`")  
       .addField("Economy || 💶","`daily`, `balance`, `give`, `birthday`")
       .addField("Game ||  🎮"," `coinflip`, `slots`")
