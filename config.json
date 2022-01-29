@@ -5,7 +5,8 @@
   "mongoURL": "mongodb+srv://hama1234:hama1234++@cluster0.8zckc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   "channels":{
   "logChannel":"936779017854529608",
-    "debug":"936779554226335784"
+    "debug":"936779554226335784",
+"invite":"https://discord.com/api/oauth2/authorize?client_id=920410356034179082&permissions=8&scope=bot%20applications.commands"
   
     
   },
