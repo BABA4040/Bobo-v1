@@ -12,7 +12,7 @@ module.exports = {
 let embed = new Discord.MessageEmbed()
       .setColor("RED")
       .setDescription(`a game bot for spending time and enjoying[ Invite ](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=260383435985&scope=bot%20applications.commands) - [ Support ](https://discord.gg/rjhPpahNNR)`)
-      .addField ("Admin || ⚠️","`prefix`, `xp`,`welcome`,`goodbye`,`setmodlogs`,`ban`,`kick`,`unban`,`unbanall`,`lock`,`unlock`,`lockdown`,`resetxp`,`resetroles`,")
+      .addField ("Admin || ⚠️","`prefix`, `xp`,`welcome`,`goodbye`,`setmodlogs`,`ban`,`kick`,`unban`,`unbanall`,`lock`,`unlock`,`lockdown`,`xpreset`,`resetroles`,`setxpch`,")
       .addField("General || 🌎","`news`, `about`,  `invite`, `serverinfo`, `userinfo`, `ping`, `bots`,`redeem`")  
       .addField("Economy || 💶","`daily`, `balance`, `give`, `birthday`")
       .addField("Game ||  🎮"," `coinflip`, `slots`")
