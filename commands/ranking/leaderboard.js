@@ -38,7 +38,7 @@ module.exports = {
             'Users in this server have not started earning XP yet!\n',
             '[loading]() about Bobo\'s XP System.'
           ].join('\n'))
-          .setAuthor('No XP','https://cdn.discordapp.com/emojis/767062250279927818.png?v=1')
+          .setAuthor({text:'No XP','https://cdn.discordapp.com/emojis/767062250279927818.png?v=1'})
         ]});
       };
 
@@ -50,7 +50,7 @@ module.exports = {
         new Discord.MessageEmbed()
         .setColor(config.embed.Color)
         .setFooter(`XP Leaderboard | \©️${new Date().getFullYear()} Bobo`)
-        .setAuthor(`🏆 ${message.guild.name} Leaderboard`, message.guild.iconURL({format: 'png', dynamic: true }) || null)
+        .setAuthor({text:`🏆 ${message.guild.name} Leaderboard`,} message.guild.iconURL({format: 'png', dynamic: true }) || null)
         .addField(`**${members.get(docs[0].id)?.displayName || '<Unknown User>'}** ranked the highest with **${text.commatize(docs[0].data.xp)}**XP!`,
         [
           '```properties',
