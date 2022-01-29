@@ -25,7 +25,7 @@ let embed = new Discord.MessageEmbed()
       .setTitle(`Bobo News`)
     .setDescription(`***__Date Published__ ${moment(guild.time).format("dddd, MMMM Do YYYY")}*** \n**__[\`${moment(guild.time).fromNow()}\`]__**\n\n ${guild.news}`)
   
-      .setFooter('Bobot Teams')
+      .setFooter({text:config.footer})
       .setTimestamp();
 
       message.channel.send({embeds:[embed]}).catch(() => {
