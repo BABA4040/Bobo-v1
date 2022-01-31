@@ -22,7 +22,7 @@ module.exports = class {
     const guildData = await Guild.findOneAndUpdate({
       guildID: member.guild.id,
     });
-if(guildData) return;
+if(!guildData) return;
     member.guild.data = guildData;
 
     // Check if goodbye message is enabled
