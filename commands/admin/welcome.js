@@ -44,8 +44,8 @@ module.exports = {
     
       
      const user = _message => message.author.id === _message.author.id && ['y','n','yes','no'].includes(_message.content.toLowerCase());
-const collector = message.channel.createMessageCollector({filter:
-				m => m.author.id === message.author.id,
+const collector = message.channel.createMessageCollector({filter:user,
+				//m => m.author.id === message.author.id,
 				
 					time: 120000 // 2 minutes
 				
