@@ -29,7 +29,7 @@ module.exports = class {
 
 		const guildData = await Guild.findOne({ guildID: member.guild.id });
 		member.guild.data = guildData;
-   if(guildData) return;
+   if(!guildData) return;
 
 		/*const memberData = await Guild.findOrCreateMember({ id: member.id, guildID: member.guild.id });
 		if(memberData.mute.muted && memberData.mute.endDate > Date.now()){
