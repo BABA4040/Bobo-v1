@@ -1,28 +1,28 @@
 {
-  "token":"",
-  "clientID": "",
-  "prefix": "",
-  "mongoURL": "",,
+  "token":"OTIwNDEwMzU2MDM0MTc5MDgy.Ybj88Q.ddNk03S5oBP3McxxZaO7Nftqz-s",
+  "clientID": "920410356034179082",
+  "prefix": "Bo",
+  "mongoURL": "mongodb+srv://hama1234:hama1234+@cluster0.8zckc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   "channels":{
-  "logChannel":"",
-    "debug":"",
-"invite":""
+  "logChannel":"927472619123523594",
+    "debug":"930818872209207368"},
+
   
     
-  },
+  
   "badge":{
     
-    "invite":"",
+    "invite":"https://media.discordapp.net/attachments/934034173780455454/934036587673698354/images.jpeg",
     "game":"",
-    "lover":"
+    "lover":"https://media.discordapp.net/attachments/934034173780455454/934043059161792612/PicsArt_01-21-02.13.07.png"
   },
-  "support":"",
+  "support":"https://discord.gg/CuF4yKM9K7",
   "embed":{
-  "Color",
+  "Color":"#00B7BE",
   "footer":"BoBo Team"},
   "webhook":{
-    "id":"",
-     "token":""
+    "id":"898151785783508993",
+     "token":"pNBxD74wVmXvUTdgG5KmEEA_lfrXxorLOZzA96KJ9EY6FDqJd0fOPUrlfPNEXjOI0ag3"
   }
   
   
