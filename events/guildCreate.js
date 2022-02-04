@@ -30,12 +30,12 @@ module.exports = class {
 		guildOwner.send({embeds:[thanksEmbed]}).catch((err) => {console.log(err)});
 
 		const text = "Join **"+guild.name+"**, member count **"+guild.members.cache.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.cache.filter((m) => m.user.bot).size+" bots)";
-
+/*
 		// Sends log embed in the logs channel
 		const logsEmbed = new Discord.MessageEmbed()
 			.setAuthor(guild.name, guild.iconURL())
 			.setColor("#32CD32")
 			.setDescription(text);
-	bot.channels.cache.get(config.channels.logChannel).send({embeds:[logsEmbed]});
+	bot.channels.cache.get(config.channels.logChannel).send({embeds:[logsEmbed]});*/
         
 	}}
