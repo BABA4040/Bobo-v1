@@ -43,7 +43,7 @@ module.exports = {
       message.channel.send({content:`${message.author.toString()}, In which channel will welcome messages be sent?**\n\n:arrow_right_hook: *Answer by mentioning a channel!*`})
     
       
-     const user = _message => message.author.id === _message.author.id && ['y','n','yes','no'].includes(_message.content.toLowerCase());
+     const user =( _message => message.author.id === _message.author.id);/// && ['y','n','yes','no'].includes(_message.content.toLowerCase());
 const collector = message.channel.createMessageCollector({filter:user,
 				//m => m.author.id === message.author.id,
 				
