@@ -31,7 +31,7 @@ module.exports = {
       };
       data.markModified("plugins.welcome");
       data.save();
-      return data.plugins.channel.send({ content: `Welcome system disabled` });
+      return message.channel.send({ content: `Welcome system disabled` });
     } else {
       
       const welcome = {
