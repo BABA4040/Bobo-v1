@@ -87,10 +87,10 @@ const collector = message.channel.createMessageCollector({filter:user,
 
         // If the channel is not filled, it means the user sent it
         if (!welcome.channel) {
-          const channel = await Resolvers.resolveChannel({
+          const channel = await message.mentions.channels.first(); /*Resolvers.resolveChannel({
 						message: msg,
 						channelType: "GUILD_TEXT"
-					});
+					});*/
           if (!channel) {
             return message.channel.send({
               content: `Please specify a valid channel!`,
