@@ -98,7 +98,7 @@ const collector = message.channel.createMessageCollector({filter:user,
           }
           welcome.channel = channel.id;
           message.channel.send({
-            content: `"**Please enter your desired welcome message.**\n\n**If you want to:**\n*-* __Mention the user__: {user}\n*-* __Get the member count__: {membercount}\n*-* __Get the server name__: {server}\n\n**Usage example:**\n${msg.author.toString()}Welcome to {msg.guild.name},We are now {msg.guild.memberCount}!\n!"`,
+            content: `"**Please enter your desired welcome message.**\n\n**If you want to:**\n*-* __Mention the user__: {user}\n*-* __Get the member count__: {membercount}\n*-* __Get the server name__: {server}\n\n**Usage example:**\n${msg.author.toString()}Welcome to ${msg.guild.name},We are now ${msg.guild.memberCount}!\n!"`,
           });
         }
       });/*
