@@ -101,10 +101,10 @@ const collector = message.channel.createMessageCollector({filter:user,
             content: `"**Please enter your desired welcome message.**\n\n**If you want to:**\n*-* __Mention the user__: {user}\n*-* __Get the member count__: {membercount}\n*-* __Get the server name__: {server}\n\n**Usage example:**\nWelcome to {server}, {user}! We are now {membercount}!\n:fast_forward:\nWelcome to ${message.guild.namw}, ${message.author.toString}! We are now ${message.guild.memberCount}!"`,
           });
         }
-      });
+      });/*
       const johncena = (reaction, user) => {
                         return ['✅', '❌'].includes(reaction.emoji.name) && user.bot == false && user.id === message.author.id;
-                    };
+                    };*/
 
       collector.on("end", (_, reason) => {
         if (reason === "time") {
