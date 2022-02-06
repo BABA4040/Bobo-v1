@@ -4,7 +4,6 @@ const owners = "768944616724103170";
 
 const profileSchema = require(`${process.cwd()}/data/user.js`);
 const experience = require(`${process.cwd()}/util/xp`);
-const badges = require(`${process.cwd()}/util/givebadge`);
 module.exports = class {
   async run(message, bot, member) {
     const data = {};
