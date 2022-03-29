@@ -1,9 +1,9 @@
 
 
 
-const { Discord, Client } = require("discord.js");
+const { Discord, Client,Intent } = require("discord.js");
 const bot = new Client({
-Discord.NON_PRIVILEGED,
+
   intents: [
     "GUILDS",
   "GUILD_MEMBERS",
@@ -16,7 +16,8 @@ Discord.NON_PRIVILEGED,
     parse: ["everyone", "roles", "users"],
     repliedUser: true
   },
-  partials: ["CHANNEL", "MESSAGE", "REACTION", "USER"]
+  partials: ["CHANNEL", "MESSAGE", "REACTION", "USER"],
+Intent.NON_PRIVILEGED
 });
 ///const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD] });
 global.config = require("./config.json")
