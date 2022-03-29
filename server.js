@@ -3,6 +3,7 @@
 
 const { Discord, Client } = require("discord.js");
 const bot = new Client({
+Discord.NON_PRIVILEGED,
   intents: [
     "GUILDS",
   "GUILD_MEMBERS",
