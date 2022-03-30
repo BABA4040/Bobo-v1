@@ -16,8 +16,7 @@ const bot = new Client({
     parse: ["everyone", "roles", "users"],
     repliedUser: true
   },
-  partials: ["CHANNEL", "MESSAGE", "REACTION", "USER"],
-Intent.NON_PRIVILEGED
+  partials: ["CHANNEL", "MESSAGE", "REACTION", "USER"]
 });
 ///const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD] });
 global.config = require("./config.json")
