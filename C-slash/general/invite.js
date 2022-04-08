@@ -16,13 +16,7 @@ data: new SlashCommandBuilder()
 prime: false,
   run: async (interaction,bot,data) => {
 
-let embed = new Discord.MessageEmbed()
-      .setColor(Color)
-      .setTitle("**Bobo Bot**  InviteLink!")
-      .setURL(
-        `https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=8&scope=bot%20applications.commands`
-)
      
       
-      interaction.reply({embeds:[embed]})
+      interaction.reply({content:`${config.invite}`})
       }}
