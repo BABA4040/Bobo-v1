@@ -10,16 +10,11 @@ module.exports = {
   ownerOnly: false,
   cooldown: 3000,
   run: async (bot, message, args, dev) => {
-    let embed = new Discord.MessageEmbed()
-      .setColor(Color)
-      .setTitle("**Bobo Bot**  InviteLink!")
-      .setURL(
-        `${config.invite}`
-)
+   
      
       
-      message.channel.send({embeds:[embed]}).catch(err=>{
-      message.author.send({embeds:[embed]})
+      message.channel.send({content:`${config.invite}`}).catch(err=>{
+      message.author.send({content:`${config.invite}`})
       })
   }
 }
