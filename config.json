@@ -1,7 +1,7 @@
 {
-  "token":"OTIwNDEwMzU2MDM0MTc5MDgy.Ybj88Q.ddNk03S5oBP3McxxZaO7Nftqz-s",
-  "clientID": "920410356034179082",
-  "prefix": "Bo",
+ "token":"xxxxxxxxx",////discord bot token
+  "clientID": "xxxxxxxxxx", /////client id 
+  "prefix": "x",///// set your prefi
   "invite":"https://discord.com/api/oauth2/authorize?client_id=920410356034179082&permissions=8&scope=bot%20applications.commands",
   "mongoURL": "mongodb+srv://bobk:bobo1234+@cluster0.8zckc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   "channels":{
