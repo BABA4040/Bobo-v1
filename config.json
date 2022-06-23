@@ -1,29 +1,33 @@
 {
- "token":"xxxxxxxxx",////discord bot token
-  "clientID": "xxxxxxxxxx", /////client id 
-  "prefix": "x",///// set your prefi
-  "invite":"https://discord.com/api/oauth2/authorize?client_id=920410356034179082&permissions=8&scope=bot%20applications.commands",
-  "mongoURL": "mongodb+srv://bobk:bobo1234+@cluster0.8zckc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+ "token":"xxxxxxxxx",/*discord bot token*/
+  "clientID": "xxxxxxxxxx", /*client id */
+  "prefix": "x",/* set your prefix*/
+  "invite":"xxxxxx",/*discord bot invite link*/
+  "mongoURL": "xxxxxx", /* mongodb url*/
   "channels":{
-  "logChannel":"927472619123523594",
-    "debug":"930818872209207368"},
+  "logChannel":"xxxxx", /* log channel*/
+    "debug":"xxxxx"
+/* Debug channel*/
+},
 
   
     
   
   "badge":{
     
-    "invite":"https://media.discordapp.net/attachments/934034173780455454/934036587673698354/images.jpeg",
-    "game":"",
-    "lover":"https://media.discordapp.net/attachments/934034173780455454/934043059161792612/PicsArt_01-21-02.13.07.png"
+    "invite":"xxxx",/* badge must be url*/
+    "game":"xxxxxxx",
+    "lover":"xxxxxx"
   },
-  "support":"https://discord.gg/CuF4yKM9K7",
+  "support":"xxxx",/* support server link*/
   "embed":{
-  "Color":"#00B7BE",
-  "footer":"BoBo Team"},
+  "Color":"xxxx",/* embeds hex color code*/
+  "footer":"BoBo team" /* footer embeds*/
+
+},
   "webhook":{
-    "id":"898151785783508993",
-     "token":"pNBxD74wVmXvUTdgG5KmEEA_lfrXxorLOZzA96KJ9EY6FDqJd0fOPUrlfPNEXjOI0ag3"
+    "id":"xxxxx",/* webhook Id*/
+     "token":"xxxx"/* webhook token*/
   }
   
   
